@@ -1,0 +1,539 @@
+{
+  "services": [
+    {
+      "id": "srv_1",
+      "slug": "website-development",
+      "title": "Website Development",
+      "description": "Custom responsive websites designed to engage visitors and drive conversions.",
+      "icon": "Globe",
+      "longDescription": "We create bespoke websites that blend beautiful aesthetics with high-performance engineering. Our development process centers on building custom responsive solutions tailored specifically to your business goals. From marketing websites to complex enterprise platforms, we ensure clean code, swift loading speeds, and search-engine friendliness.",
+      "features": [
+        "Responsive Grid Layouts",
+        "Semantic HTML5 & CSS3",
+        "Next.js Static Generation",
+        "Core Web Vitals Optimization",
+        "Intuitive CMS Integrations"
+      ],
+      "pricing": "Starting at $2,499"
+    },
+    {
+      "id": "srv_2",
+      "slug": "web-application-development",
+      "title": "Web Application Development",
+      "description": "Scalable web applications built with modern frontend frameworks and robust backends.",
+      "icon": "Cpu",
+      "longDescription": "Deploy fast, interactive web applications that scale seamlessly. We specialize in building secure, responsive applications using React, Next.js, Node.js, and SQL/NoSQL databases. Whether it's a SaaS platform, a booking engine, or an internal operations tool, we deliver secure and robust software systems.",
+      "features": [
+        "Microservices Architecture",
+        "Real-time Data Synced API",
+        "Secure User Authentication",
+        "Interactive Dashboards",
+        "Automated CI/CD Pipelines"
+      ],
+      "pricing": "Starting at $7,999"
+    },
+    {
+      "id": "srv_3",
+      "slug": "ui-ux-design",
+      "title": "UI/UX Design",
+      "description": "Modern user experiences that are visually stunning and intuitive.",
+      "icon": "Palette",
+      "longDescription": "Crafting premium user interfaces and strategic user experiences. We map user journeys, run competitive audits, compile structural wireframes, and build high-fidelity interactive prototypes. Our design system approach guarantees visual consistency and smooth interface micro-interactions.",
+      "features": [
+        "User Journey Mapping",
+        "Interactive Wireframes",
+        "Custom Design Systems",
+        "High-fidelity Prototypes",
+        "Usability Testing Loops"
+      ],
+      "pricing": "Starting at $1,999"
+    },
+    {
+      "id": "srv_4",
+      "slug": "seo",
+      "title": "SEO Optimization",
+      "description": "Search engine optimization strategies to boost visibility and organic traffic.",
+      "icon": "Search",
+      "longDescription": "Elevate your ranking on search engines and attract organic, high-intent traffic. We run comprehensive on-page, technical, and off-page SEO optimizations. From keyword profiling to schema markup injection and link authority building, we turn search algorithms into active growth channels.",
+      "features": [
+        "Keyword Strategy Auditing",
+        "Technical SEO Site Crawls",
+        "Structured Schema Markup",
+        "Backlink Authority Building",
+        "Monthly Ranking Dashboards"
+      ],
+      "pricing": "Starting at $999/mo"
+    },
+    {
+      "id": "srv_5",
+      "slug": "digital-marketing",
+      "title": "Digital Marketing",
+      "description": "Targeted social media & digital advertising campaigns.",
+      "icon": "Megaphone",
+      "longDescription": "Maximize acquisition channels and accelerate sales velocity. We research, build, and optimize social media ad campaigns, PPC engines (Google Search/Display), and email marketing pipelines to boost your customer lifetime value (LTV).",
+      "features": [
+        "Social Media Ads (Meta, LinkedIn)",
+        "Google PPC Campaign Funnels",
+        "Retargeting/Remarketing Ads",
+        "Drip Email Automations",
+        "A/B Landing Page Testing"
+      ],
+      "pricing": "Starting at $1,499/mo"
+    },
+    {
+      "id": "srv_6",
+      "slug": "brand-identity",
+      "title": "Brand Identity",
+      "description": "Memorable logos, modern color schemes, and brand identity design.",
+      "icon": "Award",
+      "longDescription": "Transform your brand with a cohesive corporate identity. We conduct design discovery, compile moodboards, draft modern logos, define core color palettes, specify typography scales, and assemble comprehensive corporate brand guidelines.",
+      "features": [
+        "Logo Mark & Logotype Design",
+        "Curated Brand Color System",
+        "Typography Hierarchy Specs",
+        "Corporate Stationery Kit",
+        "Digital Brand Guidelines Book"
+      ],
+      "pricing": "Starting at $2,999"
+    },
+    {
+      "id": "srv_7",
+      "slug": "cloud-hosting",
+      "title": "Cloud Hosting & DevOps",
+      "description": "Secure, fast, and high-availability cloud infrastructure deployment.",
+      "icon": "Cloud",
+      "longDescription": "Deploy your applications on scalable cloud architectures. We configure high-availability instances on AWS, Google Cloud, and Vercel. Our solutions guarantee automatic horizontal scaling, database clustering, multi-zone redundancy, and robust firewall setups.",
+      "features": [
+        "AWS/GCP Infrastructure Setup",
+        "Docker Containerization",
+        "Auto-scaling Cloud Clusters",
+        "SSL & Advanced Firewalling",
+        "24/7 Server Status Monitors"
+      ],
+      "pricing": "Starting at $499/mo"
+    },
+    {
+      "id": "srv_8",
+      "slug": "maintenance",
+      "title": "Website Maintenance",
+      "description": "Regular backups, security patches, content updates, and priority support.",
+      "icon": "ShieldCheck",
+      "longDescription": "Keep your digital presence secure, fast, and up-to-date. Our dedicated maintenance schedules include daily offsite backups, core system and plug-in updates, proactive vulnerability patching, speed optimization audits, and rapid support SLA loops.",
+      "features": [
+        "Daily Cloud Encrypted Backups",
+        "System Updates & Patches",
+        "Malware Scans & Protection",
+        "Minor Design & Content Updates",
+        "30-Minute Critical SLA Support"
+      ],
+      "pricing": "Starting at $299/mo"
+    }
+  ],
+  "portfolio": [
+    {
+      "id": "port_1",
+      "slug": "apex-retail",
+      "title": "Apex Retail E-Commerce",
+      "category": "E-Commerce",
+      "description": "A high-performance headless commerce platform with dynamic filters and instantaneous checkout checkout workflows.",
+      "client": "Apex Retail Group",
+      "duration": "4 Months",
+      "tags": [
+        "Next.js",
+        "Tailwind CSS",
+        "Stripe",
+        "PostgreSQL"
+      ],
+      "image": "gradient-purple",
+      "link": "https://example.com/apex",
+      "highlights": [
+        "Reduces checkout drop-off by 24%",
+        "Achieves 98/100 Lighthouse Performance score",
+        "Supports dynamic filtering over 50,000 SKUs under 40ms"
+      ]
+    },
+    {
+      "id": "port_2",
+      "slug": "pulse-health",
+      "title": "Pulse Health Patient Portal",
+      "category": "Healthcare",
+      "description": "HIPAA-compliant telemedicine dashboard and patient scheduling platform designed for clinics.",
+      "client": "Pulse Healthcare Inc",
+      "duration": "6 Months",
+      "tags": [
+        "Next.js",
+        "Node.js",
+        "PostgreSQL",
+        "Socket.io"
+      ],
+      "image": "gradient-blue",
+      "link": "https://example.com/pulse",
+      "highlights": [
+        "100% HIPAA and WCAG AA Accessibility compliant",
+        "Enables encrypted video consultations under 150ms latency",
+        "Automates patient reminder loops, cutting clinic no-shows by 35%"
+      ]
+    },
+    {
+      "id": "port_3",
+      "slug": "horizon-estates",
+      "title": "Horizon Real Estate Engine",
+      "category": "Real Estate",
+      "description": "Premium real estate search engine with interactive map features, filter matrices, and virtual home tour showcases.",
+      "client": "Horizon Realty Partners",
+      "duration": "3 Months",
+      "tags": [
+        "Next.js",
+        "Leaflet Maps",
+        "Tailwind CSS",
+        "Prisma"
+      ],
+      "image": "gradient-amber",
+      "link": "https://example.com/horizon",
+      "highlights": [
+        "Filters properties inside polygon boundaries dynamically",
+        "Features responsive 360 virtual viewport renderer",
+        "Increases scheduled property tours by 42% month-over-month"
+      ]
+    },
+    {
+      "id": "port_4",
+      "slug": "elevate-academy",
+      "title": "Elevate Learning LMS",
+      "category": "Education",
+      "description": "Custom learning management platform featuring video courses, interactive quizzes, and visual student analytics.",
+      "client": "Elevate Academy",
+      "duration": "5 Months",
+      "tags": [
+        "Next.js",
+        "AWS S3",
+        "Tailwind CSS",
+        "PostgreSQL"
+      ],
+      "image": "gradient-emerald",
+      "link": "https://example.com/elevate",
+      "highlights": [
+        "Supports concurrent video streaming for over 10,000 active students",
+        "Implements drag-and-drop course builder for administrators",
+        "Increases student curriculum completion rate by 28%"
+      ]
+    },
+    {
+      "id": "port_5",
+      "slug": "nomad-eats",
+      "title": "Nomad Bistro Booking App",
+      "category": "Restaurant",
+      "description": "Interactive table reservation, digital ordering system, and loyalty rewards application for high-end dining chains.",
+      "client": "Nomad Hospitality Group",
+      "duration": "2.5 Months",
+      "tags": [
+        "React",
+        "Express",
+        "Tailwind CSS",
+        "MongoDB"
+      ],
+      "image": "gradient-rose",
+      "link": "https://example.com/nomad",
+      "highlights": [
+        "Speeds up tables turnover rates by 18%",
+        "Processes split-bill mobile tableside payments securely",
+        "Aggregated 50k+ active loyalty user interactions in 90 days"
+      ]
+    },
+    {
+      "id": "port_6",
+      "slug": "aurora-corporate",
+      "title": "Aurora Holdings Portal",
+      "category": "Corporate",
+      "description": "Global corporate marketing website presenting dynamic investor relation indexes, press releases, and career portals.",
+      "client": "Aurora Global Corp",
+      "duration": "3 Months",
+      "tags": [
+        "Next.js",
+        "Tailwind CSS",
+        "Payload CMS"
+      ],
+      "image": "gradient-cyan",
+      "link": "https://example.com/aurora",
+      "highlights": [
+        "Loads global pages under 400ms using edge CDN caching",
+        "Translates investor documents instantly via dynamic language keys",
+        "Features accessible dark/light reading settings for visual comfort"
+      ]
+    },
+    {
+      "id": "port_7",
+      "slug": "visio-branding",
+      "title": "Visio Agency Showcase",
+      "category": "Portfolio",
+      "description": "Immersive graphic design portfolio utilizing interactive horizontal scrolls, hover animations, and video carousels.",
+      "client": "Visio Creative Studio",
+      "duration": "2 Months",
+      "tags": [
+        "Next.js",
+        "Framer Motion",
+        "Tailwind CSS"
+      ],
+      "image": "gradient-indigo",
+      "link": "https://example.com/visio",
+      "highlights": [
+        "Wins Webby Site Nomination for Creative UI Excellence",
+        "Includes fluid scroll effects running at steady 60fps",
+        "Generates 80% more creative service inquiries in first month"
+      ]
+    },
+    {
+      "id": "port_8",
+      "slug": "zenith-saas",
+      "title": "Zenith SaaS Landing Page",
+      "category": "Landing Pages",
+      "description": "High-converting marketing lander containing pricing charts, mock feature consoles, and smooth email capture loops.",
+      "client": "Zenith Cloud SaaS",
+      "duration": "1 Month",
+      "tags": [
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion"
+      ],
+      "image": "gradient-violet",
+      "link": "https://example.com/zenith",
+      "highlights": [
+        "Boosts user newsletter signup conversion rate by 14%",
+        "Displays premium glassmorphism layouts detailing cloud tiers",
+        "Bundles full responsive optimizations for mobile web screens"
+      ]
+    }
+  ],
+  "caseStudies": [
+    {
+      "id": "case_1",
+      "slug": "apex-retail-ecommerce-transformation",
+      "title": "Accelerating Sales for Apex Retail E-Commerce",
+      "client": "Apex Retail Group",
+      "category": "E-Commerce",
+      "challenge": "Apex Retail was struggling with high shopping cart abandonment rates (78%) and slow page load speeds (5.4 seconds on mobile). Their monolithic legacy platform made it difficult to run flash sales and integrate modern payment providers, leading to lost revenue and declining customer satisfaction.",
+      "solution": "We re-architected their digital infrastructure into a headless Next.js frontend integrated with Tailwind CSS for rapid styling, backed by a scalable Node.js microservice API. We integrated Stripe Elements with multi-currency support, optimized site assets, and set up CDNs for lightning-fast edge delivery.",
+      "results": [
+        "Cart abandonment dropped from 78% to 54% within 30 days.",
+        "Mobile page speed improved by 80%, reducing average load times to 1.1s.",
+        "A 32% increase in year-over-year digital sales volume."
+      ],
+      "metrics": {
+        "kpi1": {
+          "label": "Sales Increase",
+          "value": "+32%"
+        },
+        "kpi2": {
+          "label": "Load Time Reduction",
+          "value": "-80%"
+        },
+        "kpi3": {
+          "label": "Conversion Rate Boost",
+          "value": "+44%"
+        }
+      }
+    },
+    {
+      "id": "case_2",
+      "slug": "pulse-health-telemedicine-scale",
+      "title": "Scaling Patient Care via Pulse Health Portal",
+      "client": "Pulse Healthcare Inc",
+      "category": "Healthcare",
+      "challenge": "During peak health seasons, patient booking call volumes overwhelmed clinic administrators. Patients experienced long wait times, and clinic doctors faced scheduling conflicts due to manual entry errors. Pulse Health needed a fully compliant online booking and telemedicine suite.",
+      "solution": "We designed a premium HIPAA-compliant web application using Next.js for high-speed page loads and socket connections for real-time schedule syncing. The system features a customized telemedicine video chat window utilizing WebRTC, and automated SMS reminders powered by Twilio integrations.",
+      "results": [
+        "No-show rates dropped from 22% to 6% with SMS updates.",
+        "Clinic staff saved over 15 hours per week in automated administrative scheduling.",
+        "Enabled secure telemedicine consultations for over 50,000 patients."
+      ],
+      "metrics": {
+        "kpi1": {
+          "label": "No-Shows Reduction",
+          "value": "-72%"
+        },
+        "kpi2": {
+          "label": "Admin Hours Saved",
+          "value": "15h/wk"
+        },
+        "kpi3": {
+          "label": "Active Telemedicine Users",
+          "value": "50K+"
+        }
+      }
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "test_1",
+      "name": "Sarah Jenkins",
+      "role": "VP of Digital Product",
+      "company": "Apex Retail Group",
+      "content": "Aratha transformed our online store completely. Their Next.js implementation and attention to detail reduced our bounce rates and increased our mobile conversions by 32%. They are absolute experts in modern web technologies.",
+      "avatar": "SJ",
+      "rating": 5
+    },
+    {
+      "id": "test_2",
+      "name": "Dr. Aaron Miller",
+      "role": "Medical Director",
+      "company": "Pulse Healthcare Inc",
+      "content": "Building a HIPAA-compliant booking application is no small task. The Aratha team delivered a robust, secure, and beautiful patient portal. Our clinic operations are running smoother than ever.",
+      "avatar": "AM",
+      "rating": 5
+    },
+    {
+      "id": "test_3",
+      "name": "Emily Chen",
+      "role": "Founder & CEO",
+      "company": "Zenith Cloud SaaS",
+      "content": "The branding work they produced gave our startup instant credibility. Combined with a blazing fast marketing landing page, we hit our annual subscription targets three months ahead of schedule. Highly recommended!",
+      "avatar": "EC",
+      "rating": 5
+    },
+    {
+      "id": "test_4",
+      "name": "Marcus Thorne",
+      "role": "Operations Lead",
+      "company": "Horizon Realty Partners",
+      "content": "Our property listings search engine has never been this fast. Our users love the interactive polygon maps features and mobile virtual viewports. Aratha delivers premium engineering on time and on budget.",
+      "avatar": "MT",
+      "rating": 5
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog_1",
+      "slug": "why-nextjs-is-best-for-seo",
+      "title": "Why Next.js is the Ultimate Framework for SEO in 2026",
+      "excerpt": "Discover how Next.js Server Components, static generation, and edge caching boost search rankings and user engagement.",
+      "content": "### Introduction\n\nSearch Engine Optimization (SEO) is no longer just about keyword stuffing. Modern search engines like Google prioritize page speed, interactivity, and mobile responsiveness—metrics collectively known as Core Web Vitals.\n\nNext.js has emerged as the premier choice for organizations seeking to dominate search layouts. By bridging static generation, server-side rendering, and React Server Components, Next.js addresses search crawler requirements while keeping user interactions fluid.\n\n### The Static Generation Advantage\n\nUnlike traditional Single Page Applications (SPAs) that compile layouts on the client side, Next.js outputs pre-rendered HTML files. Search engine bots crawling your URL immediately receive complete, readable semantic content without executing heavy Javascript, speeding up indexing rates significantly.\n\n### Core Web Vitals and Page Speed\n\nGoogle's ranking algorithms favor sites that load under 2 seconds. Next.js offers built-in optimizations that address speed bottlenecks:\n- **Image Component (`next/image`):** Automatically resizes assets, converts files to modern web formats (WebP/AVIF), and prevents layout shifts.\n- **Font Optimization:** Downloads Google Fonts locally during the build process, preventing styling flickers.\n- **Code Splitting:** Loads only the critical Javascript required for the active route, reducing page startup weights.\n\n### Practical Schema Markup\n\nAdding structured metadata (JSON-LD) is highly intuitive in the Next.js App Router. Structured data helps Google understand your business services, producing rich snippets that boast much higher click-through rates (CTR).\n\n### Conclusion\n\nInvesting in Next.js is not just a technological upgrade; it is a strategic business decision that boosts organic marketing reach, enhances site accessibility, and maximizes sales conversions.",
+      "image": "gradient-blue-purple",
+      "date": "2026-08-01",
+      "readTime": "5 min read",
+      "author": "Aravind Nair",
+      "category": "Web Development"
+    },
+    {
+      "id": "blog_2",
+      "slug": "mastering-brand-identity",
+      "title": "The Anatomy of a Premium Corporate Brand Identity",
+      "excerpt": "A deep dive into how curated colors, modern typography, and cohesive design systems establish instant trust with consumers.",
+      "content": "### Introduction\n\nYour brand identity is the digital handshake of your business. In an online landscape crowded with competitors, a premium visual system establishes authority, commands trust, and builds emotional resonance with prospective buyers.\n\nBut what elements separate a generic business profile from a memorable, premium brand? Let's dissect the core components of professional branding.\n\n### 1. The Strategy: Intentional Visual Discovery\n\nProfessional branding starts with research, not illustration. Before designing a logo, a brand must define:\n- **Target Demographics:** Who are the key buyers?\n- **Brand Attributes:** If the brand was a person, how would they speak?\n- **Market Differentiation:** What makes your services unique?\n\n### 2. Curated Color Systems\n\nColors trigger immediate psychological associations. Sleek dark schemes convey luxury and technology; warm golden tones project premium quality, while vibrant blues convey safety and innovation. A premium system limits its primary colors, focusing on high contrast, readability, and modern aesthetics.\n\n### 3. Typography Scales\n\nFonts carry silent personalities. Sans-serif fonts like Poppins offer a modern corporate appearance that remains highly readable across mobile and desktop displays. Implementing structured typographic hierarchies prevents visual clutter, allowing users to scan services effortlessly.\n\n### 4. Cohesive Design Systems\n\nBranding must extend beyond the logo. A true design system specifies grid scales, button shapes (like pill or rounded cards), input styling, and animation guides. Consistent layout patterns build recognition and make app layouts feel polished.\n\n### Conclusion\n\nInvesting in visual branding yields dividends by commanding higher price points, accelerating customer acquisition, and locking in long-term customer loyalty.",
+      "image": "gradient-amber-rose",
+      "date": "2026-07-28",
+      "readTime": "4 min read",
+      "author": "Anjali Sharma",
+      "category": "Branding"
+    },
+    {
+      "id": "blog_3",
+      "slug": "headless-cms-payload",
+      "title": "Why Headless CMS Architecture is Winning the Enterprise",
+      "excerpt": "Learn why modern marketing teams are decoupling content management from rendering engines for improved scale and speed.",
+      "content": "### Introduction\n\nTraditional content management systems like WordPress couple database entries and layouts tightly. While this works for simple websites, it poses performance bottlenecks, security vulnerabilities, and layout constraints on modern corporate networks.\n\nDecoupled, headless architectures (like Payload CMS and Next.js) solve these scaling issues by separating content creation tools from page rendering engines.\n\n### How Headless CMS Works\n\nIn a headless system, content authors use an admin console to write, edit, and publish blogs or projects. However, the CMS does not render the HTML. Instead, it exposes secure JSON API endpoints. The Next.js frontend fetches this data during builds or dynamically at runtime, delivering static pages across edge nodes.\n\n### Major Benefits\n\n1. **Unrivaled Performance:** Because pages are compiled into static HTML, there is no server-side database lookup when a user visits a page. The load time drops from seconds to milliseconds.\n2. **Improved Security:** The database and editor dashboard reside behind secure networks, completely isolated from user views. Standard SQL injection vectors are eliminated.\n3. **Omnichannel Delivery:** Because content is stored as raw JSON data, it can be distributed to web applications, native mobile apps, smartwatches, or third-party digital signage simultaneously.\n4. **Developer Freedom:** Developers build custom, beautiful responsive frameworks using Tailwind and React without templates constraining their code.\n\n### Conclusion\n\nDecoupled architectures offer the speed, flexibility, and security required to scale modern corporate digital strategies.",
+      "image": "gradient-emerald-cyan",
+      "date": "2026-07-22",
+      "readTime": "6 min read",
+      "author": "Rohit Verma",
+      "category": "Tech Strategy"
+    }
+  ],
+  "leads": [
+    {
+      "type": "contact",
+      "name": "yash",
+      "email": "yash@aratha.in",
+      "phone": "8612345678",
+      "message": "hello",
+      "id": "lead_1789851425809",
+      "status": "New",
+      "date": "2026-09-19T20:57:05.810Z"
+    },
+    {
+      "id": "lead_1",
+      "type": "contact",
+      "name": "Vikram Malhotra",
+      "email": "vikram@malhotragroup.in",
+      "phone": "+91-9876543210",
+      "message": "We need a custom dashboard and booking app for our hospitality business. Looking for a full consult.",
+      "status": "New",
+      "date": "2026-08-04T18:30:00.000Z"
+    },
+    {
+      "id": "lead_2",
+      "type": "newsletter",
+      "email": "priya.sen@outlook.com",
+      "status": "Subscribed",
+      "date": "2026-08-04T20:15:00.000Z"
+    },
+    {
+      "id": "lead_3",
+      "type": "career",
+      "name": "Karan Singhal",
+      "email": "karan.singhal@gmail.com",
+      "phone": "+91-9988776655",
+      "jobTitle": "React Native Developer",
+      "experience": "4 years",
+      "message": "Highly interested in joining the mobile app team. Attached resume links.",
+      "status": "Reviewed",
+      "date": "2026-08-03T11:00:00.000Z"
+    }
+  ],
+  "seo": {
+    "home": {
+      "title": "Aratha | Digital Marketing & Web Development Agency",
+      "description": "Aratha is a modern digital agency specializing in website development, web applications, UI/UX design, SEO, digital marketing, and cloud hosting.",
+      "keywords": "web development agency, digital marketing, nextjs developers, payload cms, custom websites india, cloud hosting, seo agency"
+    },
+    "about": {
+      "title": "About Aratha | Digital Strategy & Product Engineering",
+      "description": "Learn about the team, mission, and philosophy behind Aratha, a premium digital product agency.",
+      "keywords": "about aratha, web agency team, digital product development"
+    },
+    "services": {
+      "title": "Services | Custom Web Apps, Branding & SEO | Aratha",
+      "description": "Explore Aratha's agency services: custom responsive websites, high-performance web applications, UI/UX design, SEO marketing, and secure cloud hosting.",
+      "keywords": "nextjs services, ui ux design agency, local seo services, cloud devops, branding services"
+    },
+    "portfolio": {
+      "title": "Portfolio | High-Performance Projects by Aratha",
+      "description": "Browse our featured website and application projects across E-commerce, Healthcare, Real Estate, Education, and Landing Pages.",
+      "keywords": "web portfolio, design case studies, ecommerce sites, nextjs apps"
+    },
+    "case-studies": {
+      "title": "Case Studies | Client Growth & Success Metrics | Aratha",
+      "description": "Read detailed case studies illustrating how Aratha accelerated growth and page performance for Apex Retail, Pulse Health, and more.",
+      "keywords": "ecommerce case study, telemedicine case study, digital marketing metrics"
+    },
+    "industries": {
+      "title": "Industries Served | Custom Digital Solutions | Aratha",
+      "description": "Tailored web development and digital marketing solutions for Fintech, Healthcare, E-Commerce, Education, and Restaurant groups.",
+      "keywords": "healthcare app development, real estate search software, LMS portals"
+    },
+    "pricing": {
+      "title": "Pricing & Packages | Transparent Agency Rates | Aratha",
+      "description": "Review pricing tiers for website builds, SaaS applications, custom branding kits, and monthly maintenance plans.",
+      "keywords": "website development costs, digital marketing retainer rates, nextjs price"
+    },
+    "blog": {
+      "title": "Blog | Digital Trends, Coding Insights & SEO | Aratha",
+      "description": "Read regular technical tutorials, marketing deep-dives, and agency product thoughts from the Aratha engineering team.",
+      "keywords": "nextjs seo tips, branding design guidelines, headless cms blog"
+    },
+    "careers": {
+      "title": "Careers | Join the Product Team at Aratha",
+      "description": "Apply to join our remote, high-performing design and engineering team. Browse active job roles.",
+      "keywords": "web developer jobs, remote react developer, digital agency careers"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions | Digital Inquiries | Aratha",
+      "description": "Find answers regarding agency timelines, custom CMS builds, search engine indexing, and monthly maintenance SLA scopes.",
+      "keywords": "web dev faq, pricing questions, agency timeline estimates"
+    },
+    "contact": {
+      "title": "Contact Us | Schedule a Free consultation | Aratha",
+      "description": "Get in touch with Aratha's team. Request website audits, custom project quotes, or schedule phone consultations.",
+      "keywords": "contact aratha, web agency phone, hire nextjs developer"
+    }
+  }
+}

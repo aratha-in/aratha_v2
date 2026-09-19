@@ -1,26 +1,197 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-primary: #0D1527;
+  --color-primary-light: #131F37;
+  --color-secondary: #00E5FF; /* Electric Cyan Accent */
+  --color-secondary-hover: #3B82F6; /* Sapphire Blue */
+  --color-accent: #00E5FF; /* Electric Cyan Accent */
+  --color-accent-hover: #38BDF8; /* Cyber Cyan Hover */
+  --color-cyan: #38BDF8;
+  
+  --font-poppins: "Poppins", sans-serif;
+  
+  --radius-large: 20px;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-marquee: marquee 30s linear infinite;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
   }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+:root {
+  --background: #0D1527;
+  --foreground: #FFFFFF;
+  --font-poppins: 'Poppins', sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   NEUMORPHISM (SOFT UI) - CYBER SAPPHIRE & ELECTRIC CYAN DESIGN SYSTEM
+   ========================================================================== */
+
+/* Extruded Neumorphic Flat Card / Surface */
+.neu-flat,
+.glass-card,
+.glass-panel {
+  background: #131F37;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 7px 7px 18px #070C18, -7px -7px 18px #1F3256, inset 1px 1px 1px rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neu-flat-hover:hover,
+.glass-card:hover {
+  background: #162542;
+  border-color: rgba(0, 229, 255, 0.45);
+  transform: translateY(-4px);
+  box-shadow: 10px 10px 24px #050912, -10px -10px 24px #233962, 0 0 24px rgba(0, 229, 255, 0.25);
+}
+
+/* Recessed / Pressed Neumorphic Concave Surface */
+.neu-pressed,
+.neu-inset {
+  background: #090E1B;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: inset 5px 5px 12px #05080F, inset -5px -5px 12px #192A4B;
+}
+
+/* Neumorphic Tactile Button */
+.neu-button {
+  background: linear-gradient(145deg, #16243F, #101B30);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 5px 5px 14px #070C18, -5px -5px 14px #1F3256;
+  color: #FFFFFF;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neu-button:hover {
+  background: linear-gradient(145deg, #1A2B4B, #122039);
+  border-color: rgba(0, 229, 255, 0.5);
+  color: #00E5FF;
+  box-shadow: 7px 7px 18px #050912, -7px -7px 18px #22385F, 0 0 18px rgba(0, 229, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.neu-button:active,
+.neu-button-pressed {
+  background: #0B1121;
+  box-shadow: inset 4px 4px 10px #05080F, inset -4px -4px 10px #182847;
+  transform: scale(0.98);
+}
+
+/* Recessed Neumorphic Input */
+.neu-input,
+.glass-input {
+  background: #090E1B;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: inset 4px 4px 10px #05080F, inset -4px -4px 10px #192949;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.neu-input:focus,
+.glass-input:focus {
+  outline: none;
+  border-color: #00E5FF;
+  box-shadow: inset 4px 4px 10px #05080F, inset -4px -4px 10px #192949, 0 0 0 2px rgba(0, 229, 255, 0.4);
+}
+
+/* Neumorphic Capsule Pill / Badge */
+.neu-pill {
+  background: #14213B;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 4px 4px 10px #070C18, -4px -4px 10px #20345C;
+}
+
+.neu-pill-active {
+  background: #0B1121;
+  box-shadow: inset 3px 3px 8px #05080F, inset -3px -3px 8px #182847;
+  border-color: #00E5FF;
+  color: #00E5FF;
+}
+
+/* Gradient text utilities (Pure White to Electric Cyan & Sapphire) */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFFFFF 20%, #38BDF8 70%, #00E5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #00E5FF 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #FFFFFF 0%, #00E5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090E1B;
+  box-shadow: inset 2px 2px 5px #05080F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #192949;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #05080F, -2px -2px 5px #21365E;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
+
+/* Custom visual decoration elements */
+.glow-blob {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(130px);
+  z-index: 0;
+  background: #00E5FF;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Custom ticker layout */
+.ticker-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
 }
