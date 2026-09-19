@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Bot, X, Send, User, Loader2, ArrowRight } from "lucide-react";
+import { Sparkles, Bot, X, Send, User, Loader2, ArrowRight, MessageSquare } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function AiAssistantModal() {
@@ -98,18 +98,15 @@ export default function AiAssistantModal() {
 
   return (
     <>
-      {/* Floating Trigger Button */}
-      <div className="fixed bottom-6 right-24 z-50">
+      {/* Floating Chatbot Trigger Button */}
+      <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative group p-4 rounded-2xl bg-gradient-to-r from-[#00E5FF] to-[#3B82F6] text-slate-950 font-bold shadow-xl shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center gap-2"
-          aria-label="Toggle Aratha AI Assistant"
+          className="relative group w-13 h-13 rounded-2xl bg-gradient-to-r from-[#00E5FF] to-[#3B82F6] text-slate-950 font-bold shadow-2xl shadow-cyan-500/30 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center border border-cyan-400/30"
+          aria-label="Open AI Chatbot"
         >
-          <Sparkles className="w-5 h-5 text-slate-950 animate-spin-slow" />
-          <span className="hidden sm:inline text-xs uppercase tracking-wider font-extrabold">
-            Aratha AI
-          </span>
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-emerald-400 rounded-full border-2 border-slate-950 animate-ping" />
+          <MessageSquare className="w-6 h-6 text-slate-950 group-hover:rotate-6 transition-transform" />
+          <span className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-slate-950 animate-ping" />
         </button>
       </div>
 

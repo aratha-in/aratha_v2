@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import LiveChat from "@/components/LiveChat";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 import AiAssistantModal from "@/components/AiAssistantModal";
 import "@/app/globals.css";
@@ -67,7 +66,6 @@ export default function RootLayout({
         {/* Main Content Area */}
         <main className="flex-1 pt-24">{children}</main>
         <Footer />
-        <LiveChat />
         <WhatsAppFloat />
         <AiAssistantModal />
       </body>
