@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LiveChat from "@/components/LiveChat";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
+import AiAssistantModal from "@/components/AiAssistantModal";
 import "@/app/globals.css";
 
 const poppins = Poppins({
@@ -68,6 +69,7 @@ export default function RootLayout({
         <Footer />
         <LiveChat />
         <WhatsAppFloat />
+        <AiAssistantModal />
       </body>
     </html>
   );
