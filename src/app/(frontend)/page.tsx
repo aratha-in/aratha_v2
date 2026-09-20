@@ -192,6 +192,9 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Fiber Optic Light Beam Cable Animation Divider */}
+      <FiberOpticBeam className="-my-6 z-10" showBadge={false} />
+
       {/* 4. WHY CHOOSE US */}
       <section className="py-24 px-6 bg-slate-950/40 border-y border-white/5 relative z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -301,6 +304,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Fiber Optic Light Beam Cable Animation Divider */}
+      <FiberOpticBeam className="-my-6 z-10" showBadge={false} />
 
       {/* 9. PRICING PREVIEW */}
       <section className="py-24 px-6 relative z-10 max-w-7xl mx-auto">

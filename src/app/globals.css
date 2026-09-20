@@ -205,8 +205,8 @@ body {
     stroke-dashoffset: 0;
   }
   50% {
-    stroke-dasharray: 280 1200;
-    stroke-dashoffset: -400;
+    stroke-dasharray: 320 1200;
+    stroke-dashoffset: -450;
   }
   100% {
     stroke-dasharray: 0 1200;
@@ -214,10 +214,60 @@ body {
   }
 }
 
+@keyframes fiberPulseReverse {
+  0% {
+    stroke-dasharray: 0 1200;
+    stroke-dashoffset: -1200;
+  }
+  50% {
+    stroke-dasharray: 260 1200;
+    stroke-dashoffset: -600;
+  }
+  100% {
+    stroke-dasharray: 0 1200;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fiberPulseFast {
+  0% {
+    stroke-dasharray: 40 1200;
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dasharray: 40 1200;
+    stroke-dashoffset: -1200;
+  }
+}
+
+@keyframes fiberNodeGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px #00E5FF);
+  }
+}
+
 .animate-fiber-pulse-1 {
-  animation: fiberPulse 3.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: fiberPulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .animate-fiber-pulse-2 {
-  animation: fiberPulse 3.8s cubic-bezier(0.4, 0, 0.6, 1) infinite 1.9s;
+  animation: fiberPulse 3.5s cubic-bezier(0.4, 0, 0.6, 1) infinite 1.75s;
+}
+
+.animate-fiber-pulse-reverse {
+  animation: fiberPulseReverse 4.2s cubic-bezier(0.4, 0, 0.6, 1) infinite 0.8s;
+}
+
+.animate-fiber-pulse-fast {
+  animation: fiberPulseFast 2.2s linear infinite;
+}
+
+.animate-fiber-node {
+  animation: fiberNodeGlow 2.5s ease-in-out infinite;
 }

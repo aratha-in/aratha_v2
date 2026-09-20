@@ -1,77 +1,199 @@
 "use client";
 
-export default function FiberOpticBeam({ className = "" }: { className?: string }) {
+import React, { useState } from "react";
+
+interface FiberOpticBeamProps {
+  className?: string;
+  showBadge?: boolean;
+  variant?: "wave" | "dual" | "straight";
+}
+
+export default function FiberOpticBeam({
+  className = "",
+  showBadge = true,
+  variant = "dual",
+}: FiberOpticBeamProps) {
+  const [burst, setBurst] = useState(false);
+  const [activeNode, setActiveNode] = useState<string | null>(null);
+
+  const triggerDataBurst = () => {
+    setBurst(true);
+    setTimeout(() => setBurst(false), 2000);
+  };
+
   return (
-    <div className={`relative w-full overflow-hidden pointer-events-none select-none ${className}`}>
+    <div
+      className={`relative w-full overflow-hidden select-none group ${className}`}
+      onClick={triggerDataBurst}
+    >
       <svg
-        className="w-full h-24 sm:h-32"
-        viewBox="0 0 1200 120"
+        className="w-full h-24 sm:h-36 pointer-events-none"
+        viewBox="0 0 1200 140"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
       >
         <defs>
-          {/* Fiber Optic Light Gradient Beam */}
-          <linearGradient id="fiber-beam-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          {/* Fiber Optic Cyan-to-Blue Beam Gradient */}
+          <linearGradient id="fiber-beam-cyan" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#00E5FF" stopOpacity="0" />
-            <stop offset="50%" stopColor="#00E5FF" stopOpacity="1" />
-            <stop offset="75%" stopColor="#3B82F6" stopOpacity="1" />
+            <stop offset="40%" stopColor="#00E5FF" stopOpacity="1" />
+            <stop offset="70%" stopColor="#3B82F6" stopOpacity="1" />
             <stop offset="100%" stopColor="#FFFFFF" stopOpacity="1" />
           </linearGradient>
 
-          {/* Cable Outer Glass Glow Filter */}
-          <filter id="fiber-glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="4" result="blur" />
-            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          {/* Reverse Magenta-to-Cyan Beam Gradient */}
+          <linearGradient id="fiber-beam-reverse" x1="100%" y1="0%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#EC4899" stopOpacity="0" />
+            <stop offset="40%" stopColor="#8B5CF6" stopOpacity="0.9" />
+            <stop offset="80%" stopColor="#00E5FF" stopOpacity="1" />
+            <stop offset="100%" stopColor="#FFFFFF" stopOpacity="1" />
+          </linearGradient>
+
+          {/* High-Intensity Laser Burst Gradient */}
+          <linearGradient id="fiber-laser-burst" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+            <stop offset="50%" stopColor="#00E5FF" stopOpacity="1" />
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Heavy Fiber Optic Glow Filter */}
+          <filter id="fiber-glow-heavy" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur1" />
+            <feGaussianBlur stdDeviation="2" result="blur2" />
+            <feMerge>
+              <feMergeNode in="blur1" />
+              <feMergeNode in="blur2" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
           </filter>
         </defs>
 
-        {/* 1. Outer Glass Sheath / Conduit Line */}
+        {/* ======================================================================
+            STRAND 1: MAIN FIBER OPTIC CABLE (Cyan Core Path)
+           ====================================================================== */}
+        {/* Outer Conduit Shielding */}
         <path
-          d="M0 60 C 300 110, 600 10, 900 100 L 1200 60"
-          stroke="rgba(0, 229, 255, 0.18)"
-          strokeWidth="6"
+          d="M 0 70 C 300 125, 600 15, 900 115 L 1200 70"
+          stroke="rgba(0, 229, 255, 0.15)"
+          strokeWidth="8"
           strokeLinecap="round"
         />
 
-        {/* 2. Inner Fiber Core Line */}
+        {/* Inner Cladding Line */}
         <path
-          d="M0 60 C 300 110, 600 10, 900 100 L 1200 60"
-          stroke="rgba(255, 255, 255, 0.3)"
-          strokeWidth="2"
-          strokeDasharray="6 6"
+          d="M 0 70 C 300 125, 600 15, 900 115 L 1200 70"
+          stroke="rgba(255, 255, 255, 0.25)"
+          strokeWidth="2.5"
+          strokeDasharray="8 8"
         />
 
-        {/* 3. Traveling Light Pulse Beam 1 */}
+        {/* Forward Traveling Light Beam 1 */}
         <path
-          d="M0 60 C 300 110, 600 10, 900 100 L 1200 60"
-          stroke="url(#fiber-beam-gradient)"
+          d="M 0 70 C 300 125, 600 15, 900 115 L 1200 70"
+          stroke="url(#fiber-beam-cyan)"
           strokeWidth="4"
           strokeLinecap="round"
-          filter="url(#fiber-glow)"
+          filter="url(#fiber-glow-heavy)"
           className="animate-fiber-pulse-1"
         />
 
-        {/* 4. Traveling Light Pulse Beam 2 (Staggered Offset) */}
+        {/* Forward Traveling Light Beam 2 (Staggered Offset) */}
         <path
-          d="M0 60 C 300 110, 600 10, 900 100 L 1200 60"
-          stroke="url(#fiber-beam-gradient)"
+          d="M 0 70 C 300 125, 600 15, 900 115 L 1200 70"
+          stroke="url(#fiber-beam-cyan)"
           strokeWidth="4"
           strokeLinecap="round"
-          filter="url(#fiber-glow)"
+          filter="url(#fiber-glow-heavy)"
           className="animate-fiber-pulse-2"
         />
 
-        {/* Node Connection Points with Pulsing Light */}
-        <circle cx="300" cy="85" r="4" fill="#00E5FF" className="animate-ping opacity-75" />
-        <circle cx="300" cy="85" r="3" fill="#FFFFFF" />
+        {/* ======================================================================
+            STRAND 2: SECONDARY REVERSE OPTICAL STRAND (Dual Mode)
+           ====================================================================== */}
+        {variant === "dual" && (
+          <>
+            {/* Reverse Cable Jacket */}
+            <path
+              d="M 0 50 C 300 10, 600 120, 900 25 L 1200 50"
+              stroke="rgba(139, 92, 246, 0.15)"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
 
-        <circle cx="600" cy="35" r="4" fill="#00E5FF" className="animate-ping opacity-75" />
-        <circle cx="600" cy="35" r="3" fill="#FFFFFF" />
+            {/* Reverse Light Beam */}
+            <path
+              d="M 0 50 C 300 10, 600 120, 900 25 L 1200 50"
+              stroke="url(#fiber-beam-reverse)"
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              filter="url(#fiber-glow-heavy)"
+              className="animate-fiber-pulse-reverse"
+            />
+          </>
+        )}
 
-        <circle cx="900" cy="88" r="4" fill="#00E5FF" className="animate-ping opacity-75" />
-        <circle cx="900" cy="88" r="3" fill="#FFFFFF" />
+        {/* ======================================================================
+            LASER BURST EFFECT (Triggered on click/burst)
+           ====================================================================== */}
+        {(burst || true) && (
+          <path
+            d="M 0 70 C 300 125, 600 15, 900 115 L 1200 70"
+            stroke="url(#fiber-laser-burst)"
+            strokeWidth="5"
+            strokeLinecap="round"
+            filter="url(#fiber-glow-heavy)"
+            className={burst ? "animate-fiber-pulse-fast opacity-100" : "animate-fiber-pulse-fast opacity-40"}
+          />
+        )}
+
+        {/* ======================================================================
+            FIBER REPEATER TERMINAL NODES (Interactive Light Nodes)
+           ====================================================================== */}
+        {/* Node 1: Primary Optical Node */}
+        <g
+          className="cursor-pointer pointer-events-auto"
+          onMouseEnter={() => setActiveNode("Node Alpha (300ms)")}
+          onMouseLeave={() => setActiveNode(null)}
+        >
+          <circle cx="300" cy="100" r="10" fill="#00E5FF" className="animate-ping opacity-30" />
+          <circle cx="300" cy="100" r="6" fill="#00E5FF" filter="url(#fiber-glow-heavy)" />
+          <circle cx="300" cy="100" r="3" fill="#FFFFFF" />
+        </g>
+
+        {/* Node 2: Core Processing Node */}
+        <g
+          className="cursor-pointer pointer-events-auto"
+          onMouseEnter={() => setActiveNode("Node Core (10Gbps)")}
+          onMouseLeave={() => setActiveNode(null)}
+        >
+          <circle cx="600" cy="40" r="12" fill="#3B82F6" className="animate-ping opacity-35" />
+          <circle cx="600" cy="40" r="7" fill="#00E5FF" filter="url(#fiber-glow-heavy)" />
+          <circle cx="600" cy="40" r="3.5" fill="#FFFFFF" />
+        </g>
+
+        {/* Node 3: Edge Distribution Node */}
+        <g
+          className="cursor-pointer pointer-events-auto"
+          onMouseEnter={() => setActiveNode("Node Omega (0.1ms latency)")}
+          onMouseLeave={() => setActiveNode(null)}
+        >
+          <circle cx="900" cy="100" r="10" fill="#EC4899" className="animate-ping opacity-30" />
+          <circle cx="900" cy="100" r="6" fill="#3B82F6" filter="url(#fiber-glow-heavy)" />
+          <circle cx="900" cy="100" r="3" fill="#FFFFFF" />
+        </g>
       </svg>
+
+      {/* Floating Status Badge / Tooltip */}
+      {showBadge && (
+        <div className="absolute top-2 right-6 md:right-12 flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/80 border border-cyan-500/30 backdrop-blur-md text-[10px] font-mono text-cyan-300 shadow-lg pointer-events-none transition-all">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+          <span>
+            {activeNode ? activeNode : burst ? "⚡ OPTICAL BURST DISPATCHED" : "FIBER OPTIC BACKBONE ACTIVE • 100 Gbps"}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
+
