@@ -195,3 +195,29 @@ body {
   width: max-content;
   animation: marquee 30s linear infinite;
 }
+
+/* ==========================================================================
+   FIBER OPTIC LIGHT BEAM CABLE ANIMATIONS
+   ========================================================================== */
+@keyframes fiberPulse {
+  0% {
+    stroke-dasharray: 0 1200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 280 1200;
+    stroke-dashoffset: -400;
+  }
+  100% {
+    stroke-dasharray: 0 1200;
+    stroke-dashoffset: -1200;
+  }
+}
+
+.animate-fiber-pulse-1 {
+  animation: fiberPulse 3.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-fiber-pulse-2 {
+  animation: fiberPulse 3.8s cubic-bezier(0.4, 0, 0.6, 1) infinite 1.9s;
+}

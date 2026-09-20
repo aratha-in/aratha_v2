@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import InteractiveClientSections from "@/components/InteractiveClientSections";
 import ArathaConsole from "@/components/ArathaConsole";
+import FiberOpticBeam from "@/components/FiberOpticBeam";
 
 export const revalidate = 0; // Disable caching to fetch fresh DB data on load
 
@@ -110,6 +111,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Fiber Optic Light Beam Cable Animation */}
+      <FiberOpticBeam className="-my-6 z-10" />
 
       {/* 2. TRUSTED CLIENTS TICKER */}
       <section className="py-12 bg-slate-950/60 border-y border-white/5 relative z-10">
