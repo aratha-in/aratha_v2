@@ -305,140 +305,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Fiber Optic Light Beam Cable Animation Divider */}
-      <FiberOpticBeam className="-my-6 z-10" showBadge={false} />
-
-      {/* 9. PRICING PREVIEW */}
-      <section className="py-24 px-6 relative z-10 max-w-7xl mx-auto">
-        <div className="text-center flex flex-col items-center gap-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-            Simple, Transparent <span className="text-gradient-gold">Pricing</span>
-          </h2>
-          <p className="text-slate-400 text-sm max-w-lg leading-relaxed">
-            Choose a package that fits your stage, or schedule a consultation for a custom quote.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Plan 1 */}
-          <div className="glass-card p-8 flex flex-col justify-between min-h-[460px] relative">
-            <div className="flex flex-col gap-6">
-              <div>
-                <h3 className="text-lg font-bold text-white">Brand Identity Starter</h3>
-                <p className="text-slate-400 text-xs mt-1">Perfect for new businesses establishing identity.</p>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-extrabold text-white">$2,999</span>
-                <span className="text-slate-500 text-xs">/one-time</span>
-              </div>
-              <ul className="flex flex-col gap-3 border-t border-white/5 pt-6">
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Logo Mark & Brand Asset kit</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Corporate Color & Design Rules</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Typography Scales specifications</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Stationery templates layout (Letterhead, business cards)</span>
-                </li>
-              </ul>
-            </div>
-            <Link
-              href="/pricing"
-              className="w-full text-center py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-xs text-white transition-all mt-8"
-            >
-              Get Started
-            </Link>
-          </div>
-
-          {/* Plan 2 - Popular */}
-          <div className="glass-card p-8 flex flex-col justify-between min-h-[460px] relative border-accent shadow-accent/5 shadow-2xl">
-            <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-accent border border-accent/20 text-[10px] font-bold text-white uppercase tracking-wider">
-              Most Popular
-            </div>
-            <div className="flex flex-col gap-6">
-              <div>
-                <h3 className="text-lg font-bold text-white">Corporate Website</h3>
-                <p className="text-slate-400 text-xs mt-1">High-performance custom web platform built on Next.js.</p>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-extrabold text-secondary">$4,999</span>
-                <span className="text-slate-500 text-xs">/one-time</span>
-              </div>
-              <ul className="flex flex-col gap-3 border-t border-white/5 pt-6">
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Up to 10 page custom responsive Next.js frontend</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Self-managed Payload CMS / JSON Admin dashboard</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Core SEO Setup: Metadata configurations & schemas</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Contact capture integrations + analytics hooks</span>
-                </li>
-              </ul>
-            </div>
-            <Link
-              href="/pricing"
-              className="w-full text-center py-3 rounded-xl bg-accent hover:bg-accent-hover text-white font-semibold text-xs transition-all mt-8"
-            >
-              Get Started
-            </Link>
-          </div>
-
-          {/* Plan 3 */}
-          <div className="glass-card p-8 flex flex-col justify-between min-h-[460px] relative">
-            <div className="flex flex-col gap-6">
-              <div>
-                <h3 className="text-lg font-bold text-white">Web App Platform</h3>
-                <p className="text-slate-400 text-xs mt-1">Full stack interactive SaaS platforms or portals.</p>
-              </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-extrabold text-white">$9,999</span>
-                <span className="text-slate-500 text-xs">/starter price</span>
-              </div>
-              <ul className="flex flex-col gap-3 border-t border-white/5 pt-6">
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Interactive user profile consoles & databases</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Custom REST/GraphQL APIs and server middleware</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Complex payment loops (Stripe, Paypal)</span>
-                </li>
-                <li className="flex gap-2 text-xs text-slate-300">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-secondary shrink-0" />
-                  <span>Containerized deployments with Docker & AWS</span>
-                </li>
-              </ul>
-            </div>
-            <Link
-              href="/pricing"
-              className="w-full text-center py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 font-semibold text-xs text-white transition-all mt-8"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* 10. LATEST BLOGS */}
       <section className="py-24 px-6 border-t border-white/5 relative z-10 max-w-7xl mx-auto">
         <div className="text-center flex flex-col items-center gap-4 mb-16">
@@ -513,10 +379,10 @@ export default async function HomePage() {
               Get Free Consultation
             </Link>
             <Link
-              href="/pricing"
+              href="/portfolio"
               className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-semibold text-center border border-white/10 hover:border-white/20 transition-all"
             >
-              Check Pricing Packages
+              View Portfolio
             </Link>
           </div>
         </div>
