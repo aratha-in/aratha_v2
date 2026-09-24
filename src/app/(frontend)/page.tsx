@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { getDb } from "@/lib/db";
 import {
@@ -13,17 +12,7 @@ import {
 } from "lucide-react";
 import FiberOpticBeam from "@/components/FiberOpticBeam";
 import ArathaConsole from "@/components/ArathaConsole";
-
-const InteractiveClientSections = dynamic(
-  () => import("@/components/InteractiveClientSections"),
-  {
-    loading: () => (
-      <div className="py-24 max-w-7xl mx-auto px-6 flex justify-center items-center text-slate-500 text-xs font-mono">
-        Loading interactive showcase...
-      </div>
-    ),
-  }
-);
+import InteractiveClientSections from "@/components/InteractiveClientSections";
 
 export const revalidate = 3600; // Enable ISR (Incremental Static Regeneration) for instant edge TTFB
 
@@ -86,12 +75,12 @@ export default async function HomePage() {
               <span>Leading Next.js Development Agency</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
-              Transforming Ideas Into <br />
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+              Transforming Ideas Into <br className="hidden sm:inline" />
               <span className="text-gradient-gold">Powerful Digital Experiences</span>
             </h1>
 
-            <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
               We build custom responsive websites, high-performance web applications, and data-driven marketing strategies that accelerate business growth.
             </p>
 
@@ -112,8 +101,8 @@ export default async function HomePage() {
           </div>
 
           {/* Interactive Animated Aratha Console Column */}
-          <div className="lg:col-span-5 relative w-full h-[380px] md:h-[420px] z-10">
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/10 rounded-2xl blur-3xl opacity-35 pointer-events-none" />
+          <div className="lg:col-span-5 relative w-full h-[340px] md:h-[420px] z-10">
+            <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-blue-600/10 rounded-2xl blur-xl opacity-35 pointer-events-none" />
             <ArathaConsole />
           </div>
         </div>

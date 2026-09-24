@@ -51,6 +51,7 @@ export default function Navbar() {
             alt="Aratha Logo"
             width={144}
             height={34}
+            sizes="(max-width: 640px) 120px, 144px"
             className="w-full h-auto object-contain group-hover:brightness-125 transition-all duration-300"
             priority
           />

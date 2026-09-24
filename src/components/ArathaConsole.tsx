@@ -41,14 +41,27 @@ export default function ArathaConsole() {
   ];
 
   const [commandIndex, setCommandIndex] = useState(0);
-  const [typedCommand, setTypedCommand] = useState("");
+  const [typedCommand, setTypedCommand] = useState(commands[0].cmd);
   const [visibleOutputs, setVisibleOutputs] = useState<
     { text: string; color: string }[]
-  >([]);
-  const [isTyping, setIsTyping] = useState(true);
+  >(commands[0].outputs);
+  const [isTyping, setIsTyping] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    // Pause on initial pre-rendered view before cycling to next command
+    const initialTimer = setTimeout(() => {
+      setCommandIndex((prev) => (prev + 1) % commands.length);
+    }, 4000);
+
+    return () => clearTimeout(initialTimer);
+  }, []);
+
+  useEffect(() => {
+    if (commandIndex === 0 && typedCommand === commands[0].cmd && visibleOutputs.length === commands[0].outputs.length) {
+      return;
+    }
+
     let currentCmd = commands[commandIndex].cmd;
     let charIdx = 0;
     setTypedCommand("");
