@@ -35,14 +35,15 @@ export default function Navbar() {
   };
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "py-3 px-4 max-w-7xl mx-auto mt-3 rounded-2xl neu-flat"
-          : "bg-transparent py-5 max-w-7xl mx-auto px-4"
-      }`}
-    >
-      <nav className="w-full flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-3 transition-all duration-300 pointer-events-none">
+      <div
+        className={`w-full max-w-7xl transition-all duration-300 pointer-events-auto ${
+          scrolled
+            ? "py-3 px-6 rounded-2xl neu-flat shadow-2xl backdrop-blur-xl"
+            : "bg-transparent py-4 px-2"
+        }`}
+      >
+        <nav className="w-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex flex-col items-center w-36 group shrink-0 py-1">
           <Image
@@ -104,6 +105,7 @@ export default function Navbar() {
           </button>
         </div>
       </nav>
+      </div>
 
       {/* Mobile Drawer */}
       {isOpen && (

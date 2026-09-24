@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getPayloadClient } from "@/lib/payload";
+import { addLead } from "@/lib/db";
 
 export async function POST(request: Request) {
   try {
@@ -25,14 +26,24 @@ export async function POST(request: Request) {
             data: {
               name: name || "AI Chat Guest",
               email: email,
-              type: "consultation",
+              type: "contact",
               status: "New",
               message: `AI Chat Consultation: ${prompt || "Interested in agency scoping"}`,
             },
           });
           leadCaptured = true;
-        } catch (err) {
-          console.error("Failed to capture lead via AI chat:", err);
+        } catch {
+          try {
+            await addLead({
+              name: name || "AI Chat Guest",
+              email: email,
+              type: "contact",
+              message: `AI Chat Consultation: ${prompt || "Interested in agency scoping"}`,
+            });
+            leadCaptured = true;
+          } catch (err) {
+            console.error("Failed to capture lead via AI chat fallback:", err);
+          }
         }
         reply = `Thank you ${name || ""}! Your consultation request has been submitted directly to our lead engineering team. We will review your requirements and follow up at ${email} within 24 hours.`;
       } else {

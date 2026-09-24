@@ -98,15 +98,26 @@ export interface DatabaseSchema {
 // Define the file path resolving from workspace root
 const getDbPath = () => path.join(process.cwd(), "src", "data", "db.json");
 
-// Helper to read database
+// In-memory cache & write-lock state for high speed and data integrity
+let cachedDb: DatabaseSchema | null = null;
+let lastMtimeMs: number = 0;
+let writeQueue: Promise<any> = Promise.resolve();
+
+// Helper to read database with in-memory caching and mtime validation
 export async function getDb(): Promise<DatabaseSchema> {
   const filePath = getDbPath();
   try {
+    const stats = await fs.stat(filePath);
+    if (cachedDb && stats.mtimeMs === lastMtimeMs) {
+      return cachedDb;
+    }
     const rawData = await fs.readFile(filePath, "utf-8");
-    return JSON.parse(rawData) as DatabaseSchema;
+    cachedDb = JSON.parse(rawData) as DatabaseSchema;
+    lastMtimeMs = stats.mtimeMs;
+    return cachedDb;
   } catch (error) {
-    console.error("Database read error. Re-reading database...", error);
-    // Return empty schema in case of error
+    if (cachedDb) return cachedDb;
+    console.error("Database read error. Fallback schema initialized:", error);
     return {
       services: [],
       portfolio: [],
@@ -119,16 +130,30 @@ export async function getDb(): Promise<DatabaseSchema> {
   }
 }
 
-// Helper to write database
+// Helper to write database with atomic file renaming and write queue locking
 export async function writeDb(data: DatabaseSchema): Promise<boolean> {
   const filePath = getDbPath();
-  try {
-    await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf-8");
-    return true;
-  } catch (error) {
-    console.error("Database write error:", error);
-    return false;
-  }
+  const tempPath = `${filePath}.${Date.now()}.${Math.random().toString(36).substring(2, 7)}.tmp`;
+
+  // Queue writes sequentially to avoid race conditions
+  writeQueue = writeQueue.then(async () => {
+    try {
+      await fs.writeFile(tempPath, JSON.stringify(data, null, 2), "utf-8");
+      await fs.rename(tempPath, filePath);
+      cachedDb = data;
+      const stats = await fs.stat(filePath);
+      lastMtimeMs = stats.mtimeMs;
+      return true;
+    } catch (error) {
+      console.error("Database atomic write error:", error);
+      try {
+        await fs.unlink(tempPath);
+      } catch {}
+      return false;
+    }
+  });
+
+  return writeQueue;
 }
 
 // Services CRUD
