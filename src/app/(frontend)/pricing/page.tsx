@@ -1,9 +1,25 @@
 import PricingCalculator from "@/components/PricingCalculator";
 
 export const metadata = {
-  title: "Pricing Packages | Custom Software & SEO Retainers | Aratha",
+  title: "Pricing Plans & Custom Software Calculator | Aratha Agency",
   description:
-    "Review transparent pricing packages for brand identity, custom website design, web portal builds, and monthly website maintenance retainers.",
+    "Explore transparent pricing packages for brand identity, custom Next.js websites, web apps, and maintenance retainers. Generate an instant custom proposal.",
+  alternates: {
+    canonical: "/pricing",
+  },
+  openGraph: {
+    title: "Pricing Packages & Software Proposal Calculator | Aratha",
+    description:
+      "Review transparent pricing packages and generate custom proposal contracts for website builds and web applications.",
+    url: "https://aratha.in/pricing",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pricing Plans & Custom Software Calculator | Aratha",
+    description:
+      "Transparent website development pricing, web app packages, and instant custom proposal generation.",
+  },
 };
 
 export default function PricingPage() {

@@ -3,9 +3,25 @@ import { Globe, Cpu, Palette, Search, Sparkles, CheckCircle2 } from "lucide-reac
 import ServiceQuoteForm from "@/components/ServiceQuoteForm";
 
 export const metadata = {
-  title: "Services | High-Performance Web Engineering & SEO | Aratha",
+  title: "Services | High-Performance Web Engineering, Payload CMS & Technical SEO",
   description:
-    "Explore Aratha's service capabilities: bespoke website development, headless web applications, UI/UX systems design, SEO marketing, and secure DevOps setups.",
+    "Explore Aratha's agency capabilities: custom Next.js web development, headless Payload CMS, UI/UX systems design, technical SEO, Generative Engine Optimization (GEO), and AWS cloud DevOps.",
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    title: "Services | Web Engineering, Headless CMS & SEO | Aratha Agency",
+    description:
+      "Explore Aratha's agency capabilities: custom Next.js web development, headless Payload CMS, UI/UX systems design, technical SEO, and cloud DevOps.",
+    url: "https://aratha.in/services",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | High-Performance Web Engineering | Aratha",
+    description:
+      "Custom Next.js web application development, headless CMS integration, UI/UX design, and technical SEO.",
+  },
 };
 
 export const revalidate = 0; // Fresh db lookups
