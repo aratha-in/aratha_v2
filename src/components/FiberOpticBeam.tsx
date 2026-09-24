@@ -57,15 +57,9 @@ export default function FiberOpticBeam({
             <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
           </linearGradient>
 
-          {/* Heavy Fiber Optic Glow Filter */}
-          <filter id="fiber-glow-heavy" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="6" result="blur1" />
-            <feGaussianBlur stdDeviation="2" result="blur2" />
-            <feMerge>
-              <feMergeNode in="blur1" />
-              <feMergeNode in="blur2" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
+          {/* Lightweight High-Performance Fiber Optic Glow Filter */}
+          <filter id="fiber-glow-heavy" x="-10%" y="-10%" width="120%" height="120%">
+            <feGaussianBlur stdDeviation="2" />
           </filter>
         </defs>
 
