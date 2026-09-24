@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { getDb } from "@/lib/db";
 import {
@@ -9,16 +10,22 @@ import {
   Search,
   Sparkles,
   Zap,
-  Layers,
-  Code,
-  Shield,
-  HelpCircle,
 } from "lucide-react";
-import InteractiveClientSections from "@/components/InteractiveClientSections";
-import ArathaConsole from "@/components/ArathaConsole";
 import FiberOpticBeam from "@/components/FiberOpticBeam";
+import ArathaConsole from "@/components/ArathaConsole";
 
-export const revalidate = 0; // Disable caching to fetch fresh DB data on load
+const InteractiveClientSections = dynamic(
+  () => import("@/components/InteractiveClientSections"),
+  {
+    loading: () => (
+      <div className="py-24 max-w-7xl mx-auto px-6 flex justify-center items-center text-slate-500 text-xs font-mono">
+        Loading interactive showcase...
+      </div>
+    ),
+  }
+);
+
+export const revalidate = 3600; // Enable ISR (Incremental Static Regeneration) for instant edge TTFB
 
 export default async function HomePage() {
   const db = await getDb();
