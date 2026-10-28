@@ -98,7 +98,7 @@ export default function PortfolioFilterGrid({ projects }: PortfolioFilterGridPro
                   {/* Highlights list */}
                   <div className="border-t border-white/5 pt-4 mt-1 flex flex-col gap-1.5">
                     <span className="text-[9px] uppercase font-bold text-slate-500">Key Outcomes:</span>
-                    {proj.highlights?.map((h, i) => (
+                    {proj.highlights?.map((h: string, i: number) => (
                       <div key={i} className="text-[11px] text-slate-300 flex items-start gap-1.5 leading-relaxed">
                         <span className="text-secondary">&bull;</span>
                         <span>{h}</span>
@@ -110,7 +110,7 @@ export default function PortfolioFilterGrid({ projects }: PortfolioFilterGridPro
                 {/* Tags and CTA */}
                 <div className="flex flex-col gap-4 mt-6">
                   <div className="flex items-center gap-1.5 flex-wrap">
-                    {proj.tags?.map((tag) => (
+                    {proj.tags?.map((tag: string) => (
                       <span
                         key={tag}
                         className="px-2 py-0.5 rounded bg-white/5 border border-white/5 text-[9px] text-slate-400"

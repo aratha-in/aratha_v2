@@ -139,7 +139,7 @@ export default function InteractiveClientSections({
                       {proj.description}
                     </p>
                     <div className="flex items-center gap-1.5 flex-wrap mt-2">
-                      {proj.tags?.map((tag) => (
+                      {proj.tags?.map((tag: string) => (
                         <span
                           key={tag}
                           className="px-2 py-0.5 rounded-md bg-white/5 border border-white/5 text-[9px] text-slate-400"
