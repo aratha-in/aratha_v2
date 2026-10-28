@@ -21,7 +21,7 @@ export async function createPortfolio(req: Request, res: Response) {
 
 export async function updatePortfolio(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const project = await dbService.updatePortfolio(id, req.body);
     if (!project) return res.status(404).json({ error: 'Project not found' });
     return res.json(project);
@@ -32,7 +32,7 @@ export async function updatePortfolio(req: Request, res: Response) {
 
 export async function deletePortfolio(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const success = await dbService.deletePortfolio(id);
     if (!success) return res.status(404).json({ error: 'Project not found' });
     return res.json({ success: true });

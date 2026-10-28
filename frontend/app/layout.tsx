@@ -106,7 +106,7 @@ export default function RootLayout({
         "logo": "https://aratha-v2.vercel.app/logo-white.png",
         "image": "https://aratha-v2.vercel.app/logo-white.png",
         "description": "Digital engineering and market intelligence agency specializing in custom Next.js applications, headless CMS, UI/UX systems design, technical SEO, and cloud DevOps.",
-        "telephone": "+91-9999999999",
+        "telephone": "+91-8639581525",
         "email": "info@aratha.in",
         "priceRange": "$$",
         "address": {
@@ -197,14 +197,14 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${poppins.variable} h-full antialiased scroll-smooth`}>
+    <html lang="en" suppressHydrationWarning className={`${poppins.variable} h-full antialiased scroll-smooth`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100 selection:bg-secondary selection:text-slate-950">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-slate-950 text-slate-100 selection:bg-secondary selection:text-slate-950">
         <Navbar />
         <main className="flex-1 pt-24">{children}</main>
         <Footer />

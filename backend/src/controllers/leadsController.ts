@@ -26,7 +26,7 @@ export async function createLead(req: Request, res: Response) {
 
 export async function updateLeadStatus(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const { status } = req.body;
     if (!status) return res.status(400).json({ error: 'Status is required' });
     const lead = await dbService.updateLeadStatus(id, status);

@@ -10,11 +10,23 @@ import {
   DatabaseSchema,
 } from "../../../shared/types";
 
-const getDbPath = () => {
-  // Check root database/schema/db.json or src/data/db.json
-  const schemaPath = path.join(process.cwd(), "database", "schema", "db.json");
-  const fallbackPath = path.join(process.cwd(), "src", "data", "db.json");
-  return fs.stat(schemaPath).then(() => schemaPath).catch(() => fallbackPath);
+const getDbPath = async () => {
+  const possiblePaths = [
+    path.resolve(process.cwd(), "database", "schema", "db.json"),
+    path.resolve(process.cwd(), "..", "database", "schema", "db.json"),
+    path.resolve(process.cwd(), "src", "data", "db.json"),
+    path.resolve(process.cwd(), "..", "src", "data", "db.json"),
+    path.resolve(__dirname, "../../../database/schema/db.json"),
+    path.resolve(__dirname, "../../../src/data/db.json"),
+  ];
+
+  for (const p of possiblePaths) {
+    try {
+      await fs.stat(p);
+      return p;
+    } catch {}
+  }
+  return possiblePaths[0];
 };
 
 let cachedDb: DatabaseSchema | null = null;

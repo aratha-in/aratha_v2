@@ -71,7 +71,7 @@ export default function ServiceQuoteForm() {
       }
     } catch {
       setErrorMessage("Network error. Please try again.");
-    } finality {
+    } finally {
       setLoading(false);
     }
   };

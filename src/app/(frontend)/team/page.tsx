@@ -1,4 +1,5 @@
 import { ExternalLink, Globe } from "lucide-react";
+import Image from "next/image";
 
 export const metadata = {
   title: "Meet the Team | Software Engineers & UI Designers | Aratha",
@@ -8,28 +9,76 @@ export const metadata = {
 export default function TeamPage() {
   const team = [
     {
-      name: "Siddharth Verma",
-      role: "Co-Founder & Scoping Director",
-      bio: "12+ years directing SaaS product architecture and cloud migration scoping for enterprise partners.",
-      socials: { linkedin: "#", github: "#", website: "#" }
+      name: "Vishnu Mustapure",
+      role: "Managing Partner",
+      title: "Managing Partner",
+      image: "/team/vishnu-mustapure.webp",
+      bio: "Directing executive vision, product architecture, and enterprise software engineering initiatives.",
+      label: "VM",
+      socials: { linkedin: "https://linkedin.com", github: "https://github.com", website: "https://aratha.in" }
     },
     {
-      name: "Nikhil Kamath",
-      role: "Lead Software Architect",
-      bio: "Core engineer specialized in Next.js edge builds, PostgreSQL database tuning, and Docker integrations.",
-      socials: { linkedin: "#", github: "#" }
+      name: "Yash Gupta",
+      role: "Co-Founder",
+      title: "Co-Founder & Technical Lead",
+      image: "/team/yash-gupta.webp",
+      bio: "Co-Founder spearheading application architecture, Next.js performance optimizations, and full-stack engineering.",
+      label: "YG",
+      socials: { linkedin: "https://linkedin.com", github: "https://github.com" }
     },
     {
-      name: "Ananya Sen",
-      role: "Design Studio Lead",
-      bio: "Figma layout artist composer of custom design systems, branding asset kits, and luxury aesthetics interfaces.",
-      socials: { linkedin: "#", website: "#" }
+      name: "Jaayam Anusha Anand",
+      role: "COO",
+      title: "Chief Operating Officer",
+      image: "/team/jaayam-anusha-anand.webp",
+      bio: "Leading cross-functional operations, delivery management, and organizational strategy.",
+      label: "JA",
+      socials: { linkedin: "https://linkedin.com", website: "https://aratha.in" }
     },
     {
-      name: "Vikram Seth",
-      role: "Search Strategy Lead",
-      bio: "Specialist in Schema structured data markup audits, local SEO redirects management, and PPC ad loops.",
-      socials: { linkedin: "#", github: "#" }
+      name: "Prashant Kumar",
+      role: "Operations + Account Manager",
+      title: "Operations + Account Manager",
+      image: "/team/prashant-kumar.webp",
+      bio: "Managing client communications, project milestone tracking, and operational efficiency.",
+      label: "PK",
+      socials: { linkedin: "https://linkedin.com" }
+    },
+    {
+      name: "Ravi Kumar",
+      role: "Digital Marketing + Ads Manager",
+      title: "Digital Marketing + Ads Manager",
+      image: "/team/ravi-kumar.webp",
+      bio: "Directing growth acquisition channels, Meta & Google PPC advertising, and technical SEO campaigns.",
+      label: "RK",
+      socials: { linkedin: "https://linkedin.com", website: "https://aratha.in" }
+    },
+    {
+      name: "Vinusha Anugandula",
+      role: "Front-End Developer",
+      title: "Front-End Developer",
+      image: "/team/vinusha-anugandula.webp",
+      bio: "Crafting modern, responsive user interfaces, fluid animations, and accessible component architectures.",
+      label: "VA",
+      socials: { linkedin: "https://linkedin.com", github: "https://github.com" }
+    },
+    {
+      name: "Bakkanolla Harinath Reddy",
+      role: "Web Developer",
+      title: "Web Developer",
+      image: "/team/bakkanolla-harinath-reddy.webp",
+      bio: "Building robust web platforms, API integrations, and database architectures.",
+      label: "BH",
+      socials: { linkedin: "https://linkedin.com", github: "https://github.com" }
+    },
+    {
+      name: "Kaushik Rohit Sharma",
+      role: "Financial Consultant",
+      title: "Financial Consultant",
+      image: "/team/kaushik-rohit-sharma.webp",
+      bio: "Providing strategic financial advisory, capital allocation guidance, and fiscal planning for enterprise operations.",
+      label: "KS",
+      socials: { linkedin: "https://linkedin.com", website: "https://aratha.in" }
     }
   ];
 
@@ -50,37 +99,90 @@ export default function TeamPage() {
       </div>
 
       {/* Team grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 relative z-10">
         {team.map((member, index) => (
-          <div key={index} className="glass-card p-6 flex flex-col justify-between min-h-[300px]">
-            <div className="flex flex-col gap-4">
-              {/* Profile Initials Placeholder (Visual & Premium) */}
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-slate-900 to-slate-800 border border-white/10 flex items-center justify-center font-extrabold text-white text-lg relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-secondary/10" />
-                <span className="z-10">{member.name.split(" ").map(n => n[0]).join("")}</span>
+          <div
+            key={index}
+            className="glass-card p-5 flex flex-col justify-between group hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 relative overflow-hidden"
+          >
+            <div>
+              {/* Prominent Portrait / Avatar Showcase */}
+              <div className="relative w-full h-64 sm:h-72 rounded-xl overflow-hidden bg-gradient-to-b from-slate-800/80 to-slate-900 border border-white/10 mb-4 flex items-center justify-center">
+                {'image' in member && member.image ? (
+                  <>
+                    <Image
+                      src={member.image as string}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      priority={index === 0}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                  </>
+                ) : (
+                  <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-850 to-slate-950 overflow-hidden">
+                    <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#00E5FF_1px,transparent_1px)] [background-size:16px_16px]" />
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-accent/20 to-secondary/20 border border-white/10 flex items-center justify-center shadow-inner relative z-10 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl font-black text-white tracking-widest">{member.label}</span>
+                    </div>
+                  </div>
+                )}
+                {/* Floating Role Badge */}
+                <div className="absolute top-3 left-3 z-20">
+                  <span className="text-[10px] px-2.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md text-accent font-bold uppercase tracking-wider border border-accent/30 shadow-md">
+                    {member.role}
+                  </span>
+                </div>
               </div>
-              
+
               <div>
-                <h3 className="text-base font-bold text-white">{member.name}</h3>
-                <span className="text-[10px] text-secondary font-bold uppercase tracking-wider block mt-0.5">{member.role}</span>
-                <p className="text-slate-400 text-xs mt-3 leading-relaxed">{member.bio}</p>
+                <h3 className="text-base font-bold text-white tracking-tight group-hover:text-accent transition-colors">
+                  {member.name}
+                </h3>
+                {member.title !== member.role && (
+                  <span className="text-[11px] text-slate-300 font-medium block mt-0.5 leading-snug">
+                    {member.title}
+                  </span>
+                )}
+                <p className="text-slate-400 text-xs mt-2.5 leading-relaxed">
+                  {member.bio}
+                </p>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-3.5 border-t border-white/5 pt-4 mt-6">
+            <div className="flex items-center gap-3.5 border-t border-white/5 pt-3.5 mt-5">
               {member.socials.linkedin && (
-                <a href={member.socials.linkedin} className="text-slate-500 hover:text-white transition-colors" aria-label="LinkedIn">
+                <a
+                  href={member.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-white transition-colors"
+                  aria-label="LinkedIn"
+                >
                   <ExternalLink className="w-4 h-4" />
                 </a>
               )}
               {member.socials.github && (
-                <a href={member.socials.github} className="text-slate-500 hover:text-white transition-colors" aria-label="GitHub">
+                <a
+                  href={member.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-white transition-colors"
+                  aria-label="GitHub"
+                >
                   <ExternalLink className="w-4 h-4" />
                 </a>
               )}
               {member.socials.website && (
-                <a href={member.socials.website} className="text-slate-500 hover:text-white transition-colors" aria-label="Website">
+                <a
+                  href={member.socials.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-500 hover:text-white transition-colors"
+                  aria-label="Website"
+                >
                   <Globe className="w-4 h-4" />
                 </a>
               )}

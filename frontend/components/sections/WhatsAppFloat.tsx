@@ -12,7 +12,7 @@ export default function WhatsAppFloat() {
     const formattedText = encodeURIComponent(
       text.trim() || "Hello Aratha Agency! I'd like to get a consultation for my website project."
     );
-    window.open(`https://wa.me/919999999999?text=${formattedText}`, "_blank");
+    window.open(`https://wa.me/918639581525?text=${formattedText}`, "_blank");
     setIsOpen(false);
     setText("");
   };

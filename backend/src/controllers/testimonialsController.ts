@@ -21,7 +21,7 @@ export async function createTestimonial(req: Request, res: Response) {
 
 export async function updateTestimonial(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const testimonial = await dbService.updateTestimonial(id, req.body);
     if (!testimonial) return res.status(404).json({ error: 'Testimonial not found' });
     return res.json(testimonial);
@@ -32,7 +32,7 @@ export async function updateTestimonial(req: Request, res: Response) {
 
 export async function deleteTestimonial(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const success = await dbService.deleteTestimonial(id);
     if (!success) return res.status(404).json({ error: 'Testimonial not found' });
     return res.json({ success: true });

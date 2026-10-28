@@ -60,7 +60,7 @@ export default function ContactPage() {
   };
 
   const handleWhatsAppRedirect = () => {
-    window.open("https://wa.me/919999999999?text=Hello%20Aratha%20Agency!%20I'd%20like%20to%20get%20a%20consultation.", "_blank");
+    window.open("https://wa.me/918639581525?text=Hello%20Aratha%20Agency!%20I'd%20like%20to%20get%20a%20consultation.", "_blank");
   };
 
   return (
@@ -101,7 +101,7 @@ export default function ContactPage() {
               </a>
 
               <a
-                href="tel:+919999999999"
+                href="tel:+918639581525"
                 className="flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-slate-900/40 hover:bg-slate-900 hover:border-white/10 transition-all group"
               >
                 <div className="w-10 h-10 rounded-lg bg-slate-950 flex items-center justify-center border border-white/10 shrink-0">
@@ -109,7 +109,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block font-mono">Hotline Support</span>
-                  <span className="text-xs font-semibold text-white">+91-9999999999</span>
+                  <span className="text-xs font-semibold text-white">+91 8639581525</span>
                 </div>
               </a>
 

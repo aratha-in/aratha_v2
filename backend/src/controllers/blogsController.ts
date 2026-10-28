@@ -21,7 +21,7 @@ export async function createBlog(req: Request, res: Response) {
 
 export async function updateBlog(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const blog = await dbService.updateBlog(id, req.body);
     if (!blog) return res.status(404).json({ error: 'Blog not found' });
     return res.json(blog);
@@ -32,7 +32,7 @@ export async function updateBlog(req: Request, res: Response) {
 
 export async function deleteBlog(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const success = await dbService.deleteBlog(id);
     if (!success) return res.status(404).json({ error: 'Blog not found' });
     return res.json({ success: true });

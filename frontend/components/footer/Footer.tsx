@@ -114,11 +114,11 @@ export default function Footer() {
               <span>info@aratha.in</span>
             </a>
             <a
-              href="tel:+919999999999"
+              href="tel:+918639581525"
               className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm group"
             >
               <Phone className="w-4 h-4 text-[#00E5FF] group-hover:scale-110 transition-transform" />
-              <span>+91-9999999999</span>
+              <span>+91 8639581525</span>
             </a>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
               <MapPin className="w-4 h-4 text-[#00E5FF] shrink-0" />

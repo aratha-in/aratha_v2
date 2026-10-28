@@ -1,4 +1,5 @@
 import { Sparkles, Users, Award, ShieldAlert, History } from "lucide-react";
+import Image from "next/image";
 
 export const metadata = {
   title: "About Us | Product Strategy & Software Engineering | Aratha",
@@ -7,10 +8,14 @@ export const metadata = {
 
 export default function AboutPage() {
   const team = [
-    { name: "Aravind Nair", role: "Co-Founder & CTO", bio: "Next.js core contributor and architecture expert.", label: "AN" },
-    { name: "Anjali Sharma", role: "Design Director", bio: "Ex-Meta UI/UX specialist focused on conversion systems.", label: "AS" },
-    { name: "Kiran Singhal", role: "Lead Systems Architect", bio: "DevOps and cloud engineer specializing in AWS systems.", label: "KS" },
-    { name: "Rohit Verma", role: "SEO Strategy Director", bio: "Expert in search intent analytics and algorithm optimizations.", label: "RV" }
+    { name: "Vishnu Mustapure", role: "Managing Partner", image: "/team/vishnu-mustapure.webp", bio: "Managing Partner directing product architecture, executive vision, and corporate partnerships.", label: "VM" },
+    { name: "Yash Gupta", role: "Co-Founder", image: "/team/yash-gupta.webp", bio: "Co-Founder leading core software architecture, Next.js frameworks, and technical development.", label: "YG" },
+    { name: "Jaayam Anusha Anand", role: "COO", image: "/team/jaayam-anusha-anand.webp", bio: "Chief Operating Officer leading operations and organizational strategy.", label: "JA" },
+    { name: "Prashant Kumar", role: "Operations + Account Manager", image: "/team/prashant-kumar.webp", bio: "Managing client partnerships, delivery sprints, and operational workflows.", label: "PK" },
+    { name: "Ravi Kumar", role: "Digital Marketing + Ads Manager", image: "/team/ravi-kumar.webp", bio: "Directing search marketing, paid ad funnels, and performance optimization.", label: "RK" },
+    { name: "Vinusha Anugandula", role: "Front-End Developer", image: "/team/vinusha-anugandula.webp", bio: "Specializing in responsive UI systems, component libraries, and interactive design.", label: "VA" },
+    { name: "Bakkanolla Harinath Reddy", role: "Web Developer", image: "/team/bakkanolla-harinath-reddy.webp", bio: "Developing robust full-stack applications, API integrations, and database schemas.", label: "BH" },
+    { name: "Kaushik Rohit Sharma", role: "Financial Consultant", image: "/team/kaushik-rohit-sharma.webp", bio: "Providing strategic financial advisory, capital allocation guidance, and fiscal planning.", label: "KS" }
   ];
 
   const values = [
@@ -84,21 +89,52 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-white mt-2">Executive Leadership</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {team.map((member) => (
-            <div key={member.name} className="glass-card p-6 flex flex-col gap-4 text-center">
-              <div className="w-16 h-16 rounded-full bg-accent text-white font-extrabold text-base flex items-center justify-center mx-auto shadow-md">
-                {member.label}
-              </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {team.map((member, index) => (
+            <div
+              key={member.name}
+              className="glass-card p-5 flex flex-col justify-between group hover:border-accent/50 transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 relative overflow-hidden"
+            >
               <div>
-                <h3 className="text-sm font-bold text-white">{member.name}</h3>
-                <span className="text-[10px] text-secondary font-semibold uppercase tracking-wider block mt-0.5">
-                  {member.role}
-                </span>
+                {/* Prominent Portrait / Avatar Showcase */}
+                <div className="relative w-full h-60 rounded-xl overflow-hidden bg-gradient-to-b from-slate-800/80 to-slate-900 border border-white/10 mb-4 flex items-center justify-center">
+                  {'image' in member && member.image ? (
+                    <>
+                      <Image
+                        src={member.image as string}
+                        alt={member.name}
+                        fill
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        priority={index === 0}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
+                    </>
+                  ) : (
+                    <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-slate-850 to-slate-950 overflow-hidden">
+                      <div className="absolute inset-0 opacity-15 bg-[radial-gradient(#00E5FF_1px,transparent_1px)] [background-size:16px_16px]" />
+                      <div className="w-18 h-18 rounded-2xl bg-gradient-to-tr from-accent/20 to-secondary/20 border border-white/10 flex items-center justify-center shadow-inner relative z-10 group-hover:scale-110 transition-transform duration-300">
+                        <span className="text-2xl font-black text-white tracking-widest">{member.label}</span>
+                      </div>
+                    </div>
+                  )}
+                  {/* Floating Role Badge */}
+                  <div className="absolute top-3 left-3 z-20">
+                    <span className="text-[10px] px-2.5 py-1 rounded-full bg-slate-950/85 backdrop-blur-md text-accent font-bold uppercase tracking-wider border border-accent/30 shadow-md">
+                      {member.role}
+                    </span>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-base font-bold text-white tracking-tight group-hover:text-accent transition-colors">
+                    {member.name}
+                  </h3>
+                  <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                    {member.bio}
+                  </p>
+                </div>
               </div>
-              <p className="text-slate-400 text-xs leading-relaxed mt-1">
-                {member.bio}
-              </p>
             </div>
           ))}
         </div>

@@ -21,7 +21,7 @@ export async function createService(req: Request, res: Response) {
 
 export async function updateService(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const service = await dbService.updateService(id, req.body);
     if (!service) return res.status(404).json({ error: 'Service not found' });
     return res.json(service);
@@ -32,7 +32,7 @@ export async function updateService(req: Request, res: Response) {
 
 export async function deleteService(req: Request, res: Response) {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const success = await dbService.deleteService(id);
     if (!success) return res.status(404).json({ error: 'Service not found' });
     return res.json({ success: true });
