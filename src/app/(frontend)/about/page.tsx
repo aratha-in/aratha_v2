@@ -25,7 +25,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="relative w-full py-16 px-6 max-w-7xl mx-auto overflow-hidden">
+    <div className="relative w-full py-16 px-6 max-w-7xl mx-auto overflow-hidden" style={{ zoom: 0.9 }}>
       {/* Decorative Blur Blob */}
       <div className="glow-blob bg-accent -top-10 -left-10" />
 
