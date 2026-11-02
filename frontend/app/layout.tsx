@@ -6,7 +6,7 @@ import Footer from "../components/footer/Footer";
 import WhatsAppFloat from "../components/sections/WhatsAppFloat";
 import "./globals.css";
 
-const AiAssistantModal = dynamic(() => import("../components/sections/AiAssistantModal"));
+
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -209,7 +209,7 @@ export default function RootLayout({
         <main className="flex-1 pt-24">{children}</main>
         <Footer />
         <WhatsAppFloat />
-        <AiAssistantModal />
+
       </body>
     </html>
   );
