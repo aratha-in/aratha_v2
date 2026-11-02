@@ -18,7 +18,7 @@ export default function WhatsAppFloat() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 z-50 flex flex-col items-start">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
       {/* WhatsApp Chat Card */}
       {isOpen && (
         <div className="w-[300px] bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden mb-4 animate-slide-up">
