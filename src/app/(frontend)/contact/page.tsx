@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send, Check, Loader2, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, Loader2 } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import confetti from "canvas-confetti";
 
 export default function ContactPage() {
@@ -129,7 +130,7 @@ export default function ContactPage() {
               onClick={handleWhatsAppRedirect}
               className="w-full py-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 transition-colors shadow-lg shadow-emerald-600/25"
             >
-              <MessageCircle className="w-5 h-5" />
+              <FaWhatsapp className="w-5 h-5" />
               <span>Chat directly on WhatsApp</span>
             </button>
           </div>

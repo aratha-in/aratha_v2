@@ -25,7 +25,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="relative w-full py-16 px-6 max-w-7xl mx-auto overflow-hidden" style={{ zoom: 0.9 }}>
+    <div className="relative w-full py-16 px-6 max-w-7xl mx-auto overflow-hidden">
+      <p className="text-center text-sm text-gray-400">Current page loaded at 100%</p>
       {/* Decorative Blur Blob */}
       <div className="glow-blob bg-accent -top-10 -left-10" />
 
@@ -89,7 +90,7 @@ export default function AboutPage() {
           <h2 className="text-2xl font-bold text-white mt-2">Executive Leadership</h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6">
           {team.map((member, index) => (
             <div
               key={member.name}
