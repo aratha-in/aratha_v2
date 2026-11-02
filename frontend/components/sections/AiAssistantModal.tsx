@@ -6,14 +6,7 @@ import confetti from "canvas-confetti";
 
 export default function AiAssistantModal() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<
-    { sender: "ai" | "user"; text: string }[]
-  >([
-    {
-      sender: "ai",
-      text: "Hello! I am Aratha AI Market Intelligence Assistant. How can I assist you with website engineering, pricing, or tech stack scoping today?",
-    },
-  ]);
+  const [messages, setMessages] = useState<{ sender: "ai" | "user"; text: string }[]>([]);
   const [input, setInput] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
