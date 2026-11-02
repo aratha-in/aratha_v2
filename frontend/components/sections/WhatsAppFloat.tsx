@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, Send } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function WhatsAppFloat() {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,7 +78,7 @@ export default function WhatsAppFloat() {
         className="w-14 h-14 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-xl shadow-emerald-600/30 hover:scale-105 transition-all duration-200 active:scale-95 group"
         aria-label="Chat on WhatsApp"
       >
-
+        <FaWhatsapp className="w-7 h-7" />
       </button>
     </div>
   );
