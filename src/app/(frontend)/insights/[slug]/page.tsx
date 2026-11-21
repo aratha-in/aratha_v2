@@ -25,6 +25,14 @@ function categorySlug(category: string) {
   return category.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+function normalizeSlug(str: string) {
+  return decodeURIComponent(str || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
 function formatDate(value: string) {
   const date = new Date(value);
   return Number.isNaN(date.getTime())
@@ -182,7 +190,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const posts = await getInsightPosts();
-  const post = posts.find((item) => item.slug === slug);
+  const post = posts.find((item) => normalizeSlug(item.slug) === normalizeSlug(slug));
   return post ? getArticleMetadata(post) : { title: "Insight not found | Aratha" };
 }
 
@@ -229,7 +237,7 @@ export default async function InsightDetailPage({ params }: PageProps) {
     );
   }
 
-  const postIndex = posts.findIndex((post) => post.slug === slug);
+  const postIndex = posts.findIndex((post) => normalizeSlug(post.slug) === normalizeSlug(slug));
   if (postIndex < 0) notFound();
 
   const post = posts[postIndex];

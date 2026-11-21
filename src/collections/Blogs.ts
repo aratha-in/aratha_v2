@@ -14,6 +14,24 @@ export const Blogs: CollectionConfig = {
     read: () => true,
   },
   hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (data?.slug) {
+          data.slug = data.slug
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+        } else if (data?.title) {
+          data.slug = data.title
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '');
+        }
+        return data;
+      },
+    ],
     afterChange: [
       async ({ doc, previousDoc }) => {
         try {

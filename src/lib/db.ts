@@ -311,9 +311,19 @@ export async function getBlogs(): Promise<BlogPost[]> {
 
       return publishedDocs.map((doc: any) => {
         let imageUrl = doc.bannerImageUrl || "";
-        if (doc.featuredImage && typeof doc.featuredImage === "object" && doc.featuredImage.url) {
-          imageUrl = doc.featuredImage.url;
+        if (doc.featuredImage && typeof doc.featuredImage === "object") {
+          if (doc.featuredImage.filename) {
+            imageUrl = `/media/${doc.featuredImage.filename}`;
+          } else if (doc.featuredImage.url) {
+            imageUrl = doc.featuredImage.url.replace("/api/media/file/", "/media/");
+          }
         }
+
+        const normalizedSlug = (doc.slug || doc.title || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/(^-|-$)/g, "");
 
         let content = doc.rawMarkdownContent || "";
         if (!content && doc.content?.root) {
@@ -321,13 +331,17 @@ export async function getBlogs(): Promise<BlogPost[]> {
         }
 
         let downloadableUrl: string | undefined = doc.resourceUrl || undefined;
-        if (doc.downloadableFile && typeof doc.downloadableFile === "object" && doc.downloadableFile.url) {
-          downloadableUrl = doc.downloadableFile.url;
+        if (doc.downloadableFile && typeof doc.downloadableFile === "object") {
+          if (doc.downloadableFile.filename) {
+            downloadableUrl = `/media/${doc.downloadableFile.filename}`;
+          } else if (doc.downloadableFile.url) {
+            downloadableUrl = doc.downloadableFile.url.replace("/api/media/file/", "/media/");
+          }
         }
 
         return {
           id: String(doc.id),
-          slug: doc.slug,
+          slug: normalizedSlug,
           title: doc.title,
           subtitle: doc.excerpt || "",
           excerpt: doc.excerpt || "",
