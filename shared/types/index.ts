@@ -69,6 +69,12 @@ export interface BlogPost {
   resourceDescription?: string;
   seoTitle?: string;
   seoDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string;
+  directAnswer?: string;
+  keyTakeaways?: string;
+  targetAudience?: string;
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 export interface Lead {

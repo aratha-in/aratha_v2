@@ -3,7 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, CalendarDays, Clock3, Download, UserRound } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  BookmarkCheck,
+  CalendarDays,
+  CheckCircle2,
+  Clock3,
+  Download,
+  HelpCircle,
+  UserRound,
+  Zap,
+} from "lucide-react";
 import InsightsGrid from "@/components/InsightsGrid";
 import { getInsightPosts, getInsightsCategories } from "@/lib/insights";
 import type { BlogPost } from "@shared/types";
@@ -306,10 +317,14 @@ function getArticleMetadata(post: BlogPost): Metadata {
   const image = isImageUrl(post.image) ? post.image : "/logo-white.png";
   const url = `https://aratha.in/insights/${post.slug}`;
   const date = post.date ? new Date(post.date).toISOString() : undefined;
+  const keywords = post.primaryKeyword
+    ? [post.primaryKeyword, ...(post.tags || [])]
+    : post.tags;
 
   return {
     title,
     description,
+    keywords,
     alternates: { canonical: `/insights/${post.slug}` },
     openGraph: {
       title,
@@ -404,20 +419,75 @@ export default async function InsightDetailPage({ params }: PageProps) {
   const htmlContent = isHtml ? withHeadingIds(post.content) : null;
   const headings = htmlContent?.headings ?? markdownHeadings(post.content);
   const articleUrl = `https://aratha.in/insights/${post.slug}`;
+
+  let faqs: Array<{ question: string; answer: string }> = [];
+  if (Array.isArray(post.faqs)) {
+    faqs = post.faqs;
+  } else if (typeof post.faqs === "string") {
+    try {
+      const parsed = JSON.parse(post.faqs);
+      if (Array.isArray(parsed)) faqs = parsed;
+    } catch {}
+  }
+
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.subtitle || post.excerpt,
-    image: isImageUrl(post.image) ? [post.image] : undefined,
-    datePublished: post.date || undefined,
-    author: { "@type": "Organization", name: post.author },
-    publisher: {
-      "@type": "Organization",
-      name: "Aratha",
-      logo: { "@type": "ImageObject", url: "https://aratha.in/logo-white.png" },
-    },
-    mainEntityOfPage: articleUrl,
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        "headline": post.title,
+        "description": post.seoDescription || post.subtitle || post.excerpt,
+        "image": isImageUrl(post.image) ? [post.image] : undefined,
+        "datePublished": post.date || undefined,
+        "dateModified": post.date || undefined,
+        "inLanguage": "en-US",
+        "mainEntityOfPage": articleUrl,
+        "author": {
+          "@type": "Person",
+          "name": post.author,
+          "url": "https://aratha.in/about",
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Aratha",
+          "url": "https://aratha.in",
+          "logo": { "@type": "ImageObject", "url": "https://aratha.in/logo-white.png" },
+        },
+        "keywords": post.primaryKeyword || (post.tags ? post.tags.join(", ") : undefined),
+        "articleSection": post.category,
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": [".article-direct-answer", ".article-key-takeaways", ".insights-prose h2"],
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${articleUrl}#breadcrumb`,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aratha.in" },
+          { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://aratha.in/insights" },
+          { "@type": "ListItem", "position": 3, "name": post.category, "item": `https://aratha.in/insights/${categorySlug(post.category)}` },
+          { "@type": "ListItem", "position": 4, "name": post.title, "item": articleUrl },
+        ],
+      },
+      ...(faqs.length > 0
+        ? [
+            {
+              "@type": "FAQPage",
+              "@id": `${articleUrl}#faq`,
+              "mainEntity": faqs.map((f) => ({
+                "@type": "Question",
+                "name": f.question,
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": f.answer,
+                },
+              })),
+            },
+          ]
+        : []),
+    ],
   };
 
   return (
@@ -485,6 +555,31 @@ export default async function InsightDetailPage({ params }: PageProps) {
         {/* Main Content & Sidebar Layout */}
         <div className={headings.length > 0 ? "grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_260px]" : "mx-auto max-w-3xl"}>
           <div className="min-w-0">
+            {/* AEO Quick Answer Snippet */}
+            {post.directAnswer && (
+              <div className="article-direct-answer mb-10 rounded-2xl border border-cyan-400/40 bg-gradient-to-br from-cyan-950/40 via-slate-900/80 to-slate-900 p-6 shadow-xl relative overflow-hidden">
+                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-cyan-300 mb-2.5">
+                  <Zap className="h-4 w-4" /> Quick Answer / Direct Summary (AEO)
+                </div>
+                <p className="text-base sm:text-lg leading-relaxed text-slate-100 font-medium">
+                  {post.directAnswer}
+                </p>
+              </div>
+            )}
+
+            {/* GEO Key Takeaways Box */}
+            {post.keyTakeaways && (
+              <div className="article-key-takeaways mb-10 rounded-2xl border border-white/15 bg-slate-900/70 p-6 shadow-lg">
+                <div className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-cyan-300 mb-3">
+                  <BookmarkCheck className="h-4 w-4" /> Key Takeaways (Executive Summary)
+                </div>
+                <div className="insights-prose">
+                  {renderMarkdown(post.keyTakeaways)}
+                </div>
+              </div>
+            )}
+
+            {/* Main Article Prose Content */}
             <div className="insights-prose">
               {htmlContent ? (
                 <div dangerouslySetInnerHTML={{ __html: htmlContent.html }} />
@@ -493,6 +588,7 @@ export default async function InsightDetailPage({ params }: PageProps) {
               )}
             </div>
 
+            {/* Downloadable Resource */}
             {post.resourceUrl && (
               <a
                 href={post.resourceUrl}
@@ -506,6 +602,41 @@ export default async function InsightDetailPage({ params }: PageProps) {
                 <Download aria-hidden="true" className="h-6 w-6 shrink-0 text-cyan-300" />
               </a>
             )}
+
+            {/* AEO Frequently Asked Questions (FAQ Section) */}
+            {faqs.length > 0 && (
+              <section className="mt-14 pt-10 border-t border-white/10" aria-labelledby="faq-section">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-300 mb-2">
+                  <HelpCircle className="h-4 w-4" /> Frequently Asked Questions
+                </div>
+                <h2 id="faq-section" className="text-2xl font-extrabold text-white sm:text-3xl mb-6">
+                  Questions Answered in This Article
+                </h2>
+                <div className="space-y-4">
+                  {faqs.map((faq, fIdx) => (
+                    <div key={fIdx} className="rounded-2xl border border-white/10 bg-slate-900/60 p-6 shadow-md">
+                      <h3 className="text-base sm:text-lg font-bold text-white mb-2 flex items-start gap-2.5">
+                        <span className="text-cyan-400 font-extrabold">Q:</span>
+                        <span>{faq.question}</span>
+                      </h3>
+                      <p className="text-slate-300 leading-relaxed text-[15px] sm:text-base pl-6">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* GEO E-E-A-T Editorial Integrity & Fact-Check Trust Badge */}
+            <div className="my-10 rounded-2xl border border-white/10 bg-slate-900/40 p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-xs text-slate-400">
+              <div className="flex items-center gap-2.5">
+                <CheckCircle2 className="h-4 w-4 text-cyan-400 shrink-0" />
+                <span>
+                  <strong className="text-slate-200">Editorial Integrity:</strong> Authored by {post.author} · Peer-reviewed for technical accuracy · Structured for Search & Generative AI standards.
+                </span>
+              </div>
+            </div>
           </div>
 
           {headings.length > 0 && (

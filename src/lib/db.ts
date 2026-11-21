@@ -73,6 +73,12 @@ export interface BlogPost {
   resourceDescription?: string;
   seoTitle?: string;
   seoDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string;
+  directAnswer?: string;
+  keyTakeaways?: string;
+  targetAudience?: string;
+  faqs?: Array<{ question: string; answer: string }>;
 }
 
 export interface Lead {
@@ -378,6 +384,12 @@ export async function getBlogs(): Promise<BlogPost[]> {
           resourceDescription: doc.resourceDescription || undefined,
           seoTitle: doc.seoTitle || doc.title,
           seoDescription: doc.seoDescription || doc.excerpt,
+          primaryKeyword: doc.primaryKeyword || undefined,
+          secondaryKeywords: doc.secondaryKeywords || undefined,
+          directAnswer: doc.directAnswer || undefined,
+          keyTakeaways: doc.keyTakeaways || undefined,
+          targetAudience: doc.targetAudience || undefined,
+          faqs: Array.isArray(doc.faqs) ? doc.faqs : undefined,
         };
       });
     }

@@ -242,11 +242,19 @@ export const Blogs: CollectionConfig = {
               label: 'Excerpt / Summary Teaser',
             },
             {
+              name: 'directAnswer',
+              type: 'textarea',
+              label: '⚡ Quick Answer / Direct Answer (AEO - Answer Engine Optimization)',
+              admin: {
+                description: 'Crucial for AEO: A clear 40-60 word definitive answer to the primary query. Google AI Overviews and Perplexity extract this directly as the featured answer.',
+              },
+            },
+            {
               name: 'keyTakeaways',
               type: 'textarea',
-              label: 'Key Takeaways / Highlights (Top Box)',
+              label: '📌 Executive Summary / Key Takeaways (GEO - Generative Engine Optimization)',
               admin: {
-                description: 'Enter key bullet points to highlight at the top of the article',
+                description: 'Crucial for GEO: 3–5 bullet points summarizing core insights. Generative AI models (ChatGPT, Claude, Gemini) cite these when answering user prompts.',
               },
             },
             {
@@ -257,9 +265,9 @@ export const Blogs: CollectionConfig = {
             {
               name: 'rawMarkdownContent',
               type: 'textarea',
-              label: 'Or Paste Raw Markdown Article',
+              label: 'Or Paste Raw Markdown Article (SEO/AEO/GEO Formatted)',
               admin: {
-                description: 'Optional fast-entry field: paste complete markdown article text here',
+                description: 'Fast-entry field. Format with ## for Headings, Step 1: for workflows, tables (| Col |), blockquotes (> Quote), and checklists (- [x]) for peak SEO, AEO, and GEO performance.',
               },
             },
           ],
@@ -297,32 +305,55 @@ export const Blogs: CollectionConfig = {
           ],
         },
         {
-          label: 'SEO & Search Assets',
+          label: 'SEO, AEO & GEO Engine',
           fields: [
             {
               name: 'primaryKeyword',
               type: 'text',
-              label: 'Primary Keyword',
+              label: 'Primary Focus Keyword',
+              admin: {
+                description: 'The core search term targeted by this article (e.g. digital marketing strategy)',
+              },
             },
             {
               name: 'secondaryKeywords',
               type: 'textarea',
-              label: 'Secondary Keywords',
+              label: 'Secondary & Semantic Keywords (LSI)',
+              admin: {
+                description: 'Comma-separated related terms and synonyms used by search and generative AI engines.',
+              },
             },
             {
               name: 'seoTitle',
               type: 'text',
-              label: 'SEO Title',
+              label: 'SEO Meta Title (50-60 characters)',
+              admin: {
+                description: 'Appears as the clickable headline in Google, Bing, and AI citations.',
+              },
             },
             {
               name: 'seoDescription',
               type: 'textarea',
-              label: 'Meta Description',
+              label: 'SEO Meta Description (140-160 characters)',
+              admin: {
+                description: 'Compelling summary displayed in search snippets and generative summaries.',
+              },
+            },
+            {
+              name: 'faqs',
+              type: 'json',
+              label: 'Frequently Asked Questions (AEO & FAQPage Schema)',
+              admin: {
+                description: 'Enter FAQs: [{"question": "...", "answer": "..."}]. Automatically injected into Google FAQPage Schema & AI answer engines.',
+              },
             },
             {
               name: 'researchReferences',
               type: 'textarea',
-              label: 'Recommended Research References',
+              label: 'Recommended Research References & Citations',
+              admin: {
+                description: 'Data sources, industry surveys, and benchmark citations to boost GEO authoritativeness.',
+              },
             },
           ],
         },
