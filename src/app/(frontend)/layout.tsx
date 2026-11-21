@@ -160,7 +160,7 @@ export default function RootLayout({
         },
         "potentialAction": {
           "@type": "SearchAction",
-          "target": "https://aratha.in/blog?search={search_term_string}",
+          "target": "https://aratha.in/insights?search={search_term_string}",
           "query-input": "required name=search_term_string"
         }
       },

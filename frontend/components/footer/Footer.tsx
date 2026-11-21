@@ -72,7 +72,6 @@ export default function Footer() {
     ],
     resources: [
       { name: "Insights", path: "/insights" },
-      { name: "Blog archive", path: "/blog" },
       { name: "FAQ", path: "/faq" },
       { name: "Pricing", path: "/pricing" },
     ],

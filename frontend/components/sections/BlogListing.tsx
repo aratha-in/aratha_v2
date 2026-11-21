@@ -67,7 +67,7 @@ export default function BlogListing({ posts }: BlogListingProps) {
           {filteredPosts.map((post) => (
             <Link
               key={post.id}
-              href={`/blog/${post.slug}`}
+              href={`/insights/${post.slug}`}
               className="glass-card overflow-hidden flex flex-col group min-h-[380px]"
             >
               {/* Blog Graphic placeholder */}

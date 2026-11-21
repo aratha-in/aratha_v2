@@ -6,12 +6,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const insights = await getInsightPosts();
-  const blogUrls: MetadataRoute.Sitemap = insights.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : now,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  }));
 
   // Core static pages with priority weighting
   const staticRoutes: { route: string; priority: number; changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" }[] = [
@@ -24,7 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { route: "/industries", priority: 0.8, changeFrequency: "monthly" },
     { route: "/our-process", priority: 0.7, changeFrequency: "monthly" },
     { route: "/pricing", priority: 0.9, changeFrequency: "weekly" },
-    { route: "/blog", priority: 0.8, changeFrequency: "daily" },
+    { route: "/insights", priority: 0.9, changeFrequency: "daily" },
     { route: "/faq", priority: 0.8, changeFrequency: "monthly" },
     { route: "/careers", priority: 0.7, changeFrequency: "monthly" },
     { route: "/partners", priority: 0.6, changeFrequency: "monthly" },
@@ -46,19 +40,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const insightUrls: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/insights`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
     ...insights.map((post) => ({
       url: `${baseUrl}/insights/${post.slug}`,
       lastModified: post.date ? new Date(post.date) : now,
-      changeFrequency: "monthly" as const,
+      changeFrequency: "weekly" as const,
       priority: post.featured ? 0.85 : 0.75,
     })),
   ];
 
-  return [...staticUrls, ...blogUrls, ...insightUrls];
+  return [...staticUrls, ...insightUrls];
 }

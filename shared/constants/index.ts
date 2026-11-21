@@ -10,7 +10,7 @@ export const NAV_LINKS = [
   { name: "Process", href: "/our-process" },
   { name: "About", href: "/about" },
   { name: "Pricing", href: "/pricing" },
-  { name: "Blog", href: "/blog" },
+  { name: "Insights", href: "/insights" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -31,7 +31,7 @@ export const FOOTER_LINKS = {
   ],
   resources: [
     { name: "Case Studies", href: "/case-studies" },
-    { name: "Engineering Blog", href: "/blog" },
+    { name: "Aratha Insights", href: "/insights" },
     { name: "Downloads & Whitepapers", href: "/downloads" },
     { name: "Events & Webinars", href: "/events" },
     { name: "FAQ", href: "/faq" },
