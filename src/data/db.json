@@ -441,6 +441,15 @@
   "leads": [
     {
       "type": "contact",
+      "name": "Neon Test Lead",
+      "email": "neon.test@aratha.in",
+      "message": "Testing end-to-end integration with Neon Lakebase Postgres",
+      "id": "lead_1795247263970",
+      "status": "New",
+      "date": "2026-11-21T07:47:43.970Z"
+    },
+    {
+      "type": "contact",
       "name": "yash",
       "email": "yash@aratha.in",
       "phone": "8612345678",
