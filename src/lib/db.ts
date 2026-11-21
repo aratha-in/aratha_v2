@@ -375,24 +375,8 @@ export async function addLead(lead: Omit<Lead, "id" | "date" | "status">) {
     status: lead.type === "newsletter" ? "Subscribed" : "New",
     date: new Date().toISOString(),
   };
-  db.leads.unshift(newLead); // Add to beginning
+  db.leads.unshift(newLead);
   await writeDb(db);
-
-  // Sync to Neon Lakebase Postgres if DATABASE_URL is configured
-  if (process.env.DATABASE_URL) {
-    try {
-      const { neon } = await import("@neondatabase/serverless");
-      const sql = neon(process.env.DATABASE_URL);
-      await sql`
-        INSERT INTO leads (id, type, name, email, phone, job_title, experience, message, status)
-        VALUES (${newLead.id}, ${newLead.type}, ${newLead.name || null}, ${newLead.email}, ${newLead.phone || null}, ${newLead.jobTitle || null}, ${newLead.experience || null}, ${newLead.message || null}, ${newLead.status})
-        ON CONFLICT (id) DO NOTHING;
-      `;
-    } catch (neonErr) {
-      console.warn("Neon Postgres lead sync warning:", neonErr);
-    }
-  }
-
   return newLead;
 }
 

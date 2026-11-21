@@ -2,33 +2,44 @@ import type { CollectionConfig } from 'payload'
 
 export const Leads: CollectionConfig = {
   slug: 'leads',
+  labels: {
+    singular: 'Lead & Inquiry',
+    plural: 'Leads & Inquiries',
+  },
   admin: {
-    useAsTitle: 'email',
+    useAsTitle: 'name',
+    defaultColumns: ['name', 'email', 'phone', 'type', 'status', 'createdAt'],
   },
   access: {
     create: () => true, // allow public submission from contact forms
     read: ({ req }) => Boolean(req.user), // admin only
+    update: ({ req }) => Boolean(req.user),
+    delete: ({ req }) => Boolean(req.user),
   },
   fields: [
     {
       name: 'name',
       type: 'text',
+      label: 'Candidate / Client Name',
     },
     {
       name: 'email',
       type: 'email',
       required: true,
+      label: 'Email Address',
     },
     {
       name: 'phone',
       type: 'text',
+      label: 'Phone Number',
     },
     {
       name: 'type',
       type: 'select',
       defaultValue: 'contact',
+      label: 'Inquiry Type',
       options: [
-        { label: 'Contact Form', value: 'contact' },
+        { label: 'Contact Form / Inquiry Brief', value: 'contact' },
         { label: 'Consultation', value: 'consultation' },
         { label: 'Career Application', value: 'career' },
       ],
@@ -37,6 +48,7 @@ export const Leads: CollectionConfig = {
       name: 'status',
       type: 'select',
       defaultValue: 'New',
+      label: 'Lead Status',
       options: [
         { label: 'New', value: 'New' },
         { label: 'Contacted', value: 'Contacted' },
@@ -48,6 +60,7 @@ export const Leads: CollectionConfig = {
     {
       name: 'message',
       type: 'textarea',
+      label: 'Detailed Inquiry Brief / Request Message',
     },
   ],
 }
