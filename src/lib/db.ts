@@ -301,8 +301,15 @@ export async function getBlogs(): Promise<BlogPost[]> {
       limit: 100,
     });
 
-    if (result.docs && result.docs.length > 0) {
-      return result.docs.map((doc: any) => {
+    if (Array.isArray(result.docs)) {
+      // Filter out drafts: only published articles are public
+      const publishedDocs = result.docs.filter(
+        (doc: any) =>
+          doc.articleStatus !== "draft" &&
+          (doc.articleStatus === "published" || !doc.articleStatus)
+      );
+
+      return publishedDocs.map((doc: any) => {
         let imageUrl = doc.bannerImageUrl || "";
         if (doc.featuredImage && typeof doc.featuredImage === "object" && doc.featuredImage.url) {
           imageUrl = doc.featuredImage.url;
@@ -336,7 +343,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
           category: doc.category || "Market Intelligence",
           tags: doc.tags ? doc.tags.split(",").map((t: string) => t.trim()) : [],
           featured: true,
-          status: "published",
+          status: "published" as const,
           resourceUrl: downloadableUrl,
           resourceName: doc.resourceName || undefined,
           resourceDescription: doc.resourceDescription || undefined,
@@ -346,11 +353,12 @@ export async function getBlogs(): Promise<BlogPost[]> {
       });
     }
   } catch (err) {
-    console.warn("Payload CMS fetch fallback to db.json:", err);
+    console.warn("Payload CMS fetch error:", err);
   }
 
+  // Fallback to local db ONLY if database connection fails entirely
   const db = await getDb();
-  return db.blogs;
+  return (db.blogs || []).filter((b) => b.status === "published");
 }
 
 // Leads CRUD

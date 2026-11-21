@@ -13,6 +13,45 @@ export const Blogs: CollectionConfig = {
   access: {
     read: () => true,
   },
+  hooks: {
+    afterChange: [
+      async ({ doc, previousDoc }) => {
+        try {
+          const { revalidatePath, revalidateTag } = await import('next/cache')
+          revalidatePath('/insights')
+          revalidatePath('/')
+          revalidatePath('/sitemap.xml')
+          revalidateTag('insights')
+          revalidateTag('blogs')
+          if (doc?.slug) {
+            revalidatePath(`/insights/${doc.slug}`)
+          }
+          if (previousDoc?.slug && previousDoc.slug !== doc?.slug) {
+            revalidatePath(`/insights/${previousDoc.slug}`)
+          }
+        } catch (err) {
+          console.warn('Revalidation error afterChange:', err)
+        }
+      },
+    ],
+    afterDelete: [
+      async ({ doc }) => {
+        try {
+          const { revalidatePath, revalidateTag } = await import('next/cache')
+          revalidatePath('/insights')
+          revalidatePath('/')
+          revalidatePath('/sitemap.xml')
+          revalidateTag('insights')
+          revalidateTag('blogs')
+          if (doc?.slug) {
+            revalidatePath(`/insights/${doc.slug}`)
+          }
+        } catch (err) {
+          console.warn('Revalidation error afterDelete:', err)
+        }
+      },
+    ],
+  },
   fields: [
     {
       type: 'tabs',
@@ -34,6 +73,19 @@ export const Blogs: CollectionConfig = {
               label: 'URL Slug',
               admin: {
                 description: 'e.g. building-digital-marketing-strategy-with-clear-business-goals',
+              },
+            },
+            {
+              name: 'articleStatus',
+              type: 'select',
+              defaultValue: 'published',
+              required: true,
+              options: [
+                { label: 'Published (Live on website)', value: 'published' },
+                { label: 'Draft (Hidden from website)', value: 'draft' },
+              ],
+              admin: {
+                description: 'Only Published articles appear on the website. Drafts are completely hidden.',
               },
             },
             {

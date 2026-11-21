@@ -8,6 +8,9 @@ import InsightsGrid from "@/components/InsightsGrid";
 import { getInsightPosts, getInsightsCategories } from "@/lib/insights";
 import type { BlogPost } from "@shared/types";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }

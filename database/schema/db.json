@@ -400,44 +400,7 @@
       "rating": 5
     }
   ],
-  "blogs": [
-    {
-      "id": "blog_1",
-      "slug": "why-nextjs-is-best-for-seo",
-      "title": "Why Next.js is the Ultimate Framework for SEO in 2026",
-      "excerpt": "Discover how Next.js Server Components, static generation, and edge caching boost search rankings and user engagement.",
-      "content": "### Introduction\n\nSearch Engine Optimization (SEO) is no longer just about keyword stuffing. Modern search engines like Google prioritize page speed, interactivity, and mobile responsiveness—metrics collectively known as Core Web Vitals.\n\nNext.js has emerged as the premier choice for organizations seeking to dominate search layouts. By bridging static generation, server-side rendering, and React Server Components, Next.js addresses search crawler requirements while keeping user interactions fluid.\n\n### The Static Generation Advantage\n\nUnlike traditional Single Page Applications (SPAs) that compile layouts on the client side, Next.js outputs pre-rendered HTML files. Search engine bots crawling your URL immediately receive complete, readable semantic content without executing heavy Javascript, speeding up indexing rates significantly.\n\n### Core Web Vitals and Page Speed\n\nGoogle's ranking algorithms favor sites that load under 2 seconds. Next.js offers built-in optimizations that address speed bottlenecks:\n- **Image Component (`next/image`):** Automatically resizes assets, converts files to modern web formats (WebP/AVIF), and prevents layout shifts.\n- **Font Optimization:** Downloads Google Fonts locally during the build process, preventing styling flickers.\n- **Code Splitting:** Loads only the critical Javascript required for the active route, reducing page startup weights.\n\n### Practical Schema Markup\n\nAdding structured metadata (JSON-LD) is highly intuitive in the Next.js App Router. Structured data helps Google understand your business services, producing rich snippets that boast much higher click-through rates (CTR).\n\n### Conclusion\n\nInvesting in Next.js is not just a technological upgrade; it is a strategic business decision that boosts organic marketing reach, enhances site accessibility, and maximizes sales conversions.",
-      "image": "gradient-blue-purple",
-      "date": "2026-08-01",
-      "readTime": "5 min read",
-      "author": "Aravind Nair",
-      "category": "Web Development"
-    },
-    {
-      "id": "blog_2",
-      "slug": "mastering-brand-identity",
-      "title": "The Anatomy of a Premium Corporate Brand Identity",
-      "excerpt": "A deep dive into how curated colors, modern typography, and cohesive design systems establish instant trust with consumers.",
-      "content": "### Introduction\n\nYour brand identity is the digital handshake of your business. In an online landscape crowded with competitors, a premium visual system establishes authority, commands trust, and builds emotional resonance with prospective buyers.\n\nBut what elements separate a generic business profile from a memorable, premium brand? Let's dissect the core components of professional branding.\n\n### 1. The Strategy: Intentional Visual Discovery\n\nProfessional branding starts with research, not illustration. Before designing a logo, a brand must define:\n- **Target Demographics:** Who are the key buyers?\n- **Brand Attributes:** If the brand was a person, how would they speak?\n- **Market Differentiation:** What makes your services unique?\n\n### 2. Curated Color Systems\n\nColors trigger immediate psychological associations. Sleek dark schemes convey luxury and technology; warm golden tones project premium quality, while vibrant blues convey safety and innovation. A premium system limits its primary colors, focusing on high contrast, readability, and modern aesthetics.\n\n### 3. Typography Scales\n\nFonts carry silent personalities. Sans-serif fonts like Poppins offer a modern corporate appearance that remains highly readable across mobile and desktop displays. Implementing structured typographic hierarchies prevents visual clutter, allowing users to scan services effortlessly.\n\n### 4. Cohesive Design Systems\n\nBranding must extend beyond the logo. A true design system specifies grid scales, button shapes (like pill or rounded cards), input styling, and animation guides. Consistent layout patterns build recognition and make app layouts feel polished.\n\n### Conclusion\n\nInvesting in visual branding yields dividends by commanding higher price points, accelerating customer acquisition, and locking in long-term customer loyalty.",
-      "image": "gradient-amber-rose",
-      "date": "2026-07-28",
-      "readTime": "4 min read",
-      "author": "Anjali Sharma",
-      "category": "Branding"
-    },
-    {
-      "id": "blog_3",
-      "slug": "headless-cms-architecture",
-      "title": "Why Headless CMS Architecture is Winning the Enterprise",
-      "excerpt": "Learn why modern marketing teams are decoupling content management from rendering engines for improved scale and speed.",
-      "content": "### Introduction\n\nTraditional content management systems like WordPress couple database entries and layouts tightly. While this works for simple websites, it poses performance bottlenecks, security vulnerabilities, and layout constraints on modern corporate networks.\n\nDecoupled, headless architectures (like Modern Headless CMS and Next.js) solve these scaling issues by separating content creation tools from page rendering engines.\n\n### How Headless CMS Works\n\nIn a headless system, content authors use an admin console to write, edit, and publish blogs or projects. However, the CMS does not render the HTML. Instead, it exposes secure JSON API endpoints. The Next.js frontend fetches this data during builds or dynamically at runtime, delivering static pages across edge nodes.\n\n### Major Benefits\n\n1. **Unrivaled Performance:** Because pages are compiled into static HTML, there is no server-side database lookup when a user visits a page. The load time drops from seconds to milliseconds.\n2. **Improved Security:** The database and editor dashboard reside behind secure networks, completely isolated from user views. Standard SQL injection vectors are eliminated.\n3. **Omnichannel Delivery:** Because content is stored as raw JSON data, it can be distributed to web applications, native mobile apps, smartwatches, or third-party digital signage simultaneously.\n4. **Developer Freedom:** Developers build custom, beautiful responsive frameworks using Tailwind and React without templates constraining their code.\n\n### Conclusion\n\nDecoupled architectures offer the speed, flexibility, and security required to scale modern corporate digital strategies.",
-      "image": "gradient-emerald-cyan",
-      "date": "2026-07-22",
-      "readTime": "6 min read",
-      "author": "Rohit Verma",
-      "category": "Tech Strategy"
-    }
-  ],
+  "blogs": [],
   "leads": [
     {
       "type": "contact",

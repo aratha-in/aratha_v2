@@ -297,62 +297,64 @@ export default async function HomePage() {
       </section>
 
       {/* 10. LATEST INSIGHTS */}
-      <section className="py-24 px-6 border-t border-white/5 relative z-10 max-w-7xl mx-auto">
-        <div className="text-center flex flex-col items-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent">Market & Tech Intelligence</span>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
-            Latest from <span className="text-gradient-gold">Aratha Insights</span>
-          </h2>
-          <p className="text-slate-400 text-sm max-w-lg leading-relaxed">
-            Read strategic digital marketing guides, software engineering tutorials, and market intelligence from Aratha.
-          </p>
-        </div>
+      {blogs.length > 0 && (
+        <section className="py-24 px-6 border-t border-white/5 relative z-10 max-w-7xl mx-auto">
+          <div className="text-center flex flex-col items-center gap-4 mb-16">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent">Market & Tech Intelligence</span>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+              Latest from <span className="text-gradient-gold">Aratha Insights</span>
+            </h2>
+            <p className="text-slate-400 text-sm max-w-lg leading-relaxed">
+              Read strategic digital marketing guides, software engineering tutorials, and market intelligence from Aratha.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.slice(0, 3).map((post) => (
-            <Link
-              key={post.id}
-              href={`/insights/${post.slug}`}
-              className="glass-card overflow-hidden flex flex-col group min-h-[380px]"
-            >
-              {/* Dynamic abstract visual header for insights */}
-              <div className="h-48 bg-slate-900 border-b border-white/5 relative flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-secondary/10 group-hover:scale-105 transition-transform duration-500" />
-                <span className="px-3.5 py-1.5 rounded-full bg-slate-950/60 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400 z-10">
-                  {post.category}
-                </span>
-              </div>
-              <div className="p-6 flex-1 flex flex-col justify-between">
-                <div className="flex flex-col gap-3">
-                  <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
-                    {post.date} &bull; {post.readTime}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {blogs.slice(0, 3).map((post) => (
+              <Link
+                key={post.id}
+                href={`/insights/${post.slug}`}
+                className="glass-card overflow-hidden flex flex-col group min-h-[380px]"
+              >
+                {/* Dynamic abstract visual header for insights */}
+                <div className="h-48 bg-slate-900 border-b border-white/5 relative flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-secondary/10 group-hover:scale-105 transition-transform duration-500" />
+                  <span className="px-3.5 py-1.5 rounded-full bg-slate-950/60 border border-white/10 text-[10px] font-bold uppercase tracking-widest text-slate-400 z-10">
+                    {post.category}
                   </span>
-                  <h3 className="text-base font-bold text-white group-hover:text-secondary transition-colors pr-2 line-clamp-2">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
                 </div>
-                <span className="text-xs font-semibold text-accent group-hover:text-accent-hover transition-colors inline-flex items-center gap-1.5 mt-6">
-                  <span>Read Insight</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="flex flex-col gap-3">
+                    <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider">
+                      {post.date} &bull; {post.readTime}
+                    </span>
+                    <h3 className="text-base font-bold text-white group-hover:text-secondary transition-colors pr-2 line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  </div>
+                  <span className="text-xs font-semibold text-accent group-hover:text-accent-hover transition-colors inline-flex items-center gap-1.5 mt-6">
+                    <span>Read Insight</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href="/insights"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-slate-900/60 hover:bg-slate-800 text-white text-xs font-semibold transition-all group"
-          >
-            <span>Explore All Insights</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform text-accent" />
-          </Link>
-        </div>
-      </section>
+          <div className="mt-12 text-center">
+            <Link
+              href="/insights"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 bg-slate-900/60 hover:bg-slate-800 text-white text-xs font-semibold transition-all group"
+            >
+              <span>Explore All Insights</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform text-accent" />
+            </Link>
+          </div>
+        </section>
+      )}
 
       {/* 11. CALL TO ACTION */}
       <section className="py-24 px-6 relative z-10 max-w-7xl mx-auto">
