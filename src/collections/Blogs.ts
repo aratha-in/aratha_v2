@@ -8,7 +8,7 @@ export const Blogs: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'author', 'editorialStatus', 'publishedDate'],
+    defaultColumns: ['title', 'category', 'author', 'publishedDate'],
   },
   access: {
     read: () => true,
@@ -223,36 +223,6 @@ export const Blogs: CollectionConfig = {
           ],
         },
         {
-          label: 'LinkedIn & Social Assets',
-          fields: [
-            {
-              name: 'linkedinDescription',
-              type: 'textarea',
-              label: 'LinkedIn Article Description',
-            },
-            {
-              name: 'linkedinHashtags',
-              type: 'text',
-              label: 'Suggested Hashtags',
-            },
-            {
-              name: 'linkedinPost',
-              type: 'textarea',
-              label: 'Promotional LinkedIn Post Copy',
-            },
-            {
-              name: 'coverImageHeadline',
-              type: 'text',
-              label: 'Cover Image Headline',
-            },
-            {
-              name: 'coverImagePrompt',
-              type: 'textarea',
-              label: 'Cover Image Generation Prompt',
-            },
-          ],
-        },
-        {
           label: 'SEO & Search Assets',
           fields: [
             {
@@ -279,27 +249,6 @@ export const Blogs: CollectionConfig = {
               name: 'researchReferences',
               type: 'textarea',
               label: 'Recommended Research References',
-            },
-          ],
-        },
-        {
-          label: 'Editorial Quality Check',
-          fields: [
-            {
-              name: 'editorialStatus',
-              type: 'select',
-              defaultValue: 'review',
-              options: [
-                { label: 'Draft', value: 'draft' },
-                { label: 'Ready for Review', value: 'review' },
-                { label: 'Approved', value: 'approved' },
-                { label: 'Published', value: 'published' },
-              ],
-            },
-            {
-              name: 'editorialNotes',
-              type: 'textarea',
-              label: 'Editorial Notes & Recommendations',
             },
           ],
         },
