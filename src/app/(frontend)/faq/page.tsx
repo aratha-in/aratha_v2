@@ -34,8 +34,8 @@ export default function FAQPage() {
     {
       id: "faq_5",
       category: "Tech & Databases",
-      question: "Why does Aratha recommend decoupled Headless CMS architecture over WordPress?",
-      answer: "Decoupled Headless CMS (like Next.js with Payload CMS) separates data storage from the front-end layout. This yields three major benefits: (1) loading speeds under 1.5s, (2) complete security against SQL injection attacks, and (3) omnichannel content reuse."
+      question: "How are articles in Aratha Insights published?",
+      answer: "Insights articles are maintained in the repository and published with a website deployment. The current site does not use a web-based CMS or an external database for article publishing."
     },
     {
       id: "faq_6",

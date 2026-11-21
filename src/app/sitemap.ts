@@ -1,23 +1,17 @@
 import { MetadataRoute } from "next";
-import { getBlogs, getServices, getPortfolio } from "@/lib/db";
+import { getInsightPosts } from "@/lib/insights";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://aratha.in";
   const now = new Date();
 
-  // Dynamic Blog routes
-  let blogUrls: MetadataRoute.Sitemap = [];
-  try {
-    const blogs = await getBlogs();
-    blogUrls = blogs.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: post.date ? new Date(post.date) : now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    }));
-  } catch (e) {
-    console.error("Failed to compile sitemap blog slugs:", e);
-  }
+  const insights = await getInsightPosts();
+  const blogUrls: MetadataRoute.Sitemap = insights.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.date ? new Date(post.date) : now,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
   // Core static pages with priority weighting
   const staticRoutes: { route: string; priority: number; changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" }[] = [
@@ -51,5 +45,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority,
   }));
 
-  return [...staticUrls, ...blogUrls];
+  const insightUrls: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/insights`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    ...insights.map((post) => ({
+      url: `${baseUrl}/insights/${post.slug}`,
+      lastModified: post.date ? new Date(post.date) : now,
+      changeFrequency: "monthly" as const,
+      priority: post.featured ? 0.85 : 0.75,
+    })),
+  ];
+
+  return [...staticUrls, ...blogUrls, ...insightUrls];
 }

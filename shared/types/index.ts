@@ -53,6 +53,7 @@ export interface BlogPost {
   id: string;
   slug: string;
   title: string;
+  subtitle?: string;
   excerpt: string;
   content: string;
   image: string;
@@ -60,6 +61,14 @@ export interface BlogPost {
   readTime: string;
   author: string;
   category: string;
+  tags?: string[];
+  featured?: boolean;
+  status?: "draft" | "review" | "approved" | "scheduled" | "published";
+  resourceUrl?: string;
+  resourceName?: string;
+  resourceDescription?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface Lead {

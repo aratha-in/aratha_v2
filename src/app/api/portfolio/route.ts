@@ -1,46 +1,23 @@
 import { NextResponse } from "next/server";
 import { getPortfolio, addPortfolio, updatePortfolio, deletePortfolio } from "@/lib/db";
-import { getPayloadClient } from "@/lib/payload";
 
 export async function GET() {
   try {
-    const payload = await getPayloadClient();
-    const result = await payload.find({
-      collection: "projects",
-      limit: 100,
-    });
-    if (result.docs && result.docs.length > 0) {
-      return NextResponse.json(result.docs);
-    }
     const portfolio = await getPortfolio();
     return NextResponse.json(portfolio);
   } catch (error) {
-    const portfolio = await getPortfolio();
-    return NextResponse.json(portfolio);
+    console.error("Failed to load portfolio:", error);
+    return NextResponse.json({ error: "Failed to fetch portfolio" }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    try {
-      const payload = await getPayloadClient();
-      const doc = await payload.create({
-        collection: "projects",
-        data: {
-          title: body.title || "New Project",
-          slug: body.slug || `project-${Date.now()}`,
-          category: body.category || "Web Applications",
-          client: body.client || "",
-          description: body.description || "",
-        },
-      });
-      return NextResponse.json(doc, { status: 201 });
-    } catch {
-      const newProject = await addPortfolio(body);
-      return NextResponse.json(newProject, { status: 201 });
-    }
+    const newProject = await addPortfolio(body);
+    return NextResponse.json(newProject, { status: 201 });
   } catch (error) {
+    console.error("Failed to create project:", error);
     return NextResponse.json({ error: "Failed to create project" }, { status: 500 });
   }
 }
@@ -49,9 +26,12 @@ export async function PUT(request: Request) {
   try {
     const body = await request.json();
     const { id, ...data } = body;
+    if (!id) return NextResponse.json({ error: "Project ID is required" }, { status: 400 });
     const updated = await updatePortfolio(id, data);
-    return NextResponse.json(updated || { id, ...data });
+    if (!updated) return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    return NextResponse.json(updated);
   } catch (error) {
+    console.error("Failed to update project:", error);
     return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
   }
 }
@@ -61,9 +41,11 @@ export async function DELETE(request: Request) {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
     if (!id) return NextResponse.json({ error: "ID required" }, { status: 400 });
-    await deletePortfolio(id);
+    const success = await deletePortfolio(id);
+    if (!success) return NextResponse.json({ error: "Project not found" }, { status: 404 });
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Failed to delete project:", error);
     return NextResponse.json({ error: "Failed to delete project" }, { status: 500 });
   }
 }

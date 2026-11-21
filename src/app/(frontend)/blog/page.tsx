@@ -1,4 +1,4 @@
-import { getBlogs } from "@/lib/db";
+import { getInsightPosts } from "@/lib/insights";
 import BlogListing from "@/components/BlogListing";
 
 export const metadata = {
@@ -10,7 +10,7 @@ export const metadata = {
 export const revalidate = 0; // Fresh db fetch
 
 export default async function BlogPage() {
-  const posts = await getBlogs();
+  const posts = await getInsightPosts();
 
   return (
     <div className="relative w-full py-16 px-6 max-w-7xl mx-auto overflow-hidden">

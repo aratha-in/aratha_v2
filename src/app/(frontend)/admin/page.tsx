@@ -5,7 +5,6 @@ import {
   ShieldCheck,
   Users,
   Layers,
-  FileText,
   MessageSquare,
   Globe,
   Settings,
@@ -25,13 +24,12 @@ import {
 export default function AdminDashboard() {
   const [role, setRole] = useState<"Admin" | "Editor">("Admin");
   const [activeSection, setActiveSection] = useState<
-    "overview" | "services" | "portfolio" | "blog" | "testimonials" | "leads" | "seo" | "media" | "ai"
+    "overview" | "services" | "portfolio" | "testimonials" | "leads" | "seo" | "media" | "ai"
   >("overview");
 
   // Database states
   const [services, setServices] = useState<any[]>([]);
   const [portfolio, setPortfolio] = useState<any[]>([]);
-  const [blogs, setBlogs] = useState<any[]>([]);
   const [testimonials, setTestimonials] = useState<any[]>([]);
   const [leads, setLeads] = useState<any[]>([]);
   const [seo, setSeo] = useState<Record<string, any>>({});
@@ -41,7 +39,7 @@ export default function AdminDashboard() {
   const [refreshKey, setRefreshKey] = useState(0);
   const [toastMessage, setToastMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<"service" | "project" | "blog" | "testimonial" | "seo">("service");
+  const [modalType, setModalType] = useState<"service" | "project" | "testimonial" | "seo">("service");
   const [editingItem, setEditingItem] = useState<any>(null);
 
   // Form Fields State
@@ -115,7 +113,7 @@ ARATHA Solutions Director`);
       } else if (aiTool === "faq") {
         setAiResult([
           { q: `What is the delivery timeline for ${aiFaqCategory}?`, a: `Our scoping brief outlines a standard 3 to 6 week process depending on database complexities.` },
-          { q: `Does ${aiFaqCategory} integrate with existing CRMs?`, a: "Yes. We build custom API middlewares connecting Payload CMS to Hubspot or WhatsApp Webhook systems." },
+          { q: `Does ${aiFaqCategory} integrate with existing CRMs?`, a: "Yes. We build custom API integrations connecting CRM and messaging platforms to your application." },
           { q: `How do we track changes during development?`, a: "Clients log into the Aratha Client Portal (/portal) where they review task checklists, timeline roadmaps, and file mockups." }
         ]);
       } else if (aiTool === "image") {
@@ -142,19 +140,17 @@ ARATHA Solutions Director`);
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [resSrv, resPort, resBlog, resTest, resLeads, resSeo] = await Promise.all([
+        const [resSrv, resPort, resTest, resLeads, resSeo] = await Promise.all([
           fetch("/api/services"),
           fetch("/api/portfolio"),
-          fetch("/api/blog"),
           fetch("/api/testimonials"),
           fetch("/api/leads"),
           fetch("/api/seo")
         ]);
 
-        const [srv, port, blog, test, lds, sConfig] = await Promise.all([
+        const [srv, port, test, lds, sConfig] = await Promise.all([
           resSrv.json(),
           resPort.json(),
-          resBlog.json(),
           resTest.json(),
           resLeads.json(),
           resSeo.json()
@@ -162,7 +158,6 @@ ARATHA Solutions Director`);
 
         setServices(srv);
         setPortfolio(port);
-        setBlogs(blog);
         setTestimonials(test);
         setLeads(lds);
         setSeo(sConfig);
@@ -302,15 +297,6 @@ ARATHA Solutions Director`);
                 <span>Editor permissions: Delete buttons are disabled.</span>
               </p>
             )}
-            <a
-              href="/cms"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-gradient-to-r from-cyan-500/20 to-blue-600/20 border border-[#00E5FF]/40 text-[#00E5FF] text-[10px] font-extrabold uppercase tracking-wider hover:brightness-125 transition-all shadow-lg"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Open Payload CMS Engine</span>
-            </a>
           </div>
         </div>
 
@@ -366,17 +352,6 @@ ARATHA Solutions Director`);
           >
             <Layers className="w-4 h-4 text-secondary" />
             <span>Portfolio CMS</span>
-          </button>
-          <button
-            onClick={() => setActiveSection("blog")}
-            className={`w-full flex items-center gap-3 p-3.5 rounded-xl text-xs font-semibold border transition-all ${
-              activeSection === "blog"
-                ? "bg-white/5 border-white/10 text-white font-bold"
-                : "border-transparent text-slate-400 hover:text-white hover:bg-white/5"
-            }`}
-          >
-            <FileText className="w-4 h-4 text-secondary" />
-            <span>Blogs CMS</span>
           </button>
           <button
             onClick={() => setActiveSection("testimonials")}
@@ -652,53 +627,6 @@ ARATHA Solutions Director`);
                         <button
                           disabled={role !== "Admin"}
                           onClick={() => handleDelete("portfolio", proj.id)}
-                          className="p-1.5 rounded-lg bg-slate-900 border border-white/5 text-rose-500/80 hover:text-rose-500 transition-colors disabled:opacity-30"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* BLOGS CMS TAB */}
-            {activeSection === "blog" && (
-              <div className="flex flex-col gap-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-xl font-bold text-white tracking-tight">Blogs Manager</h2>
-                    <p className="text-slate-400 text-xs mt-0.5">Publish articles, strategy guides, and developer newsletters.</p>
-                  </div>
-                  <button
-                    onClick={() => handleAddNewClick("blog")}
-                    className="flex items-center gap-1 bg-accent hover:bg-accent-hover text-white text-xs font-bold px-3 py-2 rounded-xl transition-all"
-                  >
-                    <Plus className="w-4 h-4" /> Write Blog
-                  </button>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {blogs.map((b) => (
-                    <div key={b.id} className="bg-slate-950/60 border border-white/5 rounded-xl p-5 flex flex-col justify-between min-h-[160px]">
-                      <div className="flex flex-col gap-2">
-                        <div className="flex items-center justify-between">
-                          <h3 className="text-sm font-bold text-white pr-2 line-clamp-1">{b.title}</h3>
-                          <span className="text-[9px] text-slate-500 font-semibold font-mono uppercase">{b.readTime}</span>
-                        </div>
-                        <p className="text-slate-400 text-xs leading-relaxed line-clamp-3">{b.excerpt}</p>
-                      </div>
-                      <div className="flex items-center justify-end gap-2 border-t border-white/5 pt-4 mt-4">
-                        <button
-                          onClick={() => handleEditClick("blog", b)}
-                          className="p-1.5 rounded-lg bg-slate-900 border border-white/5 text-slate-400 hover:text-white transition-colors"
-                        >
-                          <Edit2 className="w-3.5 h-3.5" />
-                        </button>
-                        <button
-                          disabled={role !== "Admin"}
-                          onClick={() => handleDelete("blog", b.id)}
                           className="p-1.5 rounded-lg bg-slate-900 border border-white/5 text-rose-500/80 hover:text-rose-500 transition-colors disabled:opacity-30"
                         >
                           <Trash2 className="w-3.5 h-3.5" />
@@ -993,14 +921,6 @@ ARATHA Solutions Director`);
                                   {aiResult.content}
                                 </pre>
                               </div>
-                              <button
-                                onClick={() => {
-                                  alert("Mock action: Content successfully populated into Blogs CMS database draft.");
-                                }}
-                                className="px-4 py-2 border border-white/10 hover:border-white/20 text-white rounded-xl text-[10px] font-bold transition-all text-center self-end animate-pulse"
-                              >
-                                Save Draft to Blog CMS
-                              </button>
                             </div>
                           )}
 
@@ -1228,63 +1148,6 @@ ARATHA Solutions Director`);
                         className="glass-input px-3.5 py-2 text-xs focus:outline-none"
                       />
                     </div>
-                  </div>
-                </>
-              )}
-
-              {modalType === "blog" && (
-                <>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase font-bold text-slate-400">Article Title</label>
-                    <input
-                      type="text"
-                      required
-                      value={formFields.title || ""}
-                      onChange={(e) => setFormFields({ ...formFields, title: e.target.value })}
-                      className="glass-input px-3.5 py-2 text-xs focus:outline-none"
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] uppercase font-bold text-slate-400">Author Name</label>
-                      <input
-                        type="text"
-                        required
-                        value={formFields.author || ""}
-                        onChange={(e) => setFormFields({ ...formFields, author: e.target.value })}
-                        className="glass-input px-3.5 py-2 text-xs focus:outline-none"
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-[10px] uppercase font-bold text-slate-400">Reading Time</label>
-                      <input
-                        type="text"
-                        required
-                        value={formFields.readTime || ""}
-                        onChange={(e) => setFormFields({ ...formFields, readTime: e.target.value })}
-                        className="glass-input px-3.5 py-2 text-xs focus:outline-none"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase font-bold text-slate-400">Excerpt summary</label>
-                    <textarea
-                      required
-                      rows={2}
-                      value={formFields.excerpt || ""}
-                      onChange={(e) => setFormFields({ ...formFields, excerpt: e.target.value })}
-                      className="glass-input px-3.5 py-2 text-xs focus:outline-none resize-none"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] uppercase font-bold text-slate-400">Article Content markdown</label>
-                    <textarea
-                      required
-                      rows={6}
-                      value={formFields.content || ""}
-                      onChange={(e) => setFormFields({ ...formFields, content: e.target.value })}
-                      className="glass-input px-3.5 py-2.5 text-xs focus:outline-none resize-none"
-                    />
                   </div>
                 </>
               )}

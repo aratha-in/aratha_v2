@@ -46,10 +46,10 @@ export default function AboutPage() {
         <div className="flex flex-col gap-6 text-slate-300 text-sm leading-relaxed">
           <h2 className="text-2xl font-bold text-white tracking-tight">Our Philosophy</h2>
           <p>
-            Founded in Bangalore, Aratha was built with a single focus: **to eliminate template constraints in web software**. We noticed corporate websites were bloated with legacy builders, causing page load times over 5 seconds and poor SEO indexing.
+            Founded in Hyderabad, Aratha was built with a single focus: **to eliminate template constraints in web software**. We noticed corporate websites were bloated with legacy builders, causing page load times over 5 seconds and poor SEO indexing.
           </p>
           <p>
-            By leveraging decoupled headless architectures (like Next.js and Payload CMS), we construct applications that are highly customizable, secure, and fast.
+            By leveraging decoupled headless architectures (like Next.js and custom Headless CMS), we construct applications that are highly customizable, secure, and fast.
           </p>
         </div>
         <div className="neu-flat p-8 border border-white/10 relative flex flex-col justify-between min-h-[220px]">
@@ -57,7 +57,7 @@ export default function AboutPage() {
             <span className="text-3xl font-extrabold text-emerald-400 font-mono">2025</span>
             <h4 className="text-white text-base font-semibold mt-1">Agency Founded</h4>
             <p className="text-slate-400 text-xs mt-2 leading-relaxed">
-              Aratha was founded in 2025 in Bangalore. Today, we deliver market intelligence, software engineering, and cloud hostings for clients globally.
+              Aratha was founded in 2025 in Hyderabad. Today, we deliver market intelligence, software engineering, and cloud hostings for clients globally.
             </p>
           </div>
         </div>

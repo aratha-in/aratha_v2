@@ -71,13 +71,13 @@ export default function Footer() {
       { name: "Case Studies", path: "/case-studies" },
     ],
     resources: [
-      { name: "Blog", path: "/blog" },
+      { name: "Insights", path: "/insights" },
+      { name: "Blog archive", path: "/blog" },
       { name: "FAQ", path: "/faq" },
       { name: "Pricing", path: "/pricing" },
     ],
     client: [
       { name: "Client Space", path: "/portal" },
-      { name: "CMS Admin", path: "/cms" },
     ],
   };
 
@@ -122,7 +122,7 @@ export default function Footer() {
             </a>
             <div className="flex items-center gap-3 text-slate-400 text-sm">
               <MapPin className="w-4 h-4 text-[#00E5FF] shrink-0" />
-              <span>Bangalore, Karnataka, India</span>
+              <span>Hyderabad, Telangana, India</span>
             </div>
           </div>
         </div>

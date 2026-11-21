@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/portal", "/cms", "/api/"],
+        disallow: ["/admin", "/portal", "/api/"],
       },
       {
         userAgent: [
@@ -20,7 +20,7 @@ export default function robots(): MetadataRoute.Robots {
           "Applebot-Extended"
         ],
         allow: "/",
-        disallow: ["/admin", "/portal", "/cms", "/api/"],
+        disallow: ["/admin", "/portal", "/api/"],
       }
     ],
     sitemap: "https://aratha.in/sitemap.xml",

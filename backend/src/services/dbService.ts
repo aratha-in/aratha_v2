@@ -4,7 +4,6 @@ import {
   Service,
   PortfolioProject,
   Testimonial,
-  BlogPost,
   Lead,
   SeoConfig,
   DatabaseSchema,
@@ -188,40 +187,10 @@ export async function deleteTestimonial(id: string) {
   return true;
 }
 
-// Blogs CRUD
+// Blog content is read-only through the API and maintained in the repository.
 export async function getBlogs() {
   const db = await getDb();
   return db.blogs;
-}
-
-export async function addBlog(blog: Omit<BlogPost, "id" | "date">) {
-  const db = await getDb();
-  const newBlog: BlogPost = {
-    ...blog,
-    id: `blog_${Date.now()}`,
-    date: new Date().toISOString().split("T")[0],
-  };
-  db.blogs.push(newBlog);
-  await writeDb(db);
-  return newBlog;
-}
-
-export async function updateBlog(id: string, updated: Partial<BlogPost>) {
-  const db = await getDb();
-  const index = db.blogs.findIndex((b) => b.id === id);
-  if (index === -1) return null;
-  db.blogs[index] = { ...db.blogs[index], ...updated };
-  await writeDb(db);
-  return db.blogs[index];
-}
-
-export async function deleteBlog(id: string) {
-  const db = await getDb();
-  const index = db.blogs.findIndex((b) => b.id === id);
-  if (index === -1) return false;
-  db.blogs.splice(index, 1);
-  await writeDb(db);
-  return true;
 }
 
 // Leads CRUD

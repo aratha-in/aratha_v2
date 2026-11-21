@@ -20,8 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/*": ["./shared/*"],
-      "@payload-config": ["./payload.config.ts"]
+      "@shared/*": ["./shared/*"]
     }
   },
   "include": [

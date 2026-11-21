@@ -13,9 +13,9 @@ export async function processAiRequest(req: Request, res: Response) {
       if (userQuery.includes("pricing") || userQuery.includes("cost") || userQuery.includes("price")) {
         reply = "Our custom responsive website engineering packages start at $2,499, web applications at $7,999, UI/UX design at $1,999, and SEO marketing retainers at $999/mo. Would you like me to generate a custom AI project cost scope for your business?";
       } else if (userQuery.includes("service") || userQuery.includes("what do you do") || userQuery.includes("offer")) {
-        reply = "Aratha specializes in: 1. Custom Next.js Web Development, 2. Scalable Web & Mobile Apps, 3. UI/UX Systems Design, 4. Headless Payload CMS & Neon PostgreSQL, 5. Technical SEO & Market Intelligence, and 6. Cloud Hosting & DevOps. Which service area aligns with your goals?";
+        reply = "Aratha specializes in: 1. Custom Next.js Web Development, 2. Scalable Web & Mobile Apps, 3. UI/UX Systems Design, 4. Content and database integrations, 5. Technical SEO & Market Intelligence, and 6. Cloud Hosting & DevOps. Which service area aligns with your goals?";
       } else if (userQuery.includes("tech") || userQuery.includes("stack") || userQuery.includes("nextjs")) {
-        reply = "We engineer modern applications using Next.js App Router (v16), React, TypeScript, Tailwind CSS, Framer Motion, Payload CMS 3.x, and Neon PostgreSQL for lightning-fast performance and 99/100 Lighthouse scores.";
+        reply = "We engineer modern applications using Next.js App Router (v16), React, TypeScript, Tailwind CSS, Framer Motion, and cloud-ready APIs for performant, maintainable experiences.";
       } else if (email && email.includes("@")) {
         try {
           await dbService.addLead({
@@ -44,20 +44,20 @@ export async function processAiRequest(req: Request, res: Response) {
       const scope = {
         title: `AI Architecture Scope: ${idea}`,
         recommendedStack: isMobile
-          ? ["Next.js 16", "React Native", "Payload CMS 3.x", "Neon PostgreSQL", "Tailwind CSS v4"]
-          : ["Next.js 16 (App Router)", "TypeScript", "Payload CMS", "Neon PostgreSQL", "AWS / Vercel"],
+          ? ["Next.js 16", "React Native", "REST APIs", "Cloud database", "Tailwind CSS v4"]
+          : ["Next.js 16 (App Router)", "TypeScript", "REST APIs", "Cloud database", "AWS / Vercel"],
         estimatedWeeks: isEcommerce ? "5 to 7 Weeks" : "4 to 6 Weeks",
         estimatedCost: isEcommerce ? "$8,999 - $12,499" : "$6,499 - $9,999",
         phases: [
           { phase: "1. Discovery & Sitemap Audit", duration: "Week 1" },
           { phase: "2. UI/UX Figma Design System", duration: "Weeks 2-3" },
-          { phase: "3. Next.js & Payload CMS Engineering", duration: "Weeks 4-5" },
-          { phase: "4. QA Testing & Neon PostgreSQL Deploy", duration: "Week 6" },
+          { phase: "3. Next.js & API Engineering", duration: "Weeks 4-5" },
+          { phase: "4. QA Testing & Cloud Deployment", duration: "Week 6" },
         ],
         keyFeatures: [
           "High-Performance Next.js Server Components",
-          "Headless Content Management via Payload CMS",
-          "Automated Lead Engine connected to Neon PostgreSQL",
+          "Content management integrations tailored to the project",
+          "Automated lead capture and processing",
           "99/100 Lighthouse Performance & SEO Optimization",
         ],
       };
@@ -75,7 +75,7 @@ export async function processAiRequest(req: Request, res: Response) {
         accessibility: "WCAG AA Compliant",
         recommendations: [
           "Pre-render dynamic routes using Next.js Static Site Generation.",
-          "Migrate static database assets into Payload CMS & Neon PostgreSQL.",
+          "Connect content and data sources to the website.",
           "Inject structured LocalBusiness JSON-LD schema tags for search crawlers.",
         ],
       };
@@ -84,7 +84,8 @@ export async function processAiRequest(req: Request, res: Response) {
     }
 
     return res.status(400).json({ error: "Invalid AI action specified" });
-  } catch (error: any) {
-    return res.status(500).json({ error: error.message || "AI processing failed" });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "AI processing failed";
+    return res.status(500).json({ error: message });
   }
 }

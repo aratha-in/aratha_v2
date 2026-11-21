@@ -2,7 +2,7 @@ import { Cloud, Code, CreditCard, Layers, Shield } from "lucide-react";
 
 export const metadata = {
   title: "Technology Partners | Cloud & Payment Alliances | Aratha",
-  description: "Aratha works alongside industry-leading cloud hosting, payments, and CMS providers like AWS, Vercel, Payload CMS, and Stripe.",
+  description: "Aratha works alongside industry-leading cloud hosting, payments, and CMS providers like AWS, Vercel, Headless CMS engines, and Stripe.",
 };
 
 export default function PartnersPage() {
@@ -26,10 +26,10 @@ export default function PartnersPage() {
       desc: "We configure subscription loops, custom invoicing checkout sheets, and multi-currency billing compliance pipelines."
     },
     {
-      name: "Payload CMS",
+      name: "Headless CMS Engine",
       type: "Headless Content CMS",
       icon: Code,
-      desc: "Payload serves as our primary node CMS layer, providing clients with rapid editorial controls and modular layout fields."
+      desc: "Our headless content management architecture provides clients with rapid editorial controls and modular layout fields."
     },
     {
       name: "Cloudflare Security",

@@ -57,6 +57,7 @@ export interface BlogPost {
   id: string;
   slug: string;
   title: string;
+  subtitle?: string;
   excerpt: string;
   content: string;
   image: string;
@@ -64,6 +65,14 @@ export interface BlogPost {
   readTime: string;
   author: string;
   category: string;
+  tags?: string[];
+  featured?: boolean;
+  status?: "draft" | "review" | "approved" | "scheduled" | "published";
+  resourceUrl?: string;
+  resourceName?: string;
+  resourceDescription?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface Lead {
@@ -261,40 +270,10 @@ export async function deleteTestimonial(id: string) {
   return true;
 }
 
-// Blogs CRUD
+// Blog content is maintained in the repository and exposed read-only.
 export async function getBlogs() {
   const db = await getDb();
   return db.blogs;
-}
-
-export async function addBlog(blog: Omit<BlogPost, "id" | "date">) {
-  const db = await getDb();
-  const newBlog: BlogPost = {
-    ...blog,
-    id: `blog_${Date.now()}`,
-    date: new Date().toISOString().split("T")[0],
-  };
-  db.blogs.push(newBlog);
-  await writeDb(db);
-  return newBlog;
-}
-
-export async function updateBlog(id: string, updated: Partial<BlogPost>) {
-  const db = await getDb();
-  const index = db.blogs.findIndex((b) => b.id === id);
-  if (index === -1) return null;
-  db.blogs[index] = { ...db.blogs[index], ...updated };
-  await writeDb(db);
-  return db.blogs[index];
-}
-
-export async function deleteBlog(id: string) {
-  const db = await getDb();
-  const index = db.blogs.findIndex((b) => b.id === id);
-  if (index === -1) return false;
-  db.blogs.splice(index, 1);
-  await writeDb(db);
-  return true;
 }
 
 // Leads CRUD

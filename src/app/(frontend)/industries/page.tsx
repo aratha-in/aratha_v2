@@ -24,7 +24,7 @@ export default function IndustriesPage() {
       title: "E-Commerce",
       icon: <ShoppingBag className="w-6 h-6 text-secondary" />,
       desc: "Lightning-fast headless commerce setups using Next.js and Stripe, supporting complex multi-product catalogs and dynamic checkouts.",
-      techs: ["Stripe Checkout", "Payload CMS", "Lighthouse speed core"],
+      techs: ["Stripe Checkout", "Headless CMS", "Lighthouse speed core"],
     },
     {
       title: "Education & LMS",

@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Market Intelligence",
     "Next.js Development Agency",
     "Custom Web Applications",
-    "Headless Payload CMS",
+    "Headless CMS Solutions",
     "TypeScript Web Development",
     "UI UX Systems Design",
     "Technical SEO Agency",
@@ -113,15 +113,15 @@ export default function RootLayout({
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Tech Hub Quarter",
-          "addressLocality": "Bangalore",
-          "addressRegion": "Karnataka",
-          "postalCode": "560001",
+          "addressLocality": "Hyderabad",
+          "addressRegion": "Telangana",
+          "postalCode": "500081",
           "addressCountry": "IN"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "12.9716",
-          "longitude": "77.5946"
+          "latitude": "17.3850",
+          "longitude": "78.4867"
         },
         "openingHoursSpecification": [
           {
@@ -136,7 +136,7 @@ export default function RootLayout({
           "React Architecture",
           "TypeScript",
           "Tailwind CSS",
-          "Payload CMS",
+          "Headless CMS",
           "PostgreSQL",
           "Technical SEO",
           "Answer Engine Optimization (AEO)",
@@ -173,7 +173,7 @@ export default function RootLayout({
             "name": "What services does Aratha provide?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Aratha provides custom Next.js web application development, UI/UX systems design, Headless Payload CMS integration, technical SEO, Answer & Generative Engine Optimization (AEO/GEO), and AWS cloud DevOps automation."
+              "text": "Aratha provides custom Next.js web application development, UI/UX systems design, Custom Headless CMS integration, technical SEO, Answer & Generative Engine Optimization (AEO/GEO), and AWS cloud DevOps automation."
             }
           },
           {
@@ -181,7 +181,7 @@ export default function RootLayout({
             "name": "What technology stack does Aratha use for web engineering?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Aratha builds high-performance applications using Next.js App Router (v16), React, TypeScript, Tailwind CSS, Framer Motion, Payload CMS 3.x, PostgreSQL, and AWS / Vercel cloud infrastructure."
+              "text": "Aratha builds high-performance applications using Next.js App Router (v16), React, TypeScript, Tailwind CSS, Framer Motion, modern Headless CMS architectures, and AWS / Vercel cloud infrastructure."
             }
           },
           {

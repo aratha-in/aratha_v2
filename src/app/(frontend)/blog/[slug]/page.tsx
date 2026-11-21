@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getBlogs } from "@/lib/db";
+import { getInsightPosts } from "@/lib/insights";
 import { ArrowLeft, Calendar, Clock, User, BookOpen } from "lucide-react";
 
 interface PageProps {
@@ -9,7 +9,7 @@ interface PageProps {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  const blogs = await getBlogs();
+  const blogs = await getInsightPosts();
   const post = blogs.find((b) => b.slug === slug);
 
   if (!post) return { title: "Article Not Found" };
@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const blogs = await getBlogs();
+  const blogs = await getInsightPosts();
   const post = blogs.find((b) => b.slug === slug);
 
   if (!post) {

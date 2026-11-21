@@ -14,11 +14,11 @@ export default function EventsPage() {
       online: true
     },
     {
-      title: "Bangalore Digital Agency Developers Meetup",
+      title: "Hyderabad Digital Agency Developers Meetup",
       type: "In-Person Event",
       date: "September 12, 2026",
       time: "6:00 PM - 9:00 PM IST",
-      location: "Aratha Office Lounge, Bangalore",
+      location: "Aratha Office Lounge, Hyderabad",
       desc: "Connect with local tech founders, UI designers, and API middleware developers to discuss headless commerce scaling frameworks.",
       online: false
     },

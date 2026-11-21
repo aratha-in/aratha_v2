@@ -20,6 +20,7 @@ node_modules/
 
 # production
 /build
+/public/resources/
 
 # misc
 .DS_Store
@@ -42,3 +43,9 @@ aratha.db
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# backend build output
+backend/dist/
+shared/**/*.js
+shared/**/*.js.map
+

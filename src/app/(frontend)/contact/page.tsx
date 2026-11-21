@@ -127,7 +127,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider block font-mono">Agency HQ</span>
-                  <span className="text-xs font-semibold text-white">Bangalore, Karnataka, India</span>
+                  <span className="text-xs font-semibold text-white">Hyderabad, Telangana, India</span>
                 </div>
               </div>
             </div>

@@ -228,7 +228,7 @@ export default function PricingCalculator() {
                   onChange={(e) => setHasCms(e.target.checked)}
                   className="w-4 h-4 rounded border-white/10 bg-slate-950 text-accent focus:ring-0 cursor-pointer"
                 />
-                <span>Payload Content CMS (self-managed)</span>
+                <span>Headless Content CMS (self-managed)</span>
               </label>
               <label className="flex items-center gap-3 cursor-pointer text-xs text-slate-300 select-none">
                 <input
@@ -394,7 +394,7 @@ export default function PricingCalculator() {
                       </tr>
                       {hasCms && (
                         <tr className="print:text-black">
-                          <td className="p-3">Payload CMS Content Management System</td>
+                          <td className="p-3">Headless CMS Content Management System</td>
                           <td className="p-3 text-right font-mono">$1,200</td>
                         </tr>
                       )}

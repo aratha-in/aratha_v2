@@ -28,7 +28,7 @@ export default async function HomePage() {
   // Core Tech Stack details
   const techStack = {
     frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    backend: ["Node.js", "Express.js", "NestJS", "Payload CMS"],
+    backend: ["Node.js", "Express.js", "NestJS", "Headless CMS"],
     database: ["PostgreSQL", "SQLite", "MongoDB", "Redis"],
     cloud: ["AWS S3/EC2", "Vercel", "Docker", "GitHub Actions"],
   };
@@ -70,11 +70,6 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Headline Column */}
           <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left z-10">
-            <div className="inline-flex items-center gap-2 self-center lg:self-start px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-secondary">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Leading Next.js Development Agency</span>
-            </div>
-
             <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
               Transforming Ideas Into <br className="hidden sm:inline" />
               <span className="text-gradient-gold">Powerful Digital Experiences</span>

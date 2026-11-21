@@ -1,47 +1,23 @@
 import { NextResponse } from "next/server";
 import { getServices, addService, updateService, deleteService } from "@/lib/db";
-import { getPayloadClient } from "@/lib/payload";
 
 export async function GET() {
   try {
-    const payload = await getPayloadClient();
-    const result = await payload.find({
-      collection: "services",
-      limit: 100,
-    });
-    if (result.docs && result.docs.length > 0) {
-      return NextResponse.json(result.docs);
-    }
     const services = await getServices();
     return NextResponse.json(services);
   } catch (error) {
-    const services = await getServices();
-    return NextResponse.json(services);
+    console.error("Failed to load services:", error);
+    return NextResponse.json({ error: "Failed to fetch services" }, { status: 500 });
   }
 }
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    try {
-      const payload = await getPayloadClient();
-      const doc = await payload.create({
-        collection: "services",
-        data: {
-          title: body.title || "New Service",
-          slug: body.slug || (body.title ? body.title.toLowerCase().replace(/\s+/g, '-') : `service-${Date.now()}`),
-          tagline: body.tagline || "",
-          description: body.description || "",
-          pricing: body.pricing || "Custom Quote",
-          iconName: body.iconName || "ShieldCheck",
-        },
-      });
-      return NextResponse.json(doc, { status: 201 });
-    } catch {
-      const newService = await addService(body);
-      return NextResponse.json(newService, { status: 201 });
-    }
+    const newService = await addService(body);
+    return NextResponse.json(newService, { status: 201 });
   } catch (error) {
+    console.error("Failed to create service:", error);
     return NextResponse.json({ error: "Failed to create service" }, { status: 500 });
   }
 }
@@ -54,8 +30,10 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: "Service ID is required" }, { status: 400 });
     }
     const updated = await updateService(id, data);
-    return NextResponse.json(updated || { id, ...data });
+    if (!updated) return NextResponse.json({ error: "Service not found" }, { status: 404 });
+    return NextResponse.json(updated);
   } catch (error) {
+    console.error("Failed to update service:", error);
     return NextResponse.json({ error: "Failed to update service" }, { status: 500 });
   }
 }
@@ -68,8 +46,10 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ error: "Service ID is required" }, { status: 400 });
     }
     const success = await deleteService(id);
+    if (!success) return NextResponse.json({ error: "Service not found" }, { status: 404 });
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Failed to delete service:", error);
     return NextResponse.json({ error: "Failed to delete service" }, { status: 500 });
   }
 }

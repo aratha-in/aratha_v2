@@ -281,3 +281,87 @@ body {
 .animate-fiber-node {
   animation: fiberNodeGlow 2.5s ease-in-out infinite;
 }
+
+.insights-prose {
+  color: #cbd5e1;
+  font-size: 1rem;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.insights-prose h2,
+.insights-prose h3,
+.insights-prose h4 {
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.3;
+  scroll-margin-top: 7rem;
+}
+
+.insights-prose h2 {
+  margin: 2.5rem 0 1rem;
+  font-size: 1.65rem;
+}
+
+.insights-prose h3,
+.insights-prose h4 {
+  margin: 2rem 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.insights-prose p,
+.insights-prose ul,
+.insights-prose ol,
+.insights-prose blockquote,
+.insights-prose figure {
+  margin: 1rem 0;
+}
+
+.insights-prose ul,
+.insights-prose ol {
+  padding-left: 1.5rem;
+}
+
+.insights-prose ul {
+  list-style: disc;
+}
+
+.insights-prose ol {
+  list-style: decimal;
+}
+
+.insights-prose li + li {
+  margin-top: 0.5rem;
+}
+
+.insights-prose a {
+  color: #67e8f9;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.insights-prose blockquote {
+  border-left: 3px solid #00e5ff;
+  padding-left: 1rem;
+  color: #e2e8f0;
+}
+
+.insights-prose img {
+  margin: 2rem auto;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.insights-prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+}
+
+.insights-prose th,
+.insights-prose td {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 0.65rem 0.8rem;
+  text-align: left;
+}

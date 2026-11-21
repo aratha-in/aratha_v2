@@ -3,16 +3,16 @@ import { Globe, Cpu, Palette, Search, Sparkles, CheckCircle2 } from "lucide-reac
 import ServiceQuoteForm from "@/components/ServiceQuoteForm";
 
 export const metadata = {
-  title: "Services | High-Performance Web Engineering, Payload CMS & Technical SEO",
+  title: "Services | High-Performance Web Engineering, Headless CMS & Technical SEO",
   description:
-    "Explore Aratha's agency capabilities: custom Next.js web development, headless Payload CMS, UI/UX systems design, technical SEO, Generative Engine Optimization (GEO), and AWS cloud DevOps.",
+    "Explore Aratha's agency capabilities: custom Next.js web development, headless CMS architectures, UI/UX systems design, technical SEO, Generative Engine Optimization (GEO), and AWS cloud DevOps.",
   alternates: {
     canonical: "/services",
   },
   openGraph: {
     title: "Services | Web Engineering, Headless CMS & SEO | Aratha Agency",
     description:
-      "Explore Aratha's agency capabilities: custom Next.js web development, headless Payload CMS, UI/UX systems design, technical SEO, and cloud DevOps.",
+      "Explore Aratha's agency capabilities: custom Next.js web development, headless CMS architectures, UI/UX systems design, technical SEO, and cloud DevOps.",
     url: "https://aratha.in/services",
     type: "website",
   },

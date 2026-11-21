@@ -1,10 +1,5 @@
-# Database Migrations
+# Content Data
 
-This directory contains schema migration scripts and versioned SQL/JSON delta updates for the Aratha database layer.
+The website's Insights content is stored in `src/data/db.json` in the `blogs` array.
 
-## Schema Locations
-- Primary JSON document store: `database/schema/db.json`
-- SQLite / Postgres schema (Payload CMS): `database/schema/aratha.db`
-
-## Running Migrations
-Migration scripts placed in `database/migrations/` execute sequentially before production deployments or when bootstrapping environment instances.
+Edit the JSON entries in the repository and deploy the site to publish changes. There is no CMS schema or database migration process for Insights.

@@ -50,7 +50,7 @@ export default function CareersPage() {
     {
       id: "job_3",
       title: "Digital Growth Campaign Manager",
-      location: "Bangalore Office / Hybrid",
+      location: "Hyderabad Office / Hybrid",
       type: "Full-Time",
       posted: "5 days ago",
       desc: "Own customer acquisition channels and PPC optimizations. You will audit keywords, design Meta/LinkedIn ads, write drip email automations, and manage monthly traffic KPIs for retail and SaaS clients.",
