@@ -270,8 +270,85 @@ export async function deleteTestimonial(id: string) {
   return true;
 }
 
-// Blog content is maintained in the repository and exposed read-only.
-export async function getBlogs() {
+function lexicalNodeToMarkdown(node: any): string {
+  if (!node) return "";
+  if (node.type === "text") return node.text || "";
+  const childrenText = Array.isArray(node.children)
+    ? node.children.map(lexicalNodeToMarkdown).join("")
+    : "";
+
+  if (node.type === "heading") {
+    const level = node.tag === "h1" ? "#" : node.tag === "h2" ? "##" : "###";
+    return `\n\n${level} ${childrenText}\n\n`;
+  }
+  if (node.type === "paragraph") {
+    return `\n\n${childrenText}\n\n`;
+  }
+  if (node.type === "listitem") {
+    return `\n- ${childrenText}`;
+  }
+  return childrenText;
+}
+
+// Blog / Insights content is dynamically fetched from Payload CMS with fallback to repository data.
+export async function getBlogs(): Promise<BlogPost[]> {
+  try {
+    const { getPayloadClient } = await import("@/lib/payload");
+    const payload = await getPayloadClient();
+    const result = await payload.find({
+      collection: "blogs",
+      depth: 1,
+      limit: 100,
+    });
+
+    if (result.docs && result.docs.length > 0) {
+      return result.docs.map((doc: any) => {
+        let imageUrl = doc.bannerImageUrl || "";
+        if (doc.featuredImage && typeof doc.featuredImage === "object" && doc.featuredImage.url) {
+          imageUrl = doc.featuredImage.url;
+        }
+
+        let content = doc.rawMarkdownContent || "";
+        if (!content && doc.content?.root) {
+          content = lexicalNodeToMarkdown(doc.content.root).trim();
+        }
+
+        let downloadableUrl: string | undefined = doc.resourceUrl || undefined;
+        if (doc.downloadableFile && typeof doc.downloadableFile === "object" && doc.downloadableFile.url) {
+          downloadableUrl = doc.downloadableFile.url;
+        }
+
+        return {
+          id: String(doc.id),
+          slug: doc.slug,
+          title: doc.title,
+          subtitle: doc.excerpt || "",
+          excerpt: doc.excerpt || "",
+          content: content || doc.excerpt || "",
+          image: imageUrl || "gradient-amber-rose",
+          date: doc.publishedDate
+            ? new Date(doc.publishedDate).toISOString().split("T")[0]
+            : doc.createdAt
+            ? new Date(doc.createdAt).toISOString().split("T")[0]
+            : new Date().toISOString().split("T")[0],
+          readTime: doc.readTime || "5 min read",
+          author: (doc.authorUser && typeof doc.authorUser === "object" && doc.authorUser.name) || doc.author || "Aratha Team",
+          category: doc.category || "Market Intelligence",
+          tags: doc.tags ? doc.tags.split(",").map((t: string) => t.trim()) : [],
+          featured: true,
+          status: "published",
+          resourceUrl: downloadableUrl,
+          resourceName: doc.resourceName || undefined,
+          resourceDescription: doc.resourceDescription || undefined,
+          seoTitle: doc.seoTitle || doc.title,
+          seoDescription: doc.seoDescription || doc.excerpt,
+        };
+      });
+    }
+  } catch (err) {
+    console.warn("Payload CMS fetch fallback to db.json:", err);
+  }
+
   const db = await getDb();
   return db.blogs;
 }

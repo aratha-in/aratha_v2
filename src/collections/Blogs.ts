@@ -18,48 +18,137 @@ export const Blogs: CollectionConfig = {
       type: 'tabs',
       tabs: [
         {
-          label: 'Article Content',
+          label: 'Article & Banner Image',
           fields: [
             {
               name: 'title',
               type: 'text',
               required: true,
+              label: 'Article Title',
             },
             {
               name: 'slug',
               type: 'text',
               required: true,
               unique: true,
+              label: 'URL Slug',
+              admin: {
+                description: 'e.g. building-digital-marketing-strategy-with-clear-business-goals',
+              },
             },
             {
-              name: 'publication',
-              type: 'text',
-              defaultValue: 'ARATHA INSIGHTS',
-            },
-            {
-              name: 'category',
-              type: 'select',
-              defaultValue: 'Digital Marketing',
-              options: [
-                { label: 'Digital Marketing', value: 'Digital Marketing' },
-                { label: 'Market Intelligence', value: 'Market Intelligence' },
-                { label: 'Business Strategy', value: 'Business Strategy' },
-                { label: 'Technology Insights', value: 'Technology Insights' },
-                { label: 'Customer Experience', value: 'Customer Experience' },
-                { label: 'Industry Trends', value: 'Industry Trends' },
-                { label: 'Research & Reports', value: 'Research & Reports' },
-                { label: 'Guides & Resources', value: 'Guides & Resources' },
+              type: 'row',
+              fields: [
+                {
+                  name: 'publication',
+                  type: 'text',
+                  defaultValue: 'ARATHA INSIGHTS',
+                  admin: { width: '50%' },
+                },
+                {
+                  name: 'category',
+                  type: 'select',
+                  defaultValue: 'Digital Marketing',
+                  admin: { width: '50%' },
+                  options: [
+                    { label: 'Digital Marketing', value: 'Digital Marketing' },
+                    { label: 'Market Intelligence', value: 'Market Intelligence' },
+                    { label: 'Business Strategy', value: 'Business Strategy' },
+                    { label: 'Technology Insights', value: 'Technology Insights' },
+                    { label: 'Customer Experience', value: 'Customer Experience' },
+                    { label: 'Industry Trends', value: 'Industry Trends' },
+                    { label: 'Research & Reports', value: 'Research & Reports' },
+                    { label: 'Guides & Resources', value: 'Guides & Resources' },
+                  ],
+                },
               ],
             },
             {
-              name: 'author',
-              type: 'text',
-              defaultValue: 'Aratha Team',
+              type: 'collapsible',
+              label: '📸 Article Banner / Cover Image',
+              admin: {
+                initCollapsed: false,
+              },
+              fields: [
+                {
+                  name: 'featuredImage',
+                  type: 'upload',
+                  relationTo: 'media',
+                  label: 'Upload Banner Image (JPG, PNG, WebP)',
+                  admin: {
+                    description: 'Upload high-resolution article cover banner (16:9 ratio recommended). Managed by CMS & automatically resized.',
+                  },
+                },
+                {
+                  name: 'bannerImageUrl',
+                  type: 'text',
+                  label: 'Or External Banner Image URL',
+                  admin: {
+                    description: 'Optional: Direct image URL (e.g. https://images.unsplash.com/... or CDN link)',
+                  },
+                },
+                {
+                  name: 'bannerImageAlt',
+                  type: 'text',
+                  label: 'Banner Image Alt Text / Caption',
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'author',
+                  type: 'text',
+                  defaultValue: 'Aratha Team',
+                  admin: { width: '50%' },
+                },
+                {
+                  name: 'authorUser',
+                  type: 'relationship',
+                  relationTo: 'users',
+                  label: 'Link to CMS User Profile',
+                  admin: {
+                    width: '50%',
+                    description: 'Select registered team member / author',
+                  },
+                },
+              ],
+            },
+            {
+              type: 'row',
+              fields: [
+                {
+                  name: 'readTime',
+                  type: 'text',
+                  defaultValue: '5 min read',
+                  admin: { width: '33%' },
+                },
+                {
+                  name: 'publishedDate',
+                  type: 'date',
+                  admin: {
+                    width: '33%',
+                    date: {
+                      pickerAppearance: 'dayOnly',
+                    },
+                  },
+                },
+                {
+                  name: 'tags',
+                  type: 'text',
+                  label: 'Tags / Topics',
+                  admin: {
+                    width: '34%',
+                    description: 'e.g. SEO, Strategy, Growth, Next.js',
+                  },
+                },
+              ],
             },
             {
               name: 'targetAudience',
               type: 'textarea',
-              label: 'Target Audience',
+              label: 'Target Audience Profile',
               admin: {
                 description: 'e.g. Business owners, entrepreneurs, startup founders, marketing managers',
               },
@@ -67,40 +156,69 @@ export const Blogs: CollectionConfig = {
             {
               name: 'alternativeHeadlines',
               type: 'textarea',
-              label: 'Alternative Headlines',
+              label: 'Alternative Suggested Headlines',
               admin: {
-                description: 'Suggested alternative headlines for A/B testing or multi-platform distribution',
+                description: 'Alternative headlines for A/B testing or multi-platform distribution',
               },
             },
             {
               name: 'excerpt',
               type: 'textarea',
               required: true,
-              label: 'Excerpt / Summary',
+              label: 'Excerpt / Summary Teaser',
+            },
+            {
+              name: 'keyTakeaways',
+              type: 'textarea',
+              label: 'Key Takeaways / Highlights (Top Box)',
+              admin: {
+                description: 'Enter key bullet points to highlight at the top of the article',
+              },
             },
             {
               name: 'content',
               type: 'richText',
-              label: 'Article Body (Rich Text)',
+              label: 'Article Body (Rich Text Editor)',
             },
             {
-              name: 'readTime',
-              type: 'text',
-              defaultValue: '5 min read',
+              name: 'rawMarkdownContent',
+              type: 'textarea',
+              label: 'Or Paste Raw Markdown Article',
+              admin: {
+                description: 'Optional fast-entry field: paste complete markdown article text here',
+              },
             },
+          ],
+        },
+        {
+          label: 'User Files & Downloads',
+          fields: [
             {
-              name: 'featuredImage',
+              name: 'downloadableFile',
               type: 'upload',
               relationTo: 'media',
+              label: 'Upload Resource / Attachment (PDF, Guide, Checklist)',
+              admin: {
+                description: 'Attach a downloadable file for readers to download directly from the article',
+              },
             },
             {
-              name: 'publishedDate',
-              type: 'date',
+              name: 'resourceName',
+              type: 'text',
+              label: 'Resource Display Name',
               admin: {
-                date: {
-                  pickerAppearance: 'dayOnly',
-                },
+                description: 'e.g. Digital Marketing Strategy Checklist (PDF)',
               },
+            },
+            {
+              name: 'resourceUrl',
+              type: 'text',
+              label: 'Or External Resource Download URL',
+            },
+            {
+              name: 'resourceDescription',
+              type: 'textarea',
+              label: 'Resource Description / Callout Text',
             },
           ],
         },

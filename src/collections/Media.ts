@@ -2,6 +2,17 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: 'Media & File',
+    plural: 'Media & Files',
+  },
+  admin: {
+    useAsTitle: 'alt',
+    defaultColumns: ['filename', 'mimeType', 'filesize', 'updatedAt'],
+  },
+  access: {
+    read: () => true,
+  },
   upload: {
     staticDir: 'public/media',
     adminThumbnail: 'thumbnail',
@@ -30,7 +41,12 @@ export const Media: CollectionConfig = {
     {
       name: 'alt',
       type: 'text',
-      required: true,
+      label: 'Alt Text / Description',
+    },
+    {
+      name: 'caption',
+      type: 'text',
+      label: 'Caption / Display Title',
     },
   ],
 }
