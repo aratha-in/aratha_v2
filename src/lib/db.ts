@@ -290,6 +290,31 @@ function lexicalNodeToMarkdown(node: any): string {
   return childrenText;
 }
 
+const S3_ENDPOINT = process.env.AWS_ENDPOINT_URL_S3 || "https://br-rough-butterfly-bet3bhql.storage.c-9.us-east-2.aws.neon.tech";
+const S3_BUCKET = process.env.S3_BUCKET || "assets";
+
+function resolveMediaUrl(media: any): string {
+  if (!media) return "";
+  if (typeof media === "string") {
+    if (media.startsWith("http://") || media.startsWith("https://")) return media;
+    if (media.startsWith("/")) return media;
+    return `${S3_ENDPOINT}/${S3_BUCKET}/${media}`;
+  }
+  if (typeof media === "object") {
+    if (media.url && (media.url.startsWith("http://") || media.url.startsWith("https://"))) {
+      return media.url;
+    }
+    const filename = media.filename || (media.url ? media.url.replace("/api/media/file/", "") : "");
+    if (filename) {
+      return `${S3_ENDPOINT}/${S3_BUCKET}/${filename}`;
+    }
+    if (media.url) {
+      return media.url.replace("/api/media/file/", "/media/");
+    }
+  }
+  return "";
+}
+
 // Blog / Insights content is dynamically fetched from Payload CMS with fallback to repository data.
 export async function getBlogs(): Promise<BlogPost[]> {
   try {
@@ -310,14 +335,7 @@ export async function getBlogs(): Promise<BlogPost[]> {
       );
 
       return publishedDocs.map((doc: any) => {
-        let imageUrl = doc.bannerImageUrl || "";
-        if (doc.featuredImage && typeof doc.featuredImage === "object") {
-          if (doc.featuredImage.filename) {
-            imageUrl = `/media/${doc.featuredImage.filename}`;
-          } else if (doc.featuredImage.url) {
-            imageUrl = doc.featuredImage.url.replace("/api/media/file/", "/media/");
-          }
-        }
+        let imageUrl = resolveMediaUrl(doc.featuredImage) || resolveMediaUrl(doc.bannerImageUrl) || "";
 
         const normalizedSlug = (doc.slug || doc.title || "")
           .toLowerCase()
@@ -331,12 +349,9 @@ export async function getBlogs(): Promise<BlogPost[]> {
         }
 
         let downloadableUrl: string | undefined = doc.resourceUrl || undefined;
-        if (doc.downloadableFile && typeof doc.downloadableFile === "object") {
-          if (doc.downloadableFile.filename) {
-            downloadableUrl = `/media/${doc.downloadableFile.filename}`;
-          } else if (doc.downloadableFile.url) {
-            downloadableUrl = doc.downloadableFile.url.replace("/api/media/file/", "/media/");
-          }
+        if (doc.downloadableFile) {
+          const resolvedFile = resolveMediaUrl(doc.downloadableFile);
+          if (resolvedFile) downloadableUrl = resolvedFile;
         }
 
         return {

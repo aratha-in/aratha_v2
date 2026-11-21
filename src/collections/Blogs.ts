@@ -39,8 +39,10 @@ export const Blogs: CollectionConfig = {
           revalidatePath('/insights')
           revalidatePath('/')
           revalidatePath('/sitemap.xml')
-          revalidateTag('insights')
-          revalidateTag('blogs')
+          try {
+            revalidateTag('insights', 'default')
+            revalidateTag('blogs', 'default')
+          } catch {}
           if (doc?.slug) {
             revalidatePath(`/insights/${doc.slug}`)
           }
@@ -59,8 +61,10 @@ export const Blogs: CollectionConfig = {
           revalidatePath('/insights')
           revalidatePath('/')
           revalidatePath('/sitemap.xml')
-          revalidateTag('insights')
-          revalidateTag('blogs')
+          try {
+            revalidateTag('insights', 'default')
+            revalidateTag('blogs', 'default')
+          } catch {}
           if (doc?.slug) {
             revalidatePath(`/insights/${doc.slug}`)
           }

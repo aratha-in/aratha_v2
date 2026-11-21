@@ -5,6 +5,20 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     minimumCacheTTL: 31536000,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.neon.tech',
+      },
+      {
+        protocol: 'https',
+        hostname: 'aratha.in',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+      },
+    ],
   },
   compress: true,
   reactStrictMode: true,
