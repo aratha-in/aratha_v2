@@ -187,10 +187,16 @@ export async function deleteTestimonial(id: string) {
   return true;
 }
 
-// Blog content is read-only through the API and maintained in the repository.
+// Blog content is repository-managed; only published content is public.
 export async function getBlogs() {
   const db = await getDb();
-  return db.blogs;
+  return db.blogs.filter((blog) => {
+    if (blog.status && blog.status !== "published") return false;
+    if (!blog.date) return !blog.status;
+
+    const publicationTime = new Date(blog.date).getTime();
+    return !Number.isNaN(publicationTime) && publicationTime <= Date.now();
+  });
 }
 
 // Leads CRUD
