@@ -283,85 +283,182 @@ body {
 }
 
 .insights-prose {
-  color: #cbd5e1;
-  font-size: 1rem;
-  line-height: 1.9;
-  overflow-wrap: anywhere;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  letter-spacing: -0.011em;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .insights-prose {
+    font-size: 1.025rem;
+    line-height: 1.75;
+  }
 }
 
 .insights-prose h2,
 .insights-prose h3,
 .insights-prose h4 {
-  color: #fff;
+  color: #ffffff;
+  font-family: var(--font-poppins), sans-serif;
   font-weight: 700;
   line-height: 1.3;
+  letter-spacing: -0.02em;
   scroll-margin-top: 7rem;
 }
 
 .insights-prose h2 {
-  margin: 2.5rem 0 1rem;
-  font-size: 1.65rem;
+  margin: 3.5rem 0 1.25rem;
+  font-size: 1.85rem;
+  font-weight: 800;
 }
 
-.insights-prose h3,
+.insights-prose h3 {
+  margin: 2.25rem 0 0.875rem;
+  font-size: 1.35rem;
+  color: #e0f2fe;
+}
+
 .insights-prose h4 {
-  margin: 2rem 0 0.75rem;
-  font-size: 1.25rem;
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.15rem;
+  color: #38bdf8;
 }
 
-.insights-prose p,
-.insights-prose ul,
-.insights-prose ol,
-.insights-prose blockquote,
-.insights-prose figure {
-  margin: 1rem 0;
+.insights-prose p {
+  margin: 1.35rem 0;
+  color: #cbd5e1;
+}
+
+.insights-prose p strong,
+.insights-prose li strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.insights-prose p em,
+.insights-prose li em {
+  color: #f1f5f9;
+  font-style: italic;
 }
 
 .insights-prose ul,
 .insights-prose ol {
-  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  padding-left: 1.75rem;
 }
 
 .insights-prose ul {
-  list-style: disc;
+  list-style: none;
+}
+
+.insights-prose ul > li {
+  position: relative;
+  margin-top: 0.65rem;
+  color: #cbd5e1;
+}
+
+.insights-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.25rem;
+  top: 0.65rem;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: #00e5ff;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
 }
 
 .insights-prose ol {
   list-style: decimal;
 }
 
-.insights-prose li + li {
-  margin-top: 0.5rem;
+.insights-prose ol > li {
+  margin-top: 0.65rem;
+  color: #cbd5e1;
+}
+
+.insights-prose ol > li::marker {
+  color: #00e5ff;
+  font-weight: 700;
 }
 
 .insights-prose a {
-  color: #67e8f9;
+  color: #38bdf8;
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  transition: color 0.2s ease;
+}
+
+.insights-prose a:hover {
+  color: #00e5ff;
 }
 
 .insights-prose blockquote {
-  border-left: 3px solid #00e5ff;
-  padding-left: 1rem;
+  margin: 2rem 0;
+  border-left: 4px solid #00e5ff;
+  background: rgba(0, 229, 255, 0.05);
+  border-radius: 0 1rem 1rem 0;
+  padding: 1.25rem 1.5rem;
   color: #e2e8f0;
+  font-style: italic;
 }
 
-.insights-prose img {
-  margin: 2rem auto;
-  max-width: 100%;
-  border-radius: 1rem;
+.insights-prose hr {
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .insights-prose table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  border-collapse: collapse;
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.6);
 }
 
-.insights-prose th,
-.insights-prose td {
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  padding: 0.65rem 0.8rem;
+.insights-prose th {
+  background: rgba(30, 41, 59, 0.8);
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: left;
+}
+
+.insights-prose td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.insights-prose tr:last-child td {
+  border-bottom: none;
+}
+
+.insights-prose tr:hover td {
+  background: rgba(56, 189, 248, 0.03);
+}
+
+.insights-prose code {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #38bdf8;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
