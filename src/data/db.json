@@ -267,23 +267,25 @@
     },
     {
       "id": "port_7",
-      "slug": "visio-branding",
-      "title": "Visio Agency Showcase",
+      "slug": "kclay-pottery-studio",
+      "title": "Kclay Pottery Studio | Artisanal Ceramics & Workshops",
       "category": "Portfolio",
-      "description": "Immersive graphic design portfolio utilizing interactive horizontal scrolls, hover animations, and video carousels.",
-      "client": "Visio Creative Studio",
+      "description": "Artisanal pottery and handcrafted ceramic studio portal showcasing creative clay workshops, masterclasses, bespoke ceramic collections, and studio session reservations.",
+      "client": "Kclay Pottery Studio",
       "duration": "2 Months",
       "tags": [
         "Next.js",
-        "Framer Motion",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "Creative Showcase",
+        "Studio Bookings",
+        "UI/UX Design"
       ],
-      "image": "gradient-indigo",
-      "link": "https://example.com/visio",
+      "image": "/media/kclaypottery.png",
+      "link": "https://kclaypotterystudio.in/",
       "highlights": [
-        "Wins Webby Site Nomination for Creative UI Excellence",
-        "Includes fluid scroll effects running at steady 60fps",
-        "Generates 80% more creative service inquiries in first month"
+        "Interactive workshop scheduling and session inquiry workflow",
+        "High-definition visual gallery for handcrafted ceramics and studio spaces",
+        "Fluid responsive mobile interface optimized for lifestyle and art enthusiasts"
       ]
     },
     {
