@@ -270,12 +270,12 @@
       "slug": "kclay-pottery-studio",
       "title": "Kclay Pottery Studio | Artisanal Ceramics & Workshops",
       "category": "Portfolio",
-      "description": "Artisanal pottery and handcrafted ceramic studio portal showcasing creative clay workshops, masterclasses, bespoke ceramic collections, and studio session reservations.",
+      "description": "Artisanal pottery and handcrafted ceramic studio portal built on WordPress with custom embedded code, dynamic workshop scheduling, bespoke ceramic gallery, and studio session reservations.",
       "client": "Kclay Pottery Studio",
       "duration": "2 Months",
       "tags": [
-        "Next.js",
-        "Tailwind CSS",
+        "WordPress",
+        "Embedded Code",
         "Creative Showcase",
         "Studio Bookings",
         "UI/UX Design"
@@ -283,9 +283,9 @@
       "image": "/media/kclaypottery.png",
       "link": "https://kclaypotterystudio.in/",
       "highlights": [
+        "Custom WordPress build with tailored embedded code and interactive widgets",
         "Interactive workshop scheduling and session inquiry workflow",
-        "High-definition visual gallery for handcrafted ceramics and studio spaces",
-        "Fluid responsive mobile interface optimized for lifestyle and art enthusiasts"
+        "High-definition visual gallery for handcrafted ceramics and studio spaces"
       ]
     },
     {
