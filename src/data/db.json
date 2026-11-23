@@ -199,24 +199,25 @@
     },
     {
       "id": "port_3",
-      "slug": "horizon-estates",
-      "title": "Horizon Real Estate Engine",
+      "slug": "promacon-buildtech",
+      "title": "PROMACON Buildtech | Construction & Interior Design",
       "category": "Real Estate",
-      "description": "Premium real estate search engine with interactive map features, filter matrices, and virtual home tour showcases.",
-      "client": "Horizon Realty Partners",
+      "description": "Professionally managed construction and interior contracting portal specializing in luxury residential villas, premium apartments, commercial offices, and retail showrooms.",
+      "client": "PROMACON Buildtech",
       "duration": "3 Months",
       "tags": [
         "Next.js",
-        "Leaflet Maps",
+        "TypeScript",
         "Tailwind CSS",
-        "Prisma"
+        "Architecture Showcase",
+        "Lead Capture"
       ],
-      "image": "gradient-amber",
-      "link": "https://example.com/horizon",
+      "image": "/media/promaconinteriors.png",
+      "link": "https://promaconinteriors.com",
       "highlights": [
-        "Filters properties inside polygon boundaries dynamically",
-        "Features responsive 360 virtual viewport renderer",
-        "Increases scheduled property tours by 42% month-over-month"
+        "Comprehensive residential and commercial interior fit-out portfolio",
+        "Dynamic quotation inquiries and project estimation workflows",
+        "Responsive high-resolution project visual showcase across mobile and desktop"
       ]
     },
     {
@@ -243,23 +244,25 @@
     },
     {
       "id": "port_6",
-      "slug": "aurora-corporate",
-      "title": "Aurora Holdings Portal",
+      "slug": "cultmoney-wealth",
+      "title": "CultMoney | Premium Wealth Management",
       "category": "Corporate",
-      "description": "Global corporate marketing website presenting dynamic investor relation indexes, press releases, and career portals.",
-      "client": "Aurora Global Corp",
+      "description": "Modern financial technology and wealth management portal offering mutual fund allocations, custom investment planning, and portfolio advisory for high-net-worth investors.",
+      "client": "Sahiani Finvest Pvt Ltd (CultMoney)",
       "duration": "3 Months",
       "tags": [
         "Next.js",
+        "TypeScript",
         "Tailwind CSS",
-        "Headless CMS"
+        "Fintech",
+        "SEO Optimization"
       ],
-      "image": "gradient-cyan",
-      "link": "https://example.com/aurora",
+      "image": "/media/cultmoney.png",
+      "link": "https://www.cultmoney.in/",
       "highlights": [
-        "Loads global pages under 400ms using edge CDN caching",
-        "Translates investor documents instantly via dynamic language keys",
-        "Features accessible dark/light reading settings for visual comfort"
+        "Financial freedom roadmap tools and custom portfolio planning modules",
+        "End-to-end encrypted investor inquiry and advisory consultation funnel",
+        "Ultra-fast edge delivery optimized for mobile and desktop finance workflows"
       ]
     },
     {
