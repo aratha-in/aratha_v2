@@ -153,6 +153,29 @@
       ]
     },
     {
+      "id": "port_4",
+      "slug": "francophile-french",
+      "title": "Francophile French Language Institute",
+      "category": "Education",
+      "description": "Premier French language learning platform and institutional portal. Features CEFR-aligned training, DELF/DALF and TEF Canada certification preparation, dynamic course schedules, and student intake funnels.",
+      "client": "Francophile French",
+      "duration": "3 Months",
+      "tags": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Educational Portal",
+        "Technical SEO"
+      ],
+      "image": "gradient-emerald",
+      "link": "https://francophilefrench.com",
+      "highlights": [
+        "98% examination pass rate across DELF/DALF & TEF Canada",
+        "Interactive CEFR A1-C2 curriculum and inquiry workflows",
+        "Sub-second edge loading speeds powered by Next.js"
+      ]
+    },
+    {
       "id": "port_2",
       "slug": "pulse-health",
       "title": "Pulse Health Patient Portal",
@@ -194,28 +217,6 @@
         "Filters properties inside polygon boundaries dynamically",
         "Features responsive 360 virtual viewport renderer",
         "Increases scheduled property tours by 42% month-over-month"
-      ]
-    },
-    {
-      "id": "port_4",
-      "slug": "elevate-academy",
-      "title": "Elevate Learning LMS",
-      "category": "Education",
-      "description": "Custom learning management platform featuring video courses, interactive quizzes, and visual student analytics.",
-      "client": "Elevate Academy",
-      "duration": "5 Months",
-      "tags": [
-        "Next.js",
-        "AWS S3",
-        "Tailwind CSS",
-        "PostgreSQL"
-      ],
-      "image": "gradient-emerald",
-      "link": "https://example.com/elevate",
-      "highlights": [
-        "Supports concurrent video streaming for over 10,000 active students",
-        "Implements drag-and-drop course builder for administrators",
-        "Increases student curriculum completion rate by 28%"
       ]
     },
     {
@@ -358,6 +359,34 @@
         "kpi3": {
           "label": "Active Telemedicine Users",
           "value": "50K+"
+        }
+      }
+    },
+    {
+      "id": "case_3",
+      "slug": "francophile-french-education-portal",
+      "title": "Scaling Student Enrollment for Francophile French",
+      "client": "Francophile French",
+      "category": "Education",
+      "challenge": "Francophile French needed an authoritative digital platform to support growing student enrollments for DELF, DALF, and TEF Canada certifications. Their web presence required structured CEFR course exploration, rapid mobile access, and search authority for French education in India.",
+      "solution": "We architected a high-performance educational portal on Next.js with semantic metadata schemas, instant admissions inquiry pathways, and edge-cached delivery. The platform features accessible course roadmaps, responsive mobile performance, and automated lead capture.",
+      "results": [
+        "Organic search traffic for DELF & TEF Canada preparation grew by 160%.",
+        "Course inquiry submissions increased by 48% within 60 days of launch.",
+        "Achieved a 99/100 Lighthouse performance rating with page loads under 400ms."
+      ],
+      "metrics": {
+        "kpi1": {
+          "label": "Inquiry Growth",
+          "value": "+48%"
+        },
+        "kpi2": {
+          "label": "Organic Traffic",
+          "value": "+160%"
+        },
+        "kpi3": {
+          "label": "Lighthouse Score",
+          "value": "99/100"
         }
       }
     }
