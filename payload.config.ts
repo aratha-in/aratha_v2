@@ -12,6 +12,7 @@ import { Projects } from './src/collections/Projects'
 import { Blogs } from './src/collections/Blogs'
 import { Testimonials } from './src/collections/Testimonials'
 import { Leads } from './src/collections/Leads'
+import { Certificates } from './src/collections/Certificates'
 import { s3Storage } from '@payloadcms/storage-s3'
 
 const filename = fileURLToPath(import.meta.url)
@@ -28,7 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Services, Projects, Blogs, Testimonials, Leads],
+  collections: [Users, Media, Services, Projects, Blogs, Testimonials, Leads, Certificates],
   plugins: [
     s3Storage({
       enabled: Boolean(process.env.AWS_ACCESS_KEY_ID),

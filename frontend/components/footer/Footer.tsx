@@ -72,6 +72,7 @@ export default function Footer() {
     ],
     resources: [
       { name: "Insights", path: "/insights" },
+      { name: "Certificates", path: "/certificates" },
       { name: "FAQ", path: "/faq" },
       { name: "Pricing", path: "/pricing" },
     ],

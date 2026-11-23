@@ -445,3 +445,183 @@ export async function updateSeoConfig(page: string, config: Partial<SeoConfig>) 
   await writeDb(db);
   return db.seo[page];
 }
+
+export interface WorkshopCertificate {
+  id: string;
+  candidateName: string;
+  certificateId: string;
+  workshopTitle: string;
+  issueDate: string;
+  status: "valid" | "revoked";
+  grade?: string;
+  candidateEmail?: string;
+  instructor?: string;
+  workshopDuration?: string;
+  skillsLearned?: string[];
+  description?: string;
+  certificateFileUrl?: string;
+}
+
+// Workshop Certificates
+export async function getCertificates(query?: string): Promise<WorkshopCertificate[]> {
+  try {
+    const { getPayloadClient } = await import("@/lib/payload");
+    const payload = await getPayloadClient();
+    const where: any = {};
+    if (query && query.trim()) {
+      const q = query.trim();
+      where.or = [
+        { certificateId: { contains: q } },
+        { candidateName: { contains: q } },
+        { candidateEmail: { contains: q } },
+      ];
+    }
+    const result = await payload.find({
+      collection: "certificates" as any,
+      depth: 1,
+      limit: 100,
+      where,
+      sort: "-createdAt",
+    });
+
+    if (Array.isArray(result.docs) && result.docs.length > 0) {
+      return result.docs.map((doc: any) => ({
+        id: String(doc.id),
+        candidateName: doc.candidateName,
+        certificateId: doc.certificateId,
+        workshopTitle: doc.workshopTitle,
+        issueDate: doc.issueDate ? new Date(doc.issueDate).toISOString().split("T")[0] : "",
+        status: doc.status || "valid",
+        grade: doc.grade || undefined,
+        candidateEmail: doc.candidateEmail || undefined,
+        instructor: doc.instructor || "Aratha Technical Training Group",
+        workshopDuration: doc.workshopDuration || undefined,
+        skillsLearned: doc.skillsLearned
+          ? (typeof doc.skillsLearned === "string" ? doc.skillsLearned.split(",").map((s: string) => s.trim()).filter(Boolean) : doc.skillsLearned)
+          : undefined,
+        description: doc.description || undefined,
+        certificateFileUrl: doc.certificateFile ? resolveMediaUrl(doc.certificateFile) : undefined,
+      }));
+    }
+  } catch (err) {
+    console.warn("Payload certificates fetch error, trying direct DB:", err);
+  }
+
+  // Fallback direct Neon SQL
+  try {
+    const { neon } = await import("@neondatabase/serverless");
+    const dbUrl = process.env.DATABASE_URL || process.env.DATABASE_URI;
+    if (dbUrl) {
+      const sql = neon(dbUrl);
+      let rows: any[] = [];
+      if (query && query.trim()) {
+        const q = `%${query.trim()}%`;
+        rows = await sql`
+          SELECT * FROM certificates 
+          WHERE certificate_id ILIKE ${q} OR candidate_name ILIKE ${q} OR candidate_email ILIKE ${q}
+          ORDER BY created_at DESC
+        `;
+      } else {
+        rows = await sql`SELECT * FROM certificates ORDER BY created_at DESC`;
+      }
+      return rows.map((row: any) => ({
+        id: String(row.id),
+        candidateName: row.candidate_name,
+        certificateId: row.certificate_id,
+        workshopTitle: row.workshop_title,
+        issueDate: row.issue_date ? new Date(row.issue_date).toISOString().split("T")[0] : "",
+        status: row.status || "valid",
+        grade: row.grade || undefined,
+        candidateEmail: row.candidate_email || undefined,
+        instructor: row.instructor || "Aratha Technical Training Group",
+        workshopDuration: row.workshop_duration || undefined,
+        skillsLearned: row.skills_learned
+          ? row.skills_learned.split(",").map((s: string) => s.trim()).filter(Boolean)
+          : undefined,
+        description: row.description || undefined,
+        certificateFileUrl: undefined,
+      }));
+    }
+  } catch (err) {
+    console.warn("Direct DB fetch error for certificates:", err);
+  }
+
+  return [];
+}
+
+export async function getCertificateById(certificateId: string): Promise<WorkshopCertificate | null> {
+  const normalizedId = certificateId.trim().toUpperCase();
+  try {
+    const { getPayloadClient } = await import("@/lib/payload");
+    const payload = await getPayloadClient();
+    const result = await payload.find({
+      collection: "certificates" as any,
+      depth: 1,
+      limit: 1,
+      where: {
+        certificateId: { equals: normalizedId },
+      },
+    });
+
+    if (Array.isArray(result.docs) && result.docs.length > 0) {
+      const doc = result.docs[0];
+      return {
+        id: String(doc.id),
+        candidateName: doc.candidateName,
+        certificateId: doc.certificateId,
+        workshopTitle: doc.workshopTitle,
+        issueDate: doc.issueDate ? new Date(doc.issueDate).toISOString().split("T")[0] : "",
+        status: doc.status || "valid",
+        grade: doc.grade || undefined,
+        candidateEmail: doc.candidateEmail || undefined,
+        instructor: doc.instructor || "Aratha Technical Training Group",
+        workshopDuration: doc.workshopDuration || undefined,
+        skillsLearned: doc.skillsLearned
+          ? (typeof doc.skillsLearned === "string" ? doc.skillsLearned.split(",").map((s: string) => s.trim()).filter(Boolean) : doc.skillsLearned)
+          : undefined,
+        description: doc.description || undefined,
+        certificateFileUrl: doc.certificateFile ? resolveMediaUrl(doc.certificateFile) : undefined,
+      };
+    }
+  } catch (err) {
+    console.warn("Payload getCertificateById error, trying direct DB:", err);
+  }
+
+  // Fallback direct Neon SQL
+  try {
+    const { neon } = await import("@neondatabase/serverless");
+    const dbUrl = process.env.DATABASE_URL || process.env.DATABASE_URI;
+    if (dbUrl) {
+      const sql = neon(dbUrl);
+      const rows = await sql`
+        SELECT * FROM certificates 
+        WHERE UPPER(certificate_id) = ${normalizedId}
+        LIMIT 1
+      `;
+      if (rows && rows.length > 0) {
+        const row = rows[0];
+        return {
+          id: String(row.id),
+          candidateName: row.candidate_name,
+          certificateId: row.certificate_id,
+          workshopTitle: row.workshop_title,
+          issueDate: row.issue_date ? new Date(row.issue_date).toISOString().split("T")[0] : "",
+          status: row.status || "valid",
+          grade: row.grade || undefined,
+          candidateEmail: row.candidate_email || undefined,
+          instructor: row.instructor || "Aratha Technical Training Group",
+          workshopDuration: row.workshop_duration || undefined,
+          skillsLearned: row.skills_learned
+            ? row.skills_learned.split(",").map((s: string) => s.trim()).filter(Boolean)
+            : undefined,
+          description: row.description || undefined,
+          certificateFileUrl: undefined,
+        };
+      }
+    }
+  } catch (err) {
+    console.warn("Direct DB getCertificateById error:", err);
+  }
+
+  return null;
+}

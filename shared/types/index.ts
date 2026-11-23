@@ -96,6 +96,22 @@ export interface SeoConfig {
   keywords: string;
 }
 
+export interface WorkshopCertificate {
+  id: string;
+  candidateName: string;
+  certificateId: string;
+  workshopTitle: string;
+  issueDate: string;
+  status: "valid" | "revoked";
+  grade?: string;
+  candidateEmail?: string;
+  instructor?: string;
+  workshopDuration?: string;
+  skillsLearned?: string[];
+  description?: string;
+  certificateFileUrl?: string;
+}
+
 export interface DatabaseSchema {
   services: Service[];
   portfolio: PortfolioProject[];
@@ -103,5 +119,6 @@ export interface DatabaseSchema {
   testimonials: Testimonial[];
   blogs: BlogPost[];
   leads: Lead[];
+  certificates?: WorkshopCertificate[];
   seo: Record<string, SeoConfig>;
 }
