@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { getCertificates } from "@/lib/db";
 import CertificateLookup from "@/components/certificates/CertificateLookup";
-import { Award, ShieldCheck, CheckCircle2, FileCheck, Users, Sparkles } from "lucide-react";
+import { ShieldCheck, CheckCircle2, FileCheck, Sparkles } from "lucide-react";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
@@ -21,8 +20,6 @@ export const metadata: Metadata = {
 };
 
 export default async function CertificatesPage() {
-  const certificates = await getCertificates();
-
   return (
     <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-8 sm:py-20">
       {/* Hero Header */}
@@ -41,23 +38,23 @@ export default async function CertificatesPage() {
         {/* Highlights stats banner */}
         <div className="mt-8 grid grid-cols-3 gap-3 max-w-xl mx-auto">
           <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 neu-flat">
-            <div className="text-2xl sm:text-3xl font-extrabold text-cyan-400">{certificates.length}</div>
-            <div className="text-[11px] font-medium text-slate-400 mt-0.5">Certificates Issued</div>
+            <div className="text-xl sm:text-2xl font-extrabold text-cyan-400">Official</div>
+            <div className="text-[11px] font-medium text-slate-400 mt-0.5">Accredited Credentials</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 neu-flat">
-            <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</div>
+            <div className="text-xl sm:text-2xl font-extrabold text-emerald-400">100%</div>
             <div className="text-[11px] font-medium text-slate-400 mt-0.5">Cloud Verified</div>
           </div>
           <div className="rounded-2xl border border-white/10 bg-slate-900/60 p-4 neu-flat">
-            <div className="text-2xl sm:text-3xl font-extrabold text-blue-400">Tamper-Proof</div>
+            <div className="text-xl sm:text-2xl font-extrabold text-blue-400">Tamper-Proof</div>
             <div className="text-[11px] font-medium text-slate-400 mt-0.5">Unique ID Security</div>
           </div>
         </div>
       </header>
 
-      {/* Interactive Lookup & Directory Section */}
+      {/* Verification Box Section */}
       <section className="mb-20">
-        <CertificateLookup initialCertificates={certificates} />
+        <CertificateLookup />
       </section>
 
       {/* Program Verification Standards / Trust Section */}
