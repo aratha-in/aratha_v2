@@ -1,9 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Layers } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Globe, Lock, ExternalLink } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PortfolioProject } from "@shared/types";
+
+function getDisplayUrl(url?: string): string {
+  if (!url) return "website.com";
+  try {
+    return url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/.*$/, "");
+  } catch {
+    return url;
+  }
+}
 
 interface PortfolioFilterGridProps {
   projects: PortfolioProject[];
@@ -61,23 +71,88 @@ export default function PortfolioFilterGrid({ projects }: PortfolioFilterGridPro
               id={proj.slug}
               className="glass-card overflow-hidden flex flex-col justify-between group min-h-[460px] scroll-mt-24"
             >
-              {/* Image box */}
-              <div className="h-48 bg-slate-900 relative flex items-center justify-center border-b border-white/5 overflow-hidden">
-                <div className={`absolute inset-0 bg-gradient-to-tr ${
-                  proj.image === "gradient-purple" ? "from-purple-950/40 to-slate-950" :
-                  proj.image === "gradient-blue" ? "from-blue-950/40 to-slate-950" :
-                  proj.image === "gradient-amber" ? "from-amber-950/40 to-slate-950" :
-                  proj.image === "gradient-emerald" ? "from-emerald-950/40 to-slate-950" :
-                  proj.image === "gradient-cyan" ? "from-cyan-950/40 to-slate-950" :
-                  proj.image === "gradient-rose" ? "from-rose-950/40 to-slate-950" :
-                  "from-slate-900/50 to-slate-950"
-                } group-hover:scale-105 transition-transform duration-500`} />
-                <span className="absolute top-4 right-4 px-2.5 py-1 rounded-lg bg-slate-950/85 border border-white/10 text-[9px] font-bold text-secondary uppercase tracking-widest">
-                  {proj.category}
-                </span>
-                <div className="flex items-center gap-1 text-white/10 font-extrabold uppercase text-3xl font-mono select-none tracking-widest z-10">
-                  <Layers className="w-8 h-8 opacity-20" />
-                  <span>Interactive</span>
+              {/* Website Preview Box */}
+              <div className="h-52 bg-slate-950 relative flex flex-col border-b border-white/5 overflow-hidden group/preview">
+                {/* Browser Top Chrome */}
+                <div className="h-7 w-full bg-slate-900/95 border-b border-white/10 px-3 flex items-center justify-between z-20 shrink-0 backdrop-blur-md">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-rose-500/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-amber-500/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-500/80 inline-block" />
+                  </div>
+                  <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-slate-950/80 border border-white/5 text-[10px] text-slate-300 font-mono max-w-[180px] truncate">
+                    <Lock className="w-2.5 h-2.5 text-emerald-400 shrink-0" />
+                    <span className="truncate">{getDisplayUrl(proj.link)}</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/30 text-[9px] font-bold text-cyan-300 uppercase tracking-wider">
+                    {proj.category}
+                  </span>
+                </div>
+
+                {/* Viewport Content */}
+                <div className="relative flex-1 w-full overflow-hidden bg-slate-900">
+                  {proj.image && (proj.image.startsWith("/") || proj.image.startsWith("http")) ? (
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={proj.image}
+                        alt={`${proj.title} website preview`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+                    </div>
+                  ) : (
+                    /* Stylized Mock Web Preview */
+                    <div className="relative w-full h-full flex flex-col justify-between p-4 bg-gradient-to-br from-slate-900 via-slate-900/90 to-slate-950">
+                      <div className={`absolute inset-0 bg-gradient-to-tr ${
+                        proj.image === "gradient-purple" ? "from-purple-950/30 to-slate-950" :
+                        proj.image === "gradient-blue" ? "from-blue-950/30 to-slate-950" :
+                        proj.image === "gradient-amber" ? "from-amber-950/30 to-slate-950" :
+                        proj.image === "gradient-emerald" ? "from-emerald-950/30 to-slate-950" :
+                        proj.image === "gradient-cyan" ? "from-cyan-950/30 to-slate-950" :
+                        proj.image === "gradient-rose" ? "from-rose-950/30 to-slate-950" :
+                        "from-slate-900/40 to-slate-950"
+                      }`} />
+                      {/* Mock Header Navigation bar */}
+                      <div className="relative z-10 flex items-center justify-between border-b border-white/5 pb-2">
+                        <div className="h-2 w-16 rounded bg-cyan-400/30" />
+                        <div className="flex gap-2">
+                          <div className="h-1.5 w-8 rounded bg-white/10" />
+                          <div className="h-1.5 w-8 rounded bg-white/10" />
+                          <div className="h-1.5 w-10 rounded bg-cyan-400/20" />
+                        </div>
+                      </div>
+                      {/* Mock Hero Content */}
+                      <div className="relative z-10 space-y-2 py-2">
+                        <div className="h-3 w-3/4 rounded bg-white/20" />
+                        <div className="h-2 w-1/2 rounded bg-slate-400/30" />
+                        <div className="flex gap-2 pt-2">
+                          <div className="h-5 w-20 rounded-md bg-gradient-to-r from-cyan-400/40 to-blue-500/40 border border-cyan-400/30" />
+                          <div className="h-5 w-16 rounded-md bg-white/5 border border-white/10" />
+                        </div>
+                      </div>
+                      {/* Live Preview Indicator */}
+                      <div className="relative z-10 flex items-center justify-between text-[10px] text-slate-500 font-mono">
+                        <span className="flex items-center gap-1 text-cyan-400">
+                          <Globe className="w-3 h-3" />
+                          <span>Live Web Build</span>
+                        </span>
+                        <span className="text-slate-500">60 FPS UI</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Hover action overlay */}
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 bg-slate-950/70 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 text-xs font-bold text-cyan-300 z-30"
+                  >
+                    <span>Open Live Preview</span>
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
 
