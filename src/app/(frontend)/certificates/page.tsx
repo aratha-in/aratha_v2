@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import CertificateLookup from "@/components/certificates/CertificateLookup";
-import { ShieldCheck, CheckCircle2, FileCheck, Sparkles } from "lucide-react";
+import { ShieldCheck, CheckCircle2, FileCheck } from "lucide-react";
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
@@ -24,8 +24,7 @@ export default async function CertificatesPage() {
     <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-8 sm:py-20">
       {/* Hero Header */}
       <header className="mx-auto mb-14 max-w-3xl text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-950/40 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300 mb-4 neu-flat">
-          <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+        <div className="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-950/40 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-cyan-300 mb-4 neu-flat">
           <span>Aratha Academy & Training</span>
         </div>
         <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
